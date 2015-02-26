@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1">
+
+    <title>inRead</title>
+
+    <script type="text/javascript" charset="utf-8">
+    // Wait for device API libraries to load
+    function onbodyload() {
+      if ((/(ipad|iphone|ipod|android)/i.test(navigator.userAgent))) {
+        document.addEventListener("deviceready", onDeviceReady, false);
+      } else {
+        onDeviceReady();
+      }
+    }
+
+    // device APIs are available
+    function onDeviceReady() {
+        if (!Teads) {
+          alert('Teads plugin is not ready');
+        } else {
+          initTeadsAdEventListeners();
+
+          //Device is ready, page is loaded we can init Teads elements if we want to
+          initInRead();
+        }
+    }
+
+    function initTeadsAdEventListeners() {
+      /**
+       * TeadsAdFactoryDelegate callbacks
+       */
+      document.addEventListener('teadsAdFactoryDidFailLoading', function(data){ 
+        alert('TeadsAdFactory failed to load ad : ' + data.adType +
+          '\nwith pid : ' + data.pid +
+          '\nError code : ' + data.teadsError.code +
+          '\nError name : ' + data.teadsError.name +
+          '\nError message : ' + data.teadsError.message) ;
+      });
+      document.addEventListener('teadsAdFactoryWillLoad', function(data){
+        var willLoadPid = data.pid;
+      });
+      document.addEventListener('teadsAdFactoryDidLoad', function(data){
+        var didLoadPid = data.pid;
+      });
+      document.addEventListener('teadsAdFactoryWasConsumed', function(data){ 
+        var consumedPid = data.pid;
+      });
+      document.addEventListener('teadsAdFactoryDidExpire', function(data){ 
+        var expiredPid = data.pid;
+      });
+
+      /**
+       * TeadsNativeVideoDelegate callbacks
+       */
+      document.addEventListener('teadsNativeVideoDidFailLoading', function(data){ 
+        alert('Teads Native Video did fail to load ad' +
+          '\nError code : ' + data.teadsError.code +
+          '\nError name : ' + data.teadsError.name +
+          '\nError message : ' + data.teadsError.message);
+
+        document.getElementById("loadnative").disabled = false;
+        document.getElementById('loader').style.display = 'none';
+      });
+      document.addEventListener('teadsNativeVideoWillLoad', function(){ });
+      document.addEventListener('teadsNativeVideoDidLoad', function(){ 
+        document.getElementById('loader').style.display = 'none';
+      });
+      document.addEventListener('teadsNativeVideoWillStart', function(){ });
+      document.addEventListener('teadsNativeVideoDidStart', function(){ });
+      document.addEventListener('teadsNativeVideoWillStop', function(){ });
+      document.addEventListener('teadsNativeVideoDidStop', function(){ });
+      document.addEventListener('teadsNativeVideoDidPause', function(){ });
+      document.addEventListener('teadsNativeVideoDidResume', function(){ });
+      document.addEventListener('teadsNativeVideoDidMute', function(){ });
+      document.addEventListener('teadsNativeVideoDidUnmute', function(){ });
+      document.addEventListener('teadsNativeVideoWillExpand', function(){ });
+      document.addEventListener('teadsNativeVideoDidExpand', function(){ });
+      document.addEventListener('teadsNativeVideoWillCollapse', function(){ });
+      document.addEventListener('teadsNativeVideoDidCollapse', function(){ 
+        document.getElementById("loadnative").disabled = false;
+      });
+      document.addEventListener('teadsNativeVideoWasClicked', function(){ });
+      document.addEventListener('teadsNativeVideoDidClickBrowserClose', function(){ });
+      document.addEventListener('teadsNativeVideoWillTakeOverFullScreen', function(){ });
+      document.addEventListener('teadsNativeVideoDidTakeOverFullScreen', function(){ });
+      document.addEventListener('teadsNativeVideoWillDismissFullscreen', function(){ });
+      document.addEventListener('teadsNativeVideoDidDismissFullscreen', function(){ });
+      document.addEventListener('teadsNativeVideoSkipButtonTapped', function(){ });
+      document.addEventListener('teadsNativeVideoSkipButtonDidShow', function(){ });
+    }
+
+    //Custom methods : you can do as you want to call Teads plugin methods
+    function initInRead() {
+      Teads.initInReadWithPlacementIdAndPlaceholder('27695', 'p');
+    }
+
+    function loadNativeVideo() {
+      document.getElementById("loadnative").disabled = true;
+      document.getElementById('loader').style.display='inline';
+      Teads.loadNativeVideo();
+    }
+  </script>
+  <link rel="stylesheet" href="css/bootstrap.min.css"></link>
+  </head>
+
+  <body onload="onbodyload()">
+    
+    <br />
+    <a href="index.html"><button type="button" class="btn btn-default">< Home</button></a>
+    
+    <div class="container">
+      <div align="center">
+        <p><img id="loader" style="display:none;" src="loader.gif" /> </p>
+        <p><button class="btn btn-default btn-lg btn-info" id="loadnative" onclick="loadNativeVideo();">load inRead</button></p>
+      </div>
+
+      <div class="row">
+
+        <div class="col-sm-12 blog-main">
+
+          <div class="blog-post">
+            <h2 class="blog-post-title">Another blog post</h2>
+
+            <p> <img src="dist/img/visu1.jpg" width="100%"> </p>
+
+            <p>Cum sociis natoque penatibus et magnis dis parturient montes, , nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
+            <blockquote>
+              <p>Curabitur blandit tempus porttitor. <strong>Nullam quis risus eget urna mollis</strong> ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+            </blockquote>
+            <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+            <div id="my-placement-id"></div>
+            <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+          </div><!-- /.blog-post -->
+          <div class="blog-post">
+            <h2 class="blog-post-title">New feature</h2>
+            
+            <p> <img src="dist/img/visu2.jpg" width="100%"> </p>
+
+            <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+            <ul>
+              <li>Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</li>
+              <li>Donec id elit non mi porta gravida at eget metus.</li>
+              <li>Nulla vitae elit libero, a pharetra augue.</li>
+            </ul>
+            <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+            <p>Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.</p>
+          </div><!-- /.blog-post -->
+
+          <div class="blog-post">
+            <h2 class="blog-post-title">Daily News</h2>
+
+            <p> <img src="dist/img/visu3.jpg" width="100%"> </p>
+
+            <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+            <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+            <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+            <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+            <p>Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.</p>
+          </div><!-- /.blog-post -->
+
+        </div><!-- /.blog-main -->
+
+
+      </div><!-- /.row -->
+
+    </div><!-- /.container -->
+
+    <script type="text/javascript" src="cordova.js"></script>
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>

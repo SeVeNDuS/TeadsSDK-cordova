@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="tv.teads"
+    version="1.0">
+    <name>TeadsPlugin</name>
+    <description>Cordova plugin for Teads ads</description>
+    <license>Apache 2.0</license>
+    <keywords>teads</keywords>
+    <repo>https://github.com/ebuzzing/TeadsSDKDev-cordova</repo>
+    <issue>https://github.com/ebuzzing/TeadsSDKDev-cordova/issues</issue>
+
+    <engines>
+        <engine name="cordova" version=">=2.7" />
+    </engines>
+
+    <js-module src="www/TeadsPlugin.js" name="TeadsPlugin">
+        <clobbers target="Teads" />
+    </js-module>
+    
+    <!-- ios -->
+    <platform name="ios">
+         <config-file target="config.xml" parent="/*">
+             <feature name="TeadsPlugin">
+                 <param name="ios-package" value="TeadsPlugin" />
+             </feature>
+         </config-file>
+         
+         <header-file src="src/ios/TeadsPlugin.h"/>
+         <source-file src="src/ios/TeadsPlugin.m"/>
+         
+         <framework src="src/ios/TeadsSDK.framework" custom="true"/>
+         
+         <resource-file src="src/ios/TeadsSDKResources.bundle"/>
+        
+        <framework src="libxml2.dylib"/>
+        <framework src="libsqlite3.0.dylib"/>
+    </platform>
+</plugin>
