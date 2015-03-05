@@ -21,7 +21,7 @@
 
 #pragma mark - Teads Ad Factory
 
-- (void)loadNativeVideoAdWithPidFromAdFactory:(CDVInvokedUrlCommand*)command {
+- (void)loadNativeVideoAdWithPidToAdFactory:(CDVInvokedUrlCommand*)command {
     [self.commandDelegate runInBackground:^{
         NSArray* args = command.arguments;
         NSString *pid = [args objectAtIndex:0];
@@ -31,7 +31,7 @@
     }];
 }
 
-- (void)loadFullscreenAdWithPidFromAdFactory:(CDVInvokedUrlCommand*)command {
+- (void)loadInterstitialAdWithPidToAdFactory:(CDVInvokedUrlCommand*)command {
     [self.commandDelegate runInBackground:^{
         NSArray* args = command.arguments;
         NSString *pid = [args objectAtIndex:0];
@@ -322,7 +322,7 @@
             break;
     }
     
-    NSString *data = [NSString stringWithFormat:@"{'teadsError':{'code' : '%@', 'name' : '%@', 'message' : '%@'}", teadsErrorType, error.name, error.message];
+    NSString *data = [NSString stringWithFormat:@"{'code' : '%@', 'name' : '%@', 'message' : '%@'}", teadsErrorType, error.name, error.message];
     [self fireDocumentEvent:@"teadsInterstitialDidFailLoading" withData:data];
 }
 
@@ -388,7 +388,7 @@
             break;
     }
     
-    NSString *data = [NSString stringWithFormat:@"{'teadsError':{'code' : '%@', 'name' : '%@', 'message' : '%@'}}", teadsErrorType, error.name, error.message];
+    NSString *data = [NSString stringWithFormat:@"{'code' : '%@', 'name' : '%@', 'message' : '%@'}", teadsErrorType, error.name, error.message];
     [self fireDocumentEvent:@"teadsNativeVideoDidFailLoading" withData:data];
 }
 
@@ -446,7 +446,6 @@
  * @param nativeVideo  : the TeadsNativeVideo object
  */
 - (void)teadsNativeVideoDidStop:(TeadsNativeVideo *)nativeVideo {
-    NSLog(@"********** teadsNativeVideoDidStop **********");
     self.nativeVideoAdExperienceStarted = NO;
     [self fireDocumentEvent:@"teadsNativeVideoDidStop" withData:@""];
 }

@@ -19,8 +19,8 @@
 
 //TeadsAdFactory
 
-- (void)loadNativeVideoAdWithPidFromAdFactory:(CDVInvokedUrlCommand*)command;
-- (void)loadFullscreenAdWithPidFromAdFactory:(CDVInvokedUrlCommand*)command;
+- (void)loadNativeVideoAdWithPidToAdFactory:(CDVInvokedUrlCommand*)command;
+- (void)loadInterstitialAdWithPidToAdFactory:(CDVInvokedUrlCommand*)command;
 
 //Teads fullscreen video
 - (void)initInFlowWithPlacementId:(CDVInvokedUrlCommand*)command;
