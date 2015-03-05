@@ -56,11 +56,11 @@
       /**
        * TeadsNativeVideoDelegate callbacks
        */
-      document.addEventListener('teadsNativeVideoDidFailLoading', function(data){ 
+      document.addEventListener('teadsNativeVideoDidFailLoading', function(e){ 
         alert('Teads Native Video did fail to load ad' +
-          '\nError code : ' + data.teadsError.code +
-          '\nError name : ' + data.teadsError.name +
-          '\nError message : ' + data.teadsError.message);
+          '\nError code : ' + e.code +
+          '\nError name : ' + e.name +
+          '\nError message : ' + e.message);
 
         document.getElementById("loadnative").disabled = false;
         document.getElementById('loader').style.display = 'none';
