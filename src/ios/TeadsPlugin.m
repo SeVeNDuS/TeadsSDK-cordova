@@ -57,6 +57,11 @@
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
+- (void)getInFlowIsLoaded:(CDVInvokedUrlCommand*)command {
+    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:self.teadsInterstitial.isLoaded];
+    
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
 
 - (void)setPreDownloadInFlow:(CDVInvokedUrlCommand*)command {
     [self.commandDelegate runInBackground:^{
@@ -149,8 +154,6 @@
     NSString *pid = [command.arguments objectAtIndex:0];
     NSString *placeHolder = [command.arguments objectAtIndex:1];
     
-    //    self.startUrl = [NSURL URLWithString:[command.arguments objectAtIndex:2]];
-    
     CDVPluginResult* pluginResult = nil;
     if (pid != nil) {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
@@ -168,6 +171,12 @@
 -(void)triggerWebViewLoadEvents {
     [self.webView.delegate webViewDidStartLoad:self.webView];
     [self.webView.delegate webViewDidFinishLoad:self.webView];
+}
+
+- (void)getNativeVideoIsLoaded:(CDVInvokedUrlCommand*)command {
+    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:self.teadsNativeVideo.isLoaded];
+    
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
 - (void)setPreDownLoadNativeVideo:(CDVInvokedUrlCommand*)command {
@@ -353,6 +362,10 @@
 
 -(void)teadsInterstitialRewardUnlocked:(TeadsInterstitial *)interstitial {
     [self fireDocumentEvent:@"teadsInterstitialRewardUnlocked" withData:@""];
+}
+
+-(void)teadsInterstitialDidClean:(TeadsInterstitial *)interstitial {
+    [self fireDocumentEvent:@"teadsInterstitialDidClean" withData:@""];
 }
 
 #pragma mark - Teads Native Video delegate
@@ -592,7 +605,16 @@
  * @param nativeVideo  : the TeadsNativeVideo object
  */
 - (void)teadsNativeVideoSkipButtonDidShow:(TeadsNativeVideo *)nativeVideo {
-    [self fireDocumentEvent:@"teadsNativeVideoSkipButtonDidShowa" withData:@""];
+    [self fireDocumentEvent:@"teadsNativeVideoSkipButtonDidShow" withData:@""];
+}
+
+/**
+ * NativeVideo did clean (all related resoures have been removed)
+ *
+ * @param nativeVideo  : the TeadsNativeVideo object
+ */
+- (void)teadsNativeVideoDidClean:(TeadsNativeVideo *)nativeVideo {
+    [self fireDocumentEvent:@"teadsNativeVideoDidClean" withData:@""];
 }
 
 @end

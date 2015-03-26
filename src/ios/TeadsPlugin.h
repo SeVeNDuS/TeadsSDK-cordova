@@ -24,6 +24,7 @@
 
 //Teads fullscreen video
 - (void)initInFlowWithPlacementId:(CDVInvokedUrlCommand*)command;
+- (void)getInFlowIsLoaded:(CDVInvokedUrlCommand*)command;
 - (void)setPreDownloadInFlow:(CDVInvokedUrlCommand*)command;
 - (void)loadInFlow:(CDVInvokedUrlCommand*)command;
 - (void)loadInFlowFromAdFactory:(CDVInvokedUrlCommand*)command;
@@ -42,6 +43,7 @@
 - (void)initinReadWithPlacementId:(CDVInvokedUrlCommand*)command;
 
 //Native video (inRead & inBoard) common methods
+- (void)getNativeVideoIsLoaded:(CDVInvokedUrlCommand*)command;
 - (void)setPreDownLoadNativeVideo:(CDVInvokedUrlCommand*)command;
 - (void)loadNativeVideo:(CDVInvokedUrlCommand*)command;
 - (void)loadNativeVideoFromAdFactory:(CDVInvokedUrlCommand*)command;

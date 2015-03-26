@@ -24,8 +24,10 @@
         } else {
           initTeadsAdEventListeners();
 
-          //Device is ready, page is loaded we can init Teads elements if we want to
+          //Device is ready, page is loaded, we can init any Teads elements if we want to
           
+          //Exemple : preload a NativeVideo with TeadsAdFactory
+          //Teads.loadNativeVideoAdWithPidFromAdFactory('27695');
         }
     }
 
@@ -52,131 +54,6 @@
       document.addEventListener('teadsAdFactoryDidExpire', function(data){ 
         var expiredPid = data.pid;
       });
-
-
-      /**
-       * TeadsNativeVideoDelegate callbacks
-       */
-
-      document.addEventListener('teadsNativeVideoDidFailLoading', function(data){ 
-        alert('Teads Native Video did fail to load ad' +
-          '\nError code : ' + data.teadsError.code +
-          '\nError name : ' + data.teadsError.name +
-          '\nError message : ' + data.teadsError.message);
-
-        document.getElementById("initinboard").disabled = false;  
-        document.getElementById("initinread").disabled = false;
-        document.getElementById("pausenativevideo").disabled = true;  
-        document.getElementById("playnativevideo").disabled = true;
-        document.getElementById("cleannativevideo").disabled = true;
-        document.getElementById('loader').style.display= 'none';
-      });
-      document.addEventListener('teadsNativeVideoWillLoad', function(){ });
-      document.addEventListener('teadsNativeVideoDidLoad', function(){ 
-        document.getElementById("initinboard").disabled = true;  
-        document.getElementById("initinread").disabled = true;
-        document.getElementById("pausenativevideo").disabled = false;  
-        document.getElementById("playnativevideo").disabled = false;
-        document.getElementById("cleannativevideo").disabled = false;
-        document.getElementById('loader').style.display= 'none';
-      });
-      document.addEventListener('teadsNativeVideoWillStart', function(){ });
-      document.addEventListener('teadsNativeVideoDidStart', function(){ });
-      document.addEventListener('teadsNativeVideoWillStop', function(){ });
-      document.addEventListener('teadsNativeVideoDidStop', function(){ });
-      document.addEventListener('teadsNativeVideoDidPause', function(){ });
-      document.addEventListener('teadsNativeVideoDidResume', function(){ });
-      document.addEventListener('teadsNativeVideoDidMute', function(){ });
-      document.addEventListener('teadsNativeVideoDidUnmute', function(){ });
-      document.addEventListener('teadsNativeVideoWillExpand', function(){ });
-      document.addEventListener('teadsNativeVideoDidExpand', function(){ });
-      document.addEventListener('teadsNativeVideoWillCollapse', function(){ });
-      document.addEventListener('teadsNativeVideoDidCollapse', function(){ 
-        document.getElementById("initinboard").disabled = false;  
-        document.getElementById("initinread").disabled = false;
-        document.getElementById("pausenativevideo").disabled = true;  
-        document.getElementById("playnativevideo").disabled = true;
-      });
-      document.addEventListener('teadsNativeVideoWasClicked', function(){ });
-      document.addEventListener('teadsNativeVideoDidClickBrowserClose', function(){ });
-      document.addEventListener('teadsNativeVideoWillTakeOverFullScreen', function(){ });
-      document.addEventListener('teadsNativeVideoDidTakeOverFullScreen', function(){ });
-      document.addEventListener('teadsNativeVideoWillDismissFullscreen', function(){ });
-      document.addEventListener('teadsNativeVideoDidDismissFullscreen', function(){ });
-      document.addEventListener('teadsNativeVideoSkipButtonTapped', function(){ });
-      document.addEventListener('teadsNativeVideoSkipButtonDidShow', function(){ });
-
-      /**
-       * TeadsInterstitialDelegate callbacks
-       */
-
-      document.addEventListener('teadsInterstitialDidFailLoading', function(data){ 
-        alert('Teads teadsInterstial did fail to load ad' +
-          '\nError code : ' + data.teadsError.code +
-          '\nError name : ' + data.teadsError.name +
-          '\nError message : ' + data.teadsError.message);
-
-        document.getElementById("initinflow").disabled = true;  
-        document.getElementById("showinflow").disabled = false;
-        document.getElementById("cleaninflow").disabled = true;
-        document.getElementById('loaderinterstitial').style.display='none';
-      });
-      document.addEventListener('teadsInterstitialWillLoad', function(){ });
-      document.addEventListener('teadsInterstitialDidLoad', function(){ 
-        document.getElementById("initinflow").disabled = true;  
-        document.getElementById("showinflow").disabled = false;
-        document.getElementById("cleaninflow").disabled = false;
-        document.getElementById('loaderinterstitial').style.display='none';
-      });
-      document.addEventListener('teadsInterstitialWillTakeOverFullScreen', function(){ });
-      document.addEventListener('teadsInterstitialDidTakeOverFullScreen', function(){ });
-      document.addEventListener('teadsInterstitialWillDismissFullScreen', function(){ });
-      document.addEventListener('teadsInterstitialDidDismissFullScreen', function(){ 
-        document.getElementById("initinflow").disabled = false;  
-        document.getElementById("showinflow").disabled = true; 
-        document.getElementById("cleaninflow").disabled = true;
-      });
-      document.addEventListener('teadsInterstitialIsRewardEnabled', function(){ });
-      document.addEventListener('teadsInterstitialRewardUnlocked', function(){ });
-    }
-
-
-    //Custom methods : you can do as you want to call Teads plugin methods
-    function initAndLoadInBoard() {
-      Teads.initInBoardWithPlacementId('27695');
-      //loadNativeVideo();
-    }
-
-    function initAndLoadInRead() {
-      Teads.initInReadWithPlacementId('27695');
-      //loadNativeVideo();
-    }
-
-    function loadNativeVideo() {
-      document.getElementById('loader').style.display='inline';
-      Teads.loadNativeVideo();
-    }
-
-    function cleanNative() {
-      Teads.cleanNativeVideo();
-      document.getElementById("initinboard").disabled = false;  
-      document.getElementById("initinread").disabled = false;
-      document.getElementById("pausenativevideo").disabled = true;  
-      document.getElementById("playnativevideo").disabled = true;
-      document.getElementById("cleannativevideo").disabled = true;
-    }
-
-    function initAndLoadInFlow() {
-      document.getElementById('loaderinterstitial').style.display='inline';
-      Teads.initInFlowWithPlacementId('27695');
-      Teads.loadInFlow();
-    }
-
-    function cleanInterstitial() {
-      Teads.cleanInFlow();
-      document.getElementById("initinflow").disabled = false;  
-      document.getElementById("showinflow").disabled = true; 
-      document.getElementById("cleaninflow").disabled = true;
     }
   </script>
   <link rel="stylesheet" href="css/bootstrap.min.css"></link>

@@ -92,6 +92,7 @@
       document.addEventListener('teadsNativeVideoDidDismissFullscreen', function(){ });
       document.addEventListener('teadsNativeVideoSkipButtonTapped', function(){ });
       document.addEventListener('teadsNativeVideoSkipButtonDidShow', function(){ });
+      document.addEventListener('teadsNativeVideoDidClean', function(){ });
     }
 
 
@@ -104,6 +105,16 @@
       document.getElementById("loadnative").disabled = true;
       document.getElementById('loader').style.display='inline';
       Teads.loadNativeVideo();
+    }
+
+     //If you want to know if NativeVideo is loaded
+    function isLoaded() {
+      var isItLoaded;
+
+      Teads.getNativeVideoIsLoaded(function(isLoadedResponse) { 
+        isItLoaded = isLoadedResponse;
+      });
+      
     }
   </script>
 

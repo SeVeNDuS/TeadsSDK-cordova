@@ -70,7 +70,7 @@
       document.addEventListener('teadsInterstitialDidLoad', function(){ 
         document.getElementById("loadinflow").disabled = true;
         document.getElementById("showinflow").disabled = false;
-        document.getElementById('loaderinterstitial').style.display='none';
+        document.getElementByqId('loaderinterstitial').style.display='none';
       });
       document.addEventListener('teadsInterstitialWillTakeOverFullScreen', function(){ });
       document.addEventListener('teadsInterstitialDidTakeOverFullScreen', function(){ });
@@ -81,6 +81,7 @@
       });
       document.addEventListener('teadsInterstitialIsRewardEnabled', function(){ });
       document.addEventListener('teadsInterstitialRewardUnlocked', function(){ });
+      document.addEventListener('teadsInterstitialDidClean', function(){ });
     }
 
 

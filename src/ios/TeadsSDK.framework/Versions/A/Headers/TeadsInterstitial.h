@@ -129,4 +129,11 @@
  */
 - (void)teadsInterstitialRewardUnlocked:(TeadsInterstitial *)interstitial;
 
+/**
+ * Interstitial Did Clean
+ *
+ * @param interstitial  : the TeadsInterstitial object
+ */
+- (void)teadsInterstitialDidClean:(TeadsInterstitial *)interstitial;
+
 @end
