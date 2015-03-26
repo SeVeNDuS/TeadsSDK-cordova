@@ -96,36 +96,6 @@ TeadsPlugin.prototype.cleanInFlow = function(successCallback, failureCallback) {
 	cordova.exec( successCallback, failureCallback, 'TeadsPlugin', 'cleanInFlow', [] );
 };
 
-/**
- * Enable reward on completion
- *
- * @param {boolean} enable is a boolean 1 or 0, true or false
- *
-**/
-TeadsPlugin.prototype.setRewardEnabledInFlow = function(mustEnableReward, successCallback, failureCallback) {
-	cordova.exec( successCallback, failureCallback, 'TeadsPlugin', 'setRewardEnabledInFlow', [mustEnableReward] );
-};
-
-TeadsPlugin.prototype.isRewardEnabledInFlow = function(successCallback, failureCallback) {
-	cordova.exec( successCallback, failureCallback, 'TeadsPlugin', 'isRewardEnabledInFlow', [] );
-};
-
-/**
- * Enable a reward information on completion
- * 
- * @param  {string} rewardMessage is a string
- *
- * @param {boolean} debug is a boolean 1 or 0, true or false
- *
-**/
-TeadsPlugin.prototype.setRewardInfoInFlow = function(rewardMessage, debug, successCallback, failureCallback) {
-	cordova.exec( successCallback, failureCallback, 'TeadsPlugin', 'setRewardInfoInFlow', [rewardMessage, debug] );
-};
-
-TeadsPlugin.prototype.onLayoutChangeInFlow = function(successCallback, failureCallback) {
-	cordova.exec( successCallback, failureCallback, 'TeadsPlugin', 'onLayoutChangeInFlow', [] );
-};
-
 
 /**
  * Teads Native Video (inBoard and inRead)

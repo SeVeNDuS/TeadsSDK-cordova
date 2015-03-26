@@ -30,9 +30,6 @@
 - (void)loadInFlowFromAdFactory:(CDVInvokedUrlCommand*)command;
 - (void)showInFlow:(CDVInvokedUrlCommand*)command;
 - (void)cleanInFlow:(CDVInvokedUrlCommand*)command;
-- (void)setRewardEnabledInFlow:(CDVInvokedUrlCommand*)command;
-- (void)isRewardEnabledInFlow:(CDVInvokedUrlCommand*)command;
-- (void)setRewardInfoInFlow:(CDVInvokedUrlCommand*)command;
 - (void)onLayoutChangeInFlow:(CDVInvokedUrlCommand*)command;
 
 

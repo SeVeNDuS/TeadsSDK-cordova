@@ -90,32 +90,6 @@
     [self.teadsInterstitial clean];
 }
 
-- (void)setRewardEnabledInFlow:(CDVInvokedUrlCommand*)command {
-    NSArray* args = command.arguments;
-    BOOL rewardEnabledInFlow = [[args objectAtIndex:0] boolValue];
-    
-    [self.teadsInterstitial setRewardEnabled:rewardEnabledInFlow];
-}
-
-- (void)isRewardEnabledInFlow:(CDVInvokedUrlCommand*)command {
-    BOOL isRewardEnabled = [self.teadsInterstitial isRewardEnabled];
-    
-    [self fireDocumentEvent:@"teadsInterstitialIsRewardEnabled" withData:isRewardEnabled?@"true":@"false"];
-}
-
-- (void)setRewardInfoInFlow:(CDVInvokedUrlCommand*)command {
-    NSArray* args = command.arguments;
-    
-    NSString *rewardInfoInFlow = [args objectAtIndex:0];
-    BOOL debug = NO;
-    
-    [self.teadsInterstitial setRewardInfo:rewardInfoInFlow withDebug:debug];
-}
-
-- (void)onLayoutChangeInFlow:(CDVInvokedUrlCommand*)comman {
-    [self.teadsInterstitial onLayoutChange];
-}
-
 
 #pragma mark - Teads Native Video
 
