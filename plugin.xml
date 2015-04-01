@@ -1,23 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    id="tv.teads"
+    id="tv.teads.plugin"
     version="1.0">
     <name>TeadsPlugin</name>
     <description>Cordova plugin for Teads ads</description>
     <license>Apache 2.0</license>
     <keywords>teads</keywords>
-    <repo>https://github.com/ebuzzing/TeadsSDKDev-cordova</repo>
-    <issue>https://github.com/ebuzzing/TeadsSDKDev-cordova/issues</issue>
+    <repo>https://github.com/teads/TeadsSDKDev-cordova</repo>
+    <issue>https://github.com/teads/TeadsSDKDev-cordova/issues</issue>
 
     <engines>
-        <engine name="cordova" version=">=2.7" />
+        <engine name="cordova-android" version=">=4.0.0-dev" />
+      <engine name="cordova-plugman" version=">=4.2.0" />
     </engines>
 
     <js-module src="www/TeadsPlugin.js" name="TeadsPlugin">
         <clobbers target="Teads" />
     </js-module>
-    
+
+    <!-- engines -->
+        <!-- engine name="cordova-android" version=">=4.0.0-dev" / --><!-- needed for gradle support -->
+        <!-- engine name="cordova-plugman" version=">=4.2.1-dev" / --><!-- needed for gradle framework support -->
+    <!-- /engines -->
+
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+          <feature name="TeadsPlugin">
+            <param name="android-package" value="tv.teads.plugin.TeadsPlugin" />
+          </feature>
+        </config-file>
+
+        <source-file src="src/android/TeadsPlugin.java" target-dir="src/tv/teads/plugin/" />
+
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+          <activity
+               android:name="tv.teads.sdk.adContainer.activity.FullscreenActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:hardwareAccelerated="true">
+           </activity>
+
+           <!-- activity
+               android:name="tv.teads.sdk.adContainer.activity.BrowserActivity"
+               android:theme="@style/Theme.AppCompat"
+               android:configChanges="orientation|keyboardHidden|screenSize" >
+           </activity -->
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/*">
+          <uses-permission android:name="android.permission.INTERNET" />
+          <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+          <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+        </config-file>
+
+        <framework src="teads.gradle" custom="true" type="gradleReference" />
+
+        <!-- dependency id="android.support.v7-appcompat" url="https://github.com/MobileChromeApps/cordova-plugin-android-support-v7-appcompat" />
+
+        <dependency id="com.google.playservices" url="https://github.com/MobileChromeApps/google-play-services" />
+        <dependenct id="android.support.v4" url="https://github.com/MobileChromeApps/cordova-plugin-android-support-v4" />
+        <dependenct id="org.fathens.cordova.okhttp" url="https://github.com/sawatani/Cordova-plugin-okhttp" />
+        
+        <source-file  src="src/android/android-async-http-1.4.6.jar"  target-dir="libs" framework="true"/>
+        <source-file  src="src/android/jackson-core-2.4.3.jar"  target-dir="libs" framework="true"/>
+        <source-file  src="src/android/jackson-databind-2.4.3.jar"  target-dir="libs" framework="true"/>
+        <source-file  src="src/android/jackson-annotations-2.4.3.jar"  target-dir="libs" framework="true"/>
+        <source-file  src="src/android/picasso-2.5.0.jar" target-dir="libs" framework="true"/>
+        <source-file src="src/android/exoplayerlibrary.jar"  target-dir="libs" framework="true"/>
+        <source-file src="src/android/okio-1.3.0.jar"  target-dir="libs" framework="true"/>
+
+        <source-file src="src/android/tv/teads/teads-sdk.jar" target-dir="libs" framework="true"/ -->
+    </platform>
+
     <!-- ios -->
     <platform name="ios">
          <config-file target="config.xml" parent="/*">
@@ -36,4 +91,5 @@
         <framework src="libxml2.dylib"/>
         <framework src="libsqlite3.0.dylib"/>
     </platform>
+
 </plugin>
