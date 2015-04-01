@@ -88,7 +88,7 @@
     //Custom methods : you can do as you want to call Teads plugin methods
     function initInFlow() {
       Teads.initInFlowWithPlacementId('27695');
-      Teads.setPreDownloadInFlow(true);
+      //Teads.setPreDownloadInFlow(true);
     }
     function loadInFlow() {
       document.getElementById('loaderinterstitial').style.display='inline';
@@ -107,7 +107,7 @@
     <div align="center">
       <button class="btn btn-default btn-lg" id="loadinflow" onclick="loadInFlow();" >load inFlow</button><br /><br />
       <img id="loaderinterstitial" style="display:none;" src="loader.gif" /><br /><br />
-      <button class="btn btn-default btn-lg" id="showinflow" onclick="Teads.showInFlow();" disabled>Show inFlow</button><br /><br />
+      <button class="btn btn-default btn-lg" id="showinflow" onclick="Teads.showInFlow();">Show inFlow</button><br /><br />
     </div>
 
     <script type="text/javascript" src="cordova.js"></script>
