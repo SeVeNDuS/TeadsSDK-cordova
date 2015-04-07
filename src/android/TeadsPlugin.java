@@ -216,8 +216,19 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
 
         PluginResult result = null;
         try {
-            String pid = data.getString(0);
-            mTeadsInterstitial = new TeadsInterstitial(cordova.getActivity(), pid, this);
+            final String pid = data.getString(0);
+
+            cordova.getActivity().runOnUiThread(new Runnable() {
+
+                @Override
+                public void run() {
+                    mTeadsInterstitial = new TeadsInterstitial(cordova.getActivity(), pid, TeadsPlugin.this);
+
+                    if (callbackContext != null) {
+                        callbackContext.success();
+                    }
+                }
+            });
 
             result = new PluginResult(PluginResult.Status.OK);
 
