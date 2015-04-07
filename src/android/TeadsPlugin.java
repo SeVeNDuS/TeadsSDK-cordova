@@ -26,12 +26,9 @@ import tv.teads.sdk.publisher.TeadsNativeVideo;
 import tv.teads.sdk.publisher.TeadsNativeVideoEventListener;
 
 
-import android.graphics.Color;
+import android.app.Activity;
 import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
 import android.webkit.WebView;
-import android.widget.FrameLayout;
 
 public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEventListener, TeadsNativeVideoEventListener {
     
