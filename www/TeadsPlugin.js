@@ -1,9 +1,17 @@
-cordova.define("tv.teads.TeadsPlugin", function(require, exports, module) { var argscheck = require('cordova/argscheck'),
-    exec = require('cordova/exec');
+cordova.define("tv.teads.plugin", function(require, exports, module) { var argscheck = require('cordova/argscheck'),
+    exec = require('cordova/exec');});
+    
+
+//$(document).ready(function () {
+//  $(window).scroll(function () {
+
+//  });
+//});
+
 
 var teadsExport = {};
 
-function TeadsPlugin() {}
+function TeadsPlugin() {};
 
 
 /**
@@ -50,7 +58,7 @@ TeadsPlugin.prototype.loadFullscreenAdWithPidFromAdFactory = function(pid, succe
  */
 TeadsPlugin.prototype.initInFlowWithPlacementId = function(pid, successCallback, failureCallback) {
 	if(typeof pid === 'string') {
-		cordova.exec( successCallback, failureCallback, 'TeadsPlugin', 'initInFlowWithPlacementId', [pid] );
+		cordova.exec(successCallback, failureCallback, 'TeadsPlugin', 'initInFlowWithPlacementId', [pid] );
 	} else {
 		console.log('Error : placement id provided for loadNativeVideoAdWithPidFromAdFactory is not a string');
 	}
@@ -69,7 +77,8 @@ TeadsPlugin.prototype.getInFlowIsLoaded = function(successCallback, failureCallb
 		}, 
 		failureCallback,
 		'TeadsPlugin', 
-		'getInFlowIsLoaded');
+		'getInFlowIsLoaded',
+		[]);
 };
 
 TeadsPlugin.prototype.setPreDownloadInFlow = function(mustPreDownload, successCallback, failureCallback) {
@@ -126,7 +135,8 @@ TeadsPlugin.prototype.getNativeVideoIsLoaded = function(successCallback, failure
 		}, 
 		failureCallback,
 		'TeadsPlugin', 
-		'getNativeVideoIsLoaded');
+		'getNativeVideoIsLoaded',
+		[]);
 };
 
 TeadsPlugin.prototype.setPreDownLoadNativeVideo = function(mustPreDownload, successCallback, failureCallback) {
@@ -169,4 +179,4 @@ TeadsPlugin.prototype.viewControllerDisappearedForNativeVideo = function( succes
 var teads = new TeadsPlugin(); 
 module.exports = teads;
 
-});
+//});
