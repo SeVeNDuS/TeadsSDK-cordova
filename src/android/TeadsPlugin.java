@@ -232,9 +232,11 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
     }
 
     private PluginResult getInFlowIsLoaded(JSONArray data, final CallbackContext callbackContext) {
-        PluginResult result = new PluginResult(PluginResult.Status.OK, mTeadsInterstitial.isLoaded());
-        result.setKeepCallback(true);
+        if (mTeadsInterstitial == null) {
+            return new PluginResult(PluginResult.Status.ERROR, "Teads Interstitial is null, call initInFlowWithPlacementId first.");
+        }
 
+        PluginResult result = new PluginResult(PluginResult.Status.OK, mTeadsInterstitial.isLoaded());
         return result;
     }
 
@@ -245,18 +247,31 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
     }
     
     private PluginResult loadInFlow(JSONArray data, final CallbackContext callbackContext) {
+        PluginResult result = null;
+
+        if (mTeadsInterstitial == null) {
+            return new PluginResult(PluginResult.Status.ERROR, "Teads Interstitial is null, call initInFlowWithPlacementId first.");
+        }
+
         try {
-            mTeadsInterstitial.load();
+            cordova.getActivity().runOnUiThread(new Runnable() {
+
+                @Override
+                public void run() {
+                    mTeadsInterstitial.load();
+
+                    if (callbackContext != null) {
+                        callbackContext.success();
+                    }
+                }
+            });
+
+            result = new PluginResult(PluginResult.Status.OK);
         } catch (Exception e) {
-            Log.d(TAG, "error LoadInterstitial = " + e.getMessage());
+            Log.e(TAG, "error LoadInterstitial = " + e.getMessage());
+            result = new PluginResult(PluginResult.Status.ERROR, e.getMessage());
         }
 
-        if (callbackContext != null) {
-            Log.d(TAG, "callbackContext != null");
-            callbackContext.success();
-        }
-
-        PluginResult result = new PluginResult(PluginResult.Status.OK);
         return result;
     }
 
@@ -267,31 +282,34 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
     }
     
     private PluginResult showInFlow(JSONArray data, final CallbackContext callbackContext) {
-        if(mTeadsInterstitial.isLoaded()){
-            Log.d(TAG, "isLoaded");
-            
-            try {
+        PluginResult result = null;
 
-            mTeadsInterstitial.show();
-        } catch (Exception e) {
-            Log.d(TAG, "error ShowInterstitial = " + e.getMessage());
+        if (mTeadsInterstitial == null) {
+            return new PluginResult(PluginResult.Status.ERROR, "Teads Interstitial is null, call initInFlowWithPlacementId first.");
         }
-            
-            if (callbackContext != null) {
-                Log.d(TAG, "callbackContext != null");
-                callbackContext.success();
+
+        if(mTeadsInterstitial.isLoaded()){
+            try {
+                mTeadsInterstitial.show();
+                result = new PluginResult(PluginResult.Status.OK);
+            } catch (Exception e) {
+                Log.d(TAG, "error ShowInterstitial = " + e.getMessage());
+                result = new PluginResult(PluginResult.Status.ERROR, e.getMessage());
             }
         } else {
             callbackContext.error("Teads Interstitial is not loaded");
+            result = new PluginResult(PluginResult.Status.ERROR, "Teads Interstitial is not loaded, call loadInFlow first.");
         }
 
-        PluginResult result = new PluginResult(PluginResult.Status.OK);
         return result;
     }
 
     private PluginResult cleanInFlow(JSONArray data, final CallbackContext callbackContext) {
-        mTeadsInterstitial.clean();
+        if (mTeadsInterstitial == null) {
+            return new PluginResult(PluginResult.Status.ERROR, "Teads Interstitial is null, call initInFlowWithPlacementId first.");
+        }
 
+        mTeadsInterstitial.clean();
         return null;
     }
 
@@ -374,9 +392,11 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
 
     //Native video (inRead & inBoard) common methods
     private PluginResult getNativeVideoIsLoaded(JSONArray data, final CallbackContext callbackContext) {
-        PluginResult result = new PluginResult(PluginResult.Status.OK, 1);//, mTeadsNativeVideo.isLoaded());
-        //result.setKeepCallback(true);
-        callbackContext.success();
+        if (mTeadsNativeVideo == null) {
+            return new PluginResult(PluginResult.Status.ERROR, "Teads Native Video is null, call initInBoardWithPlacementId or initinReadWithPlacementId first.");
+        }
+
+        PluginResult result = new PluginResult(PluginResult.Status.OK, mTeadsNativeVideo.isLoaded());
 
         return result;
     }
@@ -407,16 +427,28 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
     }
 
     private PluginResult cleanNativeVideo(JSONArray data, final CallbackContext callbackContext) {
+        if (mTeadsNativeVideo == null) {
+            return new PluginResult(PluginResult.Status.ERROR, "Teads Native Video is null, call initInBoardWithPlacementId or initinReadWithPlacementId first.");
+        }
+
         mTeadsNativeVideo.clean();
         return null;
     }
 
     private PluginResult requestPauseNativeVideo(JSONArray data, final CallbackContext callbackContext) {
+        if (mTeadsNativeVideo == null) {
+            return new PluginResult(PluginResult.Status.ERROR, "Teads Native Video is null, call initInBoardWithPlacementId or initinReadWithPlacementId first.");
+        }
+
         mTeadsNativeVideo.requestPause();
         return null;
     }
 
     private PluginResult requestPlayNativeVideo(JSONArray data, final CallbackContext callbackContext) {
+        if (mTeadsNativeVideo == null) {
+            return new PluginResult(PluginResult.Status.ERROR, "Teads Native Video is null, call initInBoardWithPlacementId or initinReadWithPlacementId first.");
+        }
+
         mTeadsNativeVideo.requestResume();
         return null;
     }
