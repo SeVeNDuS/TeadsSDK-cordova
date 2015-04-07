@@ -10,30 +10,28 @@ package tv.teads.plugin;
 
 
 import org.apache.cordova.CallbackContext;
-import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
-import org.apache.cordova.CordovaWebView;
 import org.apache.cordova.PluginResult;
-import org.apache.cordova.PluginResult.Status;
 
-import android.app.Activity;
-
+import org.apache.cordova.ScrollEvent;
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 
 import tv.teads.sdk.publisher.TeadsConfiguration;
 import tv.teads.sdk.publisher.TeadsError;
 import tv.teads.sdk.publisher.TeadsInterstitial;
 import tv.teads.sdk.publisher.TeadsInterstitialEventListener;
-import tv.teads.sdk.publisher.TeadsLockableViewPager;
 import tv.teads.sdk.publisher.TeadsNativeVideo;
 import tv.teads.sdk.publisher.TeadsNativeVideoEventListener;
-import tv.teads.sdk.publisher.TeadsObservableWebView;
 
 
+import android.graphics.Color;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.widget.FrameLayout;
 
 public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEventListener, TeadsNativeVideoEventListener {
     
@@ -84,89 +82,83 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
     private static final String TAG = "TeadsPluginLog";
     
     TeadsInterstitial mTeadsInterstitial;
-    private CallbackContext callbackContextInFlow;
 
     TeadsNativeVideo mTeadsNativeVideo;
+
     TeadsConfiguration mTeadsConfiguration;
-    private CallbackContext callbackContextInRead;
-    
+
     @Override
     public boolean execute(String action, JSONArray data, CallbackContext callbackContext) throws JSONException {
         PluginResult result = null;
-        
-        Log.d(TAG, "mon log action = " + action);
 
         //TeadsAdFactory
         if (ACTION_ADFACTORY_LOAD_NATIVE.equals(action)) {
-            result = executeLoadNativeVideoAdWithPidToAdFactory(data, callbackContext);
+            result = loadNativeVideoAdWithPidToAdFactory(data, callbackContext);
 
         } else if (ACTION_ADFACTORY_LOAD_INTERSTITIAL.equals(action)) {
-            result = executeLoadInterstitialAdWithPidToAdFactory(data, callbackContext);
-
+            result = loadInterstitialAdWithPidToAdFactory(data, callbackContext);
         }
 
         //Teads fullscreen video
         else if (ACTION_INFLOW_INIT.equals(action)) {
-            result = executeInitInFlowWithPlacementId(data, callbackContext);
+            result = initInFlowWithPlacementId(data, callbackContext);
 
         } else if (ACTION_INFLOW_ISLOADED.equals(action)) {
-            result = executeGetInFlowIsLoaded(data, callbackContext);
+            result = getInFlowIsLoaded(data, callbackContext);
 
         } else if (ACTION_INFLOW_SET_PREDOWNLOAD.equals(action)) {
-            result = executeSetPreDownloadInFlow(data, callbackContext);
+            result = setPreDownloadInFlow(data, callbackContext);
 
         } else if (ACTION_INFLOW_LOAD.equals(action)) {
-            result = executeLoadInFlow(data, callbackContext);
+            result = loadInFlow(data, callbackContext);
 
         } else if (ACTION_INFLOW_LOAD_FROM_ADFACTORY.equals(action)) {
-            result = executeLoadInFlowFromAdFactory(data, callbackContext);
+            result = loadInFlowFromAdFactory(data, callbackContext);
 
         } else if (ACTION_INFLOW_SHOW.equals(action)) {
-            result = executeShowInFlow(data, callbackContext);
+            result = showInFlow(data, callbackContext);
 
         } else if (ACTION_INFLOW_CLEAN.equals(action)) {
-            result = executeCleanInFlow(data, callbackContext);
+            result = cleanInFlow(data, callbackContext);
 
         } else if (ACTION_INFLOW_ONLAYOUTCHANGE.equals(action)) {
-            result = executeonLayoutChangeInFlow(data, callbackContext);
-
+            result = onLayoutChangeInFlow(data, callbackContext);
         }
 
         //Teads native video (inRead & inBoard)
         else if (ACTION_NATIVE_INIT_INBOARD.equals(action)) {
-            result = executeInitInBoardWithPlacementId(data, callbackContext);
+            result = initInBoardWithPlacementId(data, callbackContext);
 
         } else if (ACTION_NATIVE_INIT_INREAD.equals(action)) {
-            result = executeInitinReadWithPlacementId(data, callbackContext);
-
+            result = initinReadWithPlacementId(data, callbackContext);
         }
         //Native video (inRead & inBoard) common methods
         else if (ACTION_NATIVE_ISLOADED.equals(action)) {
-            result = executeGetNativeVideoIsLoaded(data, callbackContext);
+            result = getNativeVideoIsLoaded(data, callbackContext);
 
         } else if (ACTION_NATIVE_SET_PREDOWNLOAD.equals(action)) {
-            result = executeSetPreDownLoadNativeVideo(data, callbackContext);
+            result = setPreDownLoadNativeVideo(data, callbackContext);
 
         } else if (ACTION_NATIVE_LOAD.equals(action)) {
-            result = executeLoadNativeVideo(data, callbackContext);
+            result = loadNativeVideo(data, callbackContext);
 
         } else if (ACTION_NATIVE_LOAD_FROM_FACTORY.equals(action)) {
-            result = executeLoadNativeVideoFromAdFactory(data, callbackContext);
+            result = loadNativeVideoFromAdFactory(data, callbackContext);
 
         } else if (ACTION_NATIVE_CLEAN.equals(action)) {
-            result = executeCleanNativeVideo(data, callbackContext);
+            result = cleanNativeVideo(data, callbackContext);
 
         } else if (ACTION_NATIVE_REQUEST_PAUSE.equals(action)) {
-            result = executeRequestPauseNativeVideo(data, callbackContext);
+            result = requestPauseNativeVideo(data, callbackContext);
 
         } else if (ACTION_NATIVE_REQUEST_PLAY.equals(action)) {
-            result = executeRequestPlayNativeVideo(data, callbackContext);
+            result = requestPlayNativeVideo(data, callbackContext);
 
         } else if (ACTION_NATIVE_VIEW_DID_APPEAR.equals(action)) {
-            result = executeViewControllerAppearedForNativeVideo(data, callbackContext);
+            result = viewControllerAppearedForNativeVideo(data, callbackContext);
 
         } else if (ACTION_NATIVE_DID_DISAPPEAR.equals(action)) {
-            //result = executeiewControllerDisappearedForNativeVideo(data, callbackContext);
+            //result = viewControllerDisappearedForNativeVideo(data, callbackContext);
 
         } else {
             return false;
@@ -174,46 +166,64 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
 
 
         if (result != null) {
+            Log.d(TAG, "result != null");
             callbackContext.sendPluginResult(result);
         }
 
         return true;
     }
 
+    @Override
+    public Object onMessage(String id, Object data) {
+        if (mTeadsNativeVideo != null) {
+            if (id.equalsIgnoreCase("onScrollChanged")) {
+                ScrollEvent myEvent = (ScrollEvent)data;
+                //myEvent.l
+                //myEvent.t
+                //myEvent.nl
+                //myEvent.nt
+                //myEvent.getTargetView() (type View)
+                mTeadsNativeVideo.getWebViewScrollListener().onScroll(myEvent.nl, myEvent.nt);
+            }
+            else if (id.equalsIgnoreCase("onPageFinished")) {
+                mTeadsNativeVideo.getWebViewClientListener().onPageFinished((WebView)webView.getView(), (String)data);
 
-    private PluginResult executeLoadNativeVideoAdWithPidToAdFactory(JSONArray data, final CallbackContext callbackContext) {
+            }
+            else if (id.equalsIgnoreCase("onScaleChanged")) {
 
 
-        return null;
+            }
+        }
+
+
+        return super.onMessage(id, data);
     }
 
-    private PluginResult executeLoadInterstitialAdWithPidToAdFactory(JSONArray data, final CallbackContext callbackContext) {
+    @Override
+    public boolean onOverrideUrlLoading(String url) {
+        if (mTeadsNativeVideo != null) {
+            mTeadsNativeVideo.getWebViewClientListener().shouldOverrideUrlLoading((WebView)webView.getView(), url);
+        }
 
+        return super.onOverrideUrlLoading(url);
+    }
 
-        return null;
+    private PluginResult loadNativeVideoAdWithPidToAdFactory(JSONArray data, final CallbackContext callbackContext) {
+        //Not implemented yet in Teads Android SDK
+        PluginResult result = new PluginResult(PluginResult.Status.NO_RESULT);
+        return result;
+    }
+
+    private PluginResult loadInterstitialAdWithPidToAdFactory(JSONArray data, final CallbackContext callbackContext) {
+        //Not implemented yet in Teads Android SDK
+        PluginResult result = new PluginResult(PluginResult.Status.NO_RESULT);
+        return result;
     }
     
-    private PluginResult executeInitInFlowWithPlacementId(JSONArray data, final CallbackContext callbackContext) {
-        callbackContextInFlow = callbackContext;
+    private PluginResult initInFlowWithPlacementId(JSONArray data, final CallbackContext callbackContext) {
         //String pid = data.getString(0);
         Log.d(TAG, "InitInterstitial");
-        
-        //cordova.getActivity().runOnUiThread(new Runnable() {
-        //    @Override
-        //    public void run() {
-        try {
-            mTeadsInterstitial = new TeadsInterstitial(cordova.getActivity(), "27695", this);
-        } catch (Exception e) {
-            Log.d(TAG, "error executeInitInterstitial = " + e.getMessage());
-        } finally {
-             Log.d(TAG, "fin init inter");
-        }
-        
-        callbackContext.success();
-        //    }
-        //});
-        
-        /*
+           /*
          cordova.getActivity().runOnUiThread(new Runnable() {
          @Override
          public void run() {
@@ -223,52 +233,60 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
          }
          });
          */
-        
-        return null;
+
+        PluginResult result = null;
+        try {
+            String pid = data.getString(0);
+            mTeadsInterstitial = new TeadsInterstitial(cordova.getActivity(), pid, this);
+
+            result = new PluginResult(PluginResult.Status.OK);
+
+        } catch (ClassCastException ex) {
+            Log.d(TAG, "error executeInitInterstitial = " + ex.getMessage());
+            result = new PluginResult(PluginResult.Status.ERROR, ex.getMessage());
+        } catch (JSONException ex) {
+            Log.d(TAG, "error executeInitInterstitial = " + ex.getMessage());
+            result = new PluginResult(PluginResult.Status.ERROR, ex.getMessage());
+        }
+        return result;
     }
 
-    private PluginResult executeGetInFlowIsLoaded(JSONArray data, final CallbackContext callbackContext) {
+    private PluginResult getInFlowIsLoaded(JSONArray data, final CallbackContext callbackContext) {
+        PluginResult result = new PluginResult(PluginResult.Status.OK, mTeadsInterstitial.isLoaded());
+        result.setKeepCallback(true);
 
-
-        return null;
+        return result;
     }
 
-    private PluginResult executeSetPreDownloadInFlow(JSONArray data, final CallbackContext callbackContext) {
-
-
-        return null;
+    private PluginResult setPreDownloadInFlow(JSONArray data, final CallbackContext callbackContext) {
+        //Non applicable to Teads Android SDK
+        PluginResult result = new PluginResult(PluginResult.Status.NO_RESULT);
+        return result;
     }
     
-    private PluginResult executeLoadInFlow(JSONArray data, final CallbackContext callbackContext) {
-        Log.d(TAG, "LoadInterstitial");
-        
-
+    private PluginResult loadInFlow(JSONArray data, final CallbackContext callbackContext) {
         try {
-
             mTeadsInterstitial.load();
         } catch (Exception e) {
             Log.d(TAG, "error LoadInterstitial = " + e.getMessage());
-        } finally {
-             Log.d(TAG, "fin LoadInterstitial");
         }
 
-        Log.d(TAG, "load done");
         if (callbackContext != null) {
             Log.d(TAG, "callbackContext != null");
             callbackContext.success();
         }
-        
-        return null;
+
+        PluginResult result = new PluginResult(PluginResult.Status.OK);
+        return result;
     }
 
-    private PluginResult executeLoadInFlowFromAdFactory(JSONArray data, final CallbackContext callbackContext) {
-
-
-        return null;
+    private PluginResult loadInFlowFromAdFactory(JSONArray data, final CallbackContext callbackContext) {
+        //Not implemented yet in Teads Android SDK
+        PluginResult result = new PluginResult(PluginResult.Status.NO_RESULT);
+        return result;
     }
     
-    private PluginResult executeShowInFlow(JSONArray data, final CallbackContext callbackContext) {
-        Log.d(TAG, "ShowInterstitial");
+    private PluginResult showInFlow(JSONArray data, final CallbackContext callbackContext) {
         if(mTeadsInterstitial.isLoaded()){
             Log.d(TAG, "isLoaded");
             
@@ -277,8 +295,6 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
             mTeadsInterstitial.show();
         } catch (Exception e) {
             Log.d(TAG, "error ShowInterstitial = " + e.getMessage());
-        } finally {
-             Log.d(TAG, "fin ShowInterstitial");
         }
             
             if (callbackContext != null) {
@@ -288,97 +304,151 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
         } else {
             callbackContext.error("Teads Interstitial is not loaded");
         }
-        
+
+        PluginResult result = new PluginResult(PluginResult.Status.OK);
+        return result;
+    }
+
+    private PluginResult cleanInFlow(JSONArray data, final CallbackContext callbackContext) {
+        mTeadsInterstitial.clean();
+
         return null;
     }
 
-    private PluginResult executeCleanInFlow(JSONArray data, final CallbackContext callbackContext) {
-
-
-        return null;
-    }
-
-    private PluginResult executeonLayoutChangeInFlow(JSONArray data, final CallbackContext callbackContext) {
-
-
-        return null;
+    private PluginResult onLayoutChangeInFlow(JSONArray data, final CallbackContext callbackContext) {
+        //Non applicable to Teads Android SDK
+        PluginResult result = new PluginResult(PluginResult.Status.NO_RESULT);
+        return result;
     }
 
     //Teads native video (inRead & inBoard)
 
-    private PluginResult executeInitInBoardWithPlacementId(JSONArray data, final CallbackContext callbackContext) {
-        mTeadsConfiguration = new TeadsConfiguration();
+    private PluginResult initInBoardWithPlacementId(JSONArray data, final CallbackContext callbackContext) {
+        PluginResult result = null;
+        try {
+            final String pid = data.getString(0);
+            cordova.getActivity().runOnUiThread(new Runnable() {
 
+                @Override
+                public void run() {
+                    mTeadsNativeVideo = new TeadsNativeVideo(
+                            cordova.getActivity(),
+                            (WebView)webView.getView(),
+                            pid,
+                            TeadsNativeVideo.NativeVideoContainerType.inBoard,
+                            TeadsPlugin.this,
+                            null,
+                            null
 
-        mTeadsNativeVideo = new TeadsNativeVideo(
-                cordova.getActivity(),
-                webView.getView(),
-                "27695",
-                TeadsNativeVideo.NativeVideoContainerType.inBoard,
-                this
-        );
+                    );
+                }
+            });
 
-        return null;
+            result = new PluginResult(PluginResult.Status.OK);
+
+        } catch (ClassCastException ex) {
+            Log.d(TAG, "Error new TeadsNativeVideo : " , ex);
+            result = new PluginResult(PluginResult.Status.ERROR, ex.getMessage());
+        } catch (JSONException ex) {
+            Log.d(TAG, "Error new TeadsNativeVideo : " , ex);
+            result = new PluginResult(PluginResult.Status.ERROR, ex.getMessage());
+        }
+        return result;
     }
 
-    private PluginResult executeInitinReadWithPlacementId(JSONArray data, final CallbackContext callbackContext) {
+    private PluginResult initinReadWithPlacementId(JSONArray data, final CallbackContext callbackContext) {
+        PluginResult result = null;
+        final TeadsConfiguration config = new TeadsConfiguration();
 
+        try {
+            final String pid = data.getString(0);
+            config.webViewSelector = data.getString(0);
 
-        return null;
+            cordova.getActivity().runOnUiThread(new Runnable() {
+
+                @Override
+                public void run() {
+                    mTeadsNativeVideo = new TeadsNativeVideo(
+                            cordova.getActivity(),
+                            (WebView)webView.getView(),
+                            "27695",
+                            TeadsNativeVideo.NativeVideoContainerType.inRead,
+                            TeadsPlugin.this,
+                            config,
+                            null
+                    );
+                }
+            });
+
+            result = new PluginResult(PluginResult.Status.OK);
+
+        } catch (ClassCastException ex) {
+            Log.d(TAG, "Error new TeadsNativeVideo : " , ex);
+            result = new PluginResult(PluginResult.Status.ERROR, ex.getMessage());
+        } catch (JSONException ex) {
+            Log.d(TAG, "Error new TeadsNativeVideo : " , ex);
+            result = new PluginResult(PluginResult.Status.ERROR, ex.getMessage());
+        }
+
+        return result;
     }
 
     //Native video (inRead & inBoard) common methods
-    private PluginResult executeGetNativeVideoIsLoaded(JSONArray data, final CallbackContext callbackContext) {
+    private PluginResult getNativeVideoIsLoaded(JSONArray data, final CallbackContext callbackContext) {
+        PluginResult result = new PluginResult(PluginResult.Status.OK, 1);//, mTeadsNativeVideo.isLoaded());
+        //result.setKeepCallback(true);
+        callbackContext.success();
 
+        return result;
+    }
 
+    private PluginResult setPreDownLoadNativeVideo(JSONArray data, final CallbackContext callbackContext) {
+        //Non applicable to Teads Android SDK
+        PluginResult result = new PluginResult(PluginResult.Status.NO_RESULT);
+        return result;
+    }
+
+    private PluginResult loadNativeVideo(JSONArray data, final CallbackContext callbackContext) {
+        cordova.getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (mTeadsNativeVideo != null) {
+                    mTeadsNativeVideo.load();
+                }
+            }
+         });
+        PluginResult result = new PluginResult(PluginResult.Status.OK);
+        return result;
+    }
+
+    private PluginResult loadNativeVideoFromAdFactory(JSONArray data, final CallbackContext callbackContext) {
+        //Not implemented yet in Teads Android SDK
+        PluginResult result = new PluginResult(PluginResult.Status.NO_RESULT);
+        return result;
+    }
+
+    private PluginResult cleanNativeVideo(JSONArray data, final CallbackContext callbackContext) {
+        mTeadsNativeVideo.clean();
         return null;
     }
 
-    private PluginResult executeSetPreDownLoadNativeVideo(JSONArray data, final CallbackContext callbackContext) {
-        mTeadsNativeVideo.load();
-
+    private PluginResult requestPauseNativeVideo(JSONArray data, final CallbackContext callbackContext) {
+        mTeadsNativeVideo.requestPause();
         return null;
     }
 
-    private PluginResult executeLoadNativeVideo(JSONArray data, final CallbackContext callbackContext) {
-
-
+    private PluginResult requestPlayNativeVideo(JSONArray data, final CallbackContext callbackContext) {
+        mTeadsNativeVideo.requestResume();
         return null;
     }
 
-    private PluginResult executeLoadNativeVideoFromAdFactory(JSONArray data, final CallbackContext callbackContext) {
-
-
-        return null;
-    }
-
-    private PluginResult executeCleanNativeVideo(JSONArray data, final CallbackContext callbackContext) {
-
-
-        return null;
-    }
-
-    private PluginResult executeRequestPauseNativeVideo(JSONArray data, final CallbackContext callbackContext) {
-
-
-        return null;
-    }
-
-    private PluginResult executeRequestPlayNativeVideo(JSONArray data, final CallbackContext callbackContext) {
-
-
-        return null;
-    }
-
-    private PluginResult executeViewControllerAppearedForNativeVideo(JSONArray data, final CallbackContext callbackContext) {
-
-
+    private PluginResult viewControllerAppearedForNativeVideo(JSONArray data, final CallbackContext callbackContext) {
+        //Non applicable to Teads Android SDK
         return null;
     }
 
     private PluginResult executeViewControllerDisappearedForNativeVideo(JSONArray data, final CallbackContext callbackContext) {
-
-
+        //Non applicable to Teads Android SDK
         return null;
     }
     
@@ -389,50 +459,71 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
     
     @Override
     public void teadsInterstitialDidFailLoading(TeadsError error) {
-        Log.d(TAG, "teadsInterstitialDidFailLoading");
+        String teadsErrorType = "";
+        switch (error.getErrorCode()) {
+            case 0:
+                teadsErrorType = "NetworkError";
+                break;
+            case 1:
+                teadsErrorType = "AdServerError";
+                break;
+            case 2:
+                teadsErrorType = "AdServerBadResponse";
+                break;
+            case 3:
+                teadsErrorType = "AdFailsToLoad";
+                break;
+            case 4:
+                teadsErrorType = "NoAdsAvailable";
+                break;
+            case 5:
+                teadsErrorType = "InternalError";
+                break;
+            case 6:
+                teadsErrorType = "TimeoutError";
+                break;
+            default:
+                break;
+        }
 
-        PluginResult dataResult = new PluginResult(PluginResult.Status.OK, "teadsInterstitialDidFailLoading");
-        dataResult.setKeepCallback(true);
-        callbackContextInFlow.sendPluginResult(dataResult);
+        String data = "{'teadsError':{'code' : '"+teadsErrorType +"', 'name' : '"+error.getName() +"', 'message' : '"+error.getMessage()+"'}}";
+        webView.loadUrl("javascript:cordova.fireDocumentEvent('teadsInterstitialDidFailLoading', "+data+");");
+        Log.e(TAG, "teadsInterstitialDidFailLoading : " + error.getMessage());
     }
     
     @Override
     public void teadsInterstitialWillLoad() {
-        Log.d(TAG, "teadsInterstitialWillLoad");
+        webView.loadUrl("javascript:cordova.fireDocumentEvent('teadsInterstitialWillLoad');");
     }
     
     @Override
     public void teadsInterstitialDidLoad() {
-        Log.d(TAG, "teadsInterstitialDidLoad");
-        PluginResult dataResult = new PluginResult(PluginResult.Status.OK, "teadsInterstitialDidLoad");
-        dataResult.setKeepCallback(true);
-        callbackContextInFlow.sendPluginResult(dataResult);
-
+        webView.loadUrl("javascript:cordova.fireDocumentEvent('teadsInterstitialDidLoad');");
     }
     
     @Override
     public void teadsInterstitialWillTakeOverFullScreen() {
-        
+        webView.loadUrl("javascript:cordova.fireDocumentEvent('teadsInterstitialWillTakeOverFullScreen');");
     }
     
     @Override
     public void teadsInterstitialDidTakeOverFullScreen() {
-        
+        webView.loadUrl("javascript:cordova.fireDocumentEvent('teadsInterstitialDidTakeOverFullScreen');");
     }
     
     @Override
     public void teadsInterstitialWillDismissFullScreen() {
-        
+        webView.loadUrl("javascript:cordova.fireDocumentEvent('teadsInterstitialWillDismissFullScreen');");
     }
     
     @Override
     public void teadsInterstitialDidDismissFullScreen() {
-        
+        webView.loadUrl("javascript:cordova.fireDocumentEvent('teadsInterstitialDidDismissFullScreen');");
     }
     
     @Override
     public void teadsInterstitialRewardUnlocked() {
-        
+        webView.loadUrl("javascript:cordova.fireDocumentEvent('teadsInterstitialRewardUnlocked');");
     }
     
     /**
@@ -441,116 +532,145 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
 
      @Override
      public void didFailLoading(TeadsError error) {
-     
+         String teadsErrorType = "";
+         switch (error.getErrorCode()) {
+             case 0:
+                 teadsErrorType = "NetworkError";
+                 break;
+             case 1:
+                 teadsErrorType = "AdServerError";
+                 break;
+             case 2:
+                 teadsErrorType = "AdServerBadResponse";
+                 break;
+             case 3:
+                 teadsErrorType = "AdFailsToLoad";
+                 break;
+             case 4:
+                 teadsErrorType = "NoAdsAvailable";
+                 break;
+             case 5:
+                 teadsErrorType = "InternalError";
+                 break;
+             case 6:
+                 teadsErrorType = "TimeoutError";
+                 break;
+             default:
+                 break;
+         }
+
+         String data = "{'teadsError':{'code' : '"+teadsErrorType +"', 'name' : '"+error.getName() +"', 'message' : '"+error.getMessage()+"'}}";
+         webView.loadUrl("javascript:cordova.fireDocumentEvent('teadsNativeVideoDidFailLoading', "+data+");");
+         Log.e(TAG, "didFailLoading : " + error.getMessage());
      }
      
      @Override
      public void nativeVideoWillLoad() {
-     
+         webView.loadUrl("javascript:cordova.fireDocumentEvent('nativeVideoWillLoad');");
      }
      
      @Override
      public void nativeVideoDidLoad() {
-     
+         webView.loadUrl("javascript:cordova.fireDocumentEvent('nativeVideoDidLoad');");
      }
      
      @Override
      public void nativeVideoWillStart() {
-     
+         webView.loadUrl("javascript:cordova.fireDocumentEvent('nativeVideoWillStart');");
      }
      
      @Override
      public void nativeVideoDidStart() {
-     
+         webView.loadUrl("javascript:cordova.fireDocumentEvent('nativeVideoDidStart');");
      }
      
      @Override
      public void nativeVideoWillStop() {
-     
+         webView.loadUrl("javascript:cordova.fireDocumentEvent('nativeVideoWillStop');");
      }
      
      @Override
      public void nativeVideoDidStop() {
-     
+         webView.loadUrl("javascript:cordova.fireDocumentEvent('nativeVideoDidStop');");
      }
      
      @Override
      public void nativeVideoDidResume() {
-     
+         webView.loadUrl("javascript:cordova.fireDocumentEvent('nativeVideoDidResume');");
      }
      
      @Override
      public void nativeVideoDidPause() {
-     
+         webView.loadUrl("javascript:cordova.fireDocumentEvent('nativeVideoDidPause');");
      }
      
      @Override
      public void nativeVideoDidMute() {
-     
+         webView.loadUrl("javascript:cordova.fireDocumentEvent('nativeVideoDidMute');");
      }
      
      @Override
      public void nativeVideoDidUnmute() {
-     
+         webView.loadUrl("javascript:cordova.fireDocumentEvent('nativeVideoDidUnmute');");
      }
      
      @Override
      public void nativeVideoDidOpenInternalBrowser() {
-     
+         webView.loadUrl("javascript:cordova.fireDocumentEvent('nativeVideoDidOpenInternalBrowser');");
      }
      
      @Override
      public void nativeVideoDidClickBrowserClosed() {
-     
+         webView.loadUrl("javascript:cordova.fireDocumentEvent('nativeVideoDidClickBrowserClosed');");
      }
      
      @Override
      public void nativeVideoWillTakerOverFullScreen() {
-     
+         webView.loadUrl("javascript:cordova.fireDocumentEvent('nativeVideoWillTakerOverFullScreen');");
      }
      
      @Override
      public void nativeVideoDidTakeOverFullScreen() {
-     
+         webView.loadUrl("javascript:cordova.fireDocumentEvent('nativeVideoDidTakeOverFullScreen');");
      }
      
      @Override
      public void nativeVideoWillDismiss() {
-     
+         webView.loadUrl("javascript:cordova.fireDocumentEvent('nativeVideoWillDismiss');");
      }
      
      @Override
      public void nativeVideoDidDismiss() {
-     
+         webView.loadUrl("javascript:cordova.fireDocumentEvent('nativeVideoDidDismiss');");
      }
      
      @Override
      public void nativeVideoSkipButtonTapped() {
-     
+         webView.loadUrl("javascript:cordova.fireDocumentEvent('nativeVideoSkipButtonTapped');");
      }
      
      @Override
      public void nativeVideoSkipButtonDidShow() {
-     
+         webView.loadUrl("javascript:cordova.fireDocumentEvent('nativeVideoSkipButtonDidShow');");
      }
      
      @Override
      public void nativeVideoWillExpand() {
-     
+         webView.loadUrl("javascript:cordova.fireDocumentEvent('nativeVideoWillExpand');");
      }
      
      @Override
      public void nativeVideoDidExpand() {
-     
+         webView.loadUrl("javascript:cordova.fireDocumentEvent('nativeVideoDidExpand');");
      }
      
      @Override
      public void nativeVideoWillCollapse() {
-     
+         webView.loadUrl("javascript:cordova.fireDocumentEvent('nativeVideoWillCollapse');");
      }
      
      @Override
      public void nativeVideoDidCollapse() {
-     
+         webView.loadUrl("javascript:cordova.fireDocumentEvent('nativeVideoDidCollapse');");
      }
 }
