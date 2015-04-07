@@ -191,13 +191,13 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
 
     private PluginResult loadNativeVideoAdWithPidToAdFactory(JSONArray data, final CallbackContext callbackContext) {
         //Not implemented yet in Teads Android SDK
-        PluginResult result = new PluginResult(PluginResult.Status.NO_RESULT);
+        PluginResult result = new PluginResult(PluginResult.Status.NO_RESULT, "Ad Factory is not available yet in Teads SDK for Android");
         return result;
     }
 
     private PluginResult loadInterstitialAdWithPidToAdFactory(JSONArray data, final CallbackContext callbackContext) {
         //Not implemented yet in Teads Android SDK
-        PluginResult result = new PluginResult(PluginResult.Status.NO_RESULT);
+        PluginResult result = new PluginResult(PluginResult.Status.NO_RESULT, "Ad Factory is not available yet in Teads SDK for Android");
         return result;
     }
     
@@ -240,7 +240,7 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
 
     private PluginResult setPreDownloadInFlow(JSONArray data, final CallbackContext callbackContext) {
         //Non applicable to Teads Android SDK
-        PluginResult result = new PluginResult(PluginResult.Status.NO_RESULT);
+        PluginResult result = new PluginResult(PluginResult.Status.NO_RESULT, "Pre-download call is not necessary in Teads SDK for Android");
         return result;
     }
     
@@ -262,7 +262,7 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
 
     private PluginResult loadInFlowFromAdFactory(JSONArray data, final CallbackContext callbackContext) {
         //Not implemented yet in Teads Android SDK
-        PluginResult result = new PluginResult(PluginResult.Status.NO_RESULT);
+        PluginResult result = new PluginResult(PluginResult.Status.NO_RESULT, "Ad Factory is not available yet in Teads SDK for Android");
         return result;
     }
     
@@ -297,7 +297,7 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
 
     private PluginResult onLayoutChangeInFlow(JSONArray data, final CallbackContext callbackContext) {
         //Non applicable to Teads Android SDK
-        PluginResult result = new PluginResult(PluginResult.Status.NO_RESULT);
+        PluginResult result = new PluginResult(PluginResult.Status.NO_RESULT, "onLayoutChangeInFlow is not used in Teads SDK for Android");
         return result;
     }
 
@@ -383,7 +383,7 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
 
     private PluginResult setPreDownLoadNativeVideo(JSONArray data, final CallbackContext callbackContext) {
         //Non applicable to Teads Android SDK
-        PluginResult result = new PluginResult(PluginResult.Status.NO_RESULT);
+        PluginResult result = new PluginResult(PluginResult.Status.NO_RESULT, "Pre-download call is not necessary in Teads Android SDK");
         return result;
     }
 
@@ -402,7 +402,7 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
 
     private PluginResult loadNativeVideoFromAdFactory(JSONArray data, final CallbackContext callbackContext) {
         //Not implemented yet in Teads Android SDK
-        PluginResult result = new PluginResult(PluginResult.Status.NO_RESULT);
+        PluginResult result = new PluginResult(PluginResult.Status.NO_RESULT, "Ad Factory is not available yet in Teads SDK for Android");
         return result;
     }
 
@@ -423,12 +423,14 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
 
     private PluginResult viewControllerAppearedForNativeVideo(JSONArray data, final CallbackContext callbackContext) {
         //Non applicable to Teads Android SDK
-        return null;
+        PluginResult result = new PluginResult(PluginResult.Status.NO_RESULT, "viewControllerAppearedForNativeVideo does not apply to Teads SDK for Android");
+        return result;
     }
 
-    private PluginResult executeViewControllerDisappearedForNativeVideo(JSONArray data, final CallbackContext callbackContext) {
+    private PluginResult viewControllerDisappearedForNativeVideo(JSONArray data, final CallbackContext callbackContext) {
         //Non applicable to Teads Android SDK
-        return null;
+        PluginResult result = new PluginResult(PluginResult.Status.NO_RESULT, "viewControllerDisappearedForNativeVideo does not apply to Teads SDK for Android");
+        return result;
     }
     
     
