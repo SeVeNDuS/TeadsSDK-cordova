@@ -545,111 +545,111 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
      
      @Override
      public void nativeVideoWillLoad() {
-         webView.loadUrl("javascript:cordova.fireDocumentEvent('nativeVideoWillLoad');");
+         webView.loadUrl("javascript:cordova.fireDocumentEvent('teadsNativeVideoWillLoad');");
      }
      
      @Override
      public void nativeVideoDidLoad() {
-         webView.loadUrl("javascript:cordova.fireDocumentEvent('nativeVideoDidLoad');");
+         webView.loadUrl("javascript:cordova.fireDocumentEvent('teadsNativeVideoDidLoad');");
      }
      
      @Override
      public void nativeVideoWillStart() {
-         webView.loadUrl("javascript:cordova.fireDocumentEvent('nativeVideoWillStart');");
+         webView.loadUrl("javascript:cordova.fireDocumentEvent('teadsNativeVideoWillStart');");
      }
      
      @Override
      public void nativeVideoDidStart() {
-         webView.loadUrl("javascript:cordova.fireDocumentEvent('nativeVideoDidStart');");
+         webView.loadUrl("javascript:cordova.fireDocumentEvent('teadsNativeVideoDidStart');");
      }
      
      @Override
      public void nativeVideoWillStop() {
-         webView.loadUrl("javascript:cordova.fireDocumentEvent('nativeVideoWillStop');");
+         webView.loadUrl("javascript:cordova.fireDocumentEvent('teadsNativeVideoWillStop');");
      }
      
      @Override
      public void nativeVideoDidStop() {
-         webView.loadUrl("javascript:cordova.fireDocumentEvent('nativeVideoDidStop');");
+         webView.loadUrl("javascript:cordova.fireDocumentEvent('teadsNativeVideoDidStop');");
      }
      
      @Override
      public void nativeVideoDidResume() {
-         webView.loadUrl("javascript:cordova.fireDocumentEvent('nativeVideoDidResume');");
+         webView.loadUrl("javascript:cordova.fireDocumentEvent('teadsNativeVideoDidResume');");
      }
      
      @Override
      public void nativeVideoDidPause() {
-         webView.loadUrl("javascript:cordova.fireDocumentEvent('nativeVideoDidPause');");
+         webView.loadUrl("javascript:cordova.fireDocumentEvent('teadsNativeVideoDidPause');");
      }
      
      @Override
      public void nativeVideoDidMute() {
-         webView.loadUrl("javascript:cordova.fireDocumentEvent('nativeVideoDidMute');");
+         webView.loadUrl("javascript:cordova.fireDocumentEvent('teadsNativeVideoDidMute');");
      }
      
      @Override
      public void nativeVideoDidUnmute() {
-         webView.loadUrl("javascript:cordova.fireDocumentEvent('nativeVideoDidUnmute');");
+         webView.loadUrl("javascript:cordova.fireDocumentEvent('teadsNativeVideoDidUnmute');");
      }
      
      @Override
      public void nativeVideoDidOpenInternalBrowser() {
-         webView.loadUrl("javascript:cordova.fireDocumentEvent('nativeVideoDidOpenInternalBrowser');");
+         webView.loadUrl("javascript:cordova.fireDocumentEvent('teadsNativeVideoDidOpenInternalBrowser');");
      }
      
      @Override
      public void nativeVideoDidClickBrowserClosed() {
-         webView.loadUrl("javascript:cordova.fireDocumentEvent('nativeVideoDidClickBrowserClosed');");
+         webView.loadUrl("javascript:cordova.fireDocumentEvent('teadsNativeVideoDidClickBrowserClose');");
      }
      
      @Override
      public void nativeVideoWillTakerOverFullScreen() {
-         webView.loadUrl("javascript:cordova.fireDocumentEvent('nativeVideoWillTakerOverFullScreen');");
+         webView.loadUrl("javascript:cordova.fireDocumentEvent('teadsNativeVideoWillTakerOverFullScreen');");
      }
      
      @Override
      public void nativeVideoDidTakeOverFullScreen() {
-         webView.loadUrl("javascript:cordova.fireDocumentEvent('nativeVideoDidTakeOverFullScreen');");
+         webView.loadUrl("javascript:cordova.fireDocumentEvent('teadsNativeVideoDidTakeOverFullScreen');");
      }
      
      @Override
-     public void nativeVideoWillDismiss() {
-         webView.loadUrl("javascript:cordova.fireDocumentEvent('nativeVideoWillDismiss');");
+     public void nativeVideoWillDismiss () {
+         webView.loadUrl("javascript:cordova.fireDocumentEvent('teadsNativeVideoWillDismissFullscreen');");
      }
      
      @Override
      public void nativeVideoDidDismiss() {
-         webView.loadUrl("javascript:cordova.fireDocumentEvent('nativeVideoDidDismiss');");
+         webView.loadUrl("javascript:cordova.fireDocumentEvent('teadsNativeVideoDidDismissFullscreen');");
      }
      
      @Override
      public void nativeVideoSkipButtonTapped() {
-         webView.loadUrl("javascript:cordova.fireDocumentEvent('nativeVideoSkipButtonTapped');");
+         webView.loadUrl("javascript:cordova.fireDocumentEvent('teadsNativeVideoSkipButtonTapped');");
      }
      
      @Override
      public void nativeVideoSkipButtonDidShow() {
-         webView.loadUrl("javascript:cordova.fireDocumentEvent('nativeVideoSkipButtonDidShow');");
+         webView.loadUrl("javascript:cordova.fireDocumentEvent('teadsNativeVideoSkipButtonDidShow');");
      }
      
      @Override
      public void nativeVideoWillExpand() {
-         webView.loadUrl("javascript:cordova.fireDocumentEvent('nativeVideoWillExpand');");
+         webView.loadUrl("javascript:cordova.fireDocumentEvent('teadsNativeVideoWillExpand');");
      }
      
      @Override
      public void nativeVideoDidExpand() {
-         webView.loadUrl("javascript:cordova.fireDocumentEvent('nativeVideoDidExpand');");
+         webView.loadUrl("javascript:cordova.fireDocumentEvent('teadsNativeVideoDidExpand');");
      }
      
      @Override
      public void nativeVideoWillCollapse() {
-         webView.loadUrl("javascript:cordova.fireDocumentEvent('nativeVideoWillCollapse');");
+         webView.loadUrl("javascript:cordova.fireDocumentEvent('teadsNativeVideoWillCollapse');");
      }
      
      @Override
      public void nativeVideoDidCollapse() {
-         webView.loadUrl("javascript:cordova.fireDocumentEvent('nativeVideoDidCollapse');");
+         webView.loadUrl("javascript:cordova.fireDocumentEvent('teadsNativeVideoDidCollapse');");
      }
 }
