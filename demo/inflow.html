@@ -70,7 +70,7 @@
       document.addEventListener('teadsInterstitialDidLoad', function(){ 
         document.getElementById("loadinflow").disabled = true;
         document.getElementById("showinflow").disabled = false;
-        document.getElementByqId('loaderinterstitial').style.display='none';
+        document.getElementById('loaderinterstitial').style.display='none';
       });
       document.addEventListener('teadsInterstitialWillTakeOverFullScreen', function(){ });
       document.addEventListener('teadsInterstitialDidTakeOverFullScreen', function(){ });
@@ -97,7 +97,7 @@
 
   </script>
 
-  <link rel="stylesheet" href="css/bootstrap.min.css"></link>
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
   </head>
 
   <body onload="onbodyload()">
@@ -107,7 +107,7 @@
     <div align="center">
       <button class="btn btn-default btn-lg" id="loadinflow" onclick="loadInFlow();" >load inFlow</button><br /><br />
       <img id="loaderinterstitial" style="display:none;" src="loader.gif" /><br /><br />
-      <button class="btn btn-default btn-lg" id="showinflow" onclick="Teads.showInFlow();">Show inFlow</button><br /><br />
+      <button class="btn btn-default btn-lg" id="showinflow" onclick="Teads.showInFlow();" disabled>Show inFlow</button><br /><br />
     </div>
 
     <script type="text/javascript" src="cordova.js"></script>
