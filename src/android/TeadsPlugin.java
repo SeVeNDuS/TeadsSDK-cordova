@@ -72,8 +72,6 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
 
     TeadsNativeVideo mTeadsNativeVideo;
 
-    TeadsConfiguration mTeadsConfiguration;
-
     @Override
     public boolean execute(String action, JSONArray data, CallbackContext callbackContext) throws JSONException {
         PluginResult result = null;
@@ -145,15 +143,14 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
             result = viewControllerAppearedForNativeVideo(data, callbackContext);
 
         } else if (ACTION_NATIVE_DID_DISAPPEAR.equals(action)) {
-            //result = viewControllerDisappearedForNativeVideo(data, callbackContext);
+            result = viewControllerDisappearedForNativeVideo(data, callbackContext);
 
         } else {
-            return false;
+            result = new PluginResult(PluginResult.Status.INVALID_ACTION);
         }
 
 
         if (result != null) {
-            Log.d(TAG, "result != null");
             callbackContext.sendPluginResult(result);
         }
 
@@ -174,14 +171,11 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
             }
             else if (id.equalsIgnoreCase("onPageFinished")) {
                 mTeadsNativeVideo.getWebViewClientListener().onPageFinished((WebView)webView.getView(), (String)data);
-
             }
             else if (id.equalsIgnoreCase("onScaleChanged")) {
 
-
             }
         }
-
 
         return super.onMessage(id, data);
     }
@@ -209,7 +203,6 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
     
     private PluginResult initInFlowWithPlacementId(JSONArray data, final CallbackContext callbackContext) {
         //String pid = data.getString(0);
-        Log.d(TAG, "InitInterstitial");
            /*
          cordova.getActivity().runOnUiThread(new Runnable() {
          @Override
@@ -326,7 +319,6 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
                             TeadsPlugin.this,
                             null,
                             null
-
                     );
                 }
             });
