@@ -39,42 +39,32 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
     private static final String ACTION_ADFACTORY_LOAD_INTERSTITIAL  = "loadInterstitialAdWithPidToAdFactory";
     
     //Teads fullscreen video
-    private static final String ACTION_INFLOW_INIT              = "initInFlowWithPlacementId";
-    private static final String ACTION_INFLOW_ISLOADED          = "getInFlowIsLoaded";
-    private static final String ACTION_INFLOW_SET_PREDOWNLOAD   = "setPreDownloadInFlow";
-    private static final String ACTION_INFLOW_LOAD              = "loadInFlow";
-    private static final String ACTION_INFLOW_LOAD_FROM_ADFACTORY = "loadInFlowFromAdFactory";
-    private static final String ACTION_INFLOW_SHOW              = "showInFlow";
-    private static final String ACTION_INFLOW_CLEAN             = "cleanInFlow";
-    private static final String ACTION_INFLOW_ONLAYOUTCHANGE    = "onLayoutChangeInFlow";
+    private static final String ACTION_INFLOW_INIT                  = "initInFlowWithPlacementId";
+    private static final String ACTION_INFLOW_ISLOADED              = "getInFlowIsLoaded";
+    private static final String ACTION_INFLOW_SET_PREDOWNLOAD       = "setPreDownloadInFlow";
+    private static final String ACTION_INFLOW_LOAD                  = "loadInFlow";
+    private static final String ACTION_INFLOW_LOAD_FROM_ADFACTORY   = "loadInFlowFromAdFactory";
+    private static final String ACTION_INFLOW_SHOW                  = "showInFlow";
+    private static final String ACTION_INFLOW_CLEAN                 = "cleanInFlow";
+    private static final String ACTION_INFLOW_ONLAYOUTCHANGE        = "onLayoutChangeInFlow";
     
     //Teads native video (inRead & inBoard)
     //init inBoard
-    private static final String ACTION_NATIVE_INIT_INBOARD  = "initInBoardWithPlacementId";
+    private static final String ACTION_NATIVE_INIT_INBOARD          = "initInBoardWithPlacementId";
     //init inRead
-    private static final String ACTION_NATIVE_INIT_INREAD   = "initinReadWithPlacementId";
+    private static final String ACTION_NATIVE_INIT_INREAD           = "initinReadWithPlacementId";
 
     //Native video (inRead & inBoard) common methods
-    private static final String ACTION_NATIVE_ISLOADED          = "getNativeVideoIsLoaded";
-    private static final String ACTION_NATIVE_SET_PREDOWNLOAD   = "setPreDownLoadNativeVideo";
-    private static final String ACTION_NATIVE_LOAD              = "loadNativeVideo";
-    private static final String ACTION_NATIVE_LOAD_FROM_FACTORY = "loadNativeVideoFromAdFactory";
-    private static final String ACTION_NATIVE_CLEAN             = "cleanNativeVideo";
-    private static final String ACTION_NATIVE_REQUEST_PAUSE     = "requestPauseNativeVideo";
-    private static final String ACTION_NATIVE_REQUEST_PLAY      = "requestPlayNativeVideo";
-    private static final String ACTION_NATIVE_VIEW_DID_APPEAR   = "viewControllerAppearedForNativeVideo";
-    private static final String ACTION_NATIVE_DID_DISAPPEAR     = "viewControllerDisappearedForNativeVideo";
-    
-    /* Parameters */
-    private static final String OPT_PUBLISHER_ID = "publisherId";
-    private static final String OPT_INTERSTITIAL_AD_ID = "interstitialAdId";
-    private static final String OPT_AD_SIZE = "adSize";
-    private static final String OPT_BANNER_AT_TOP = "bannerAtTop";
-    private static final String OPT_OVERLAP = "overlap";
-    private static final String OPT_OFFSET_TOPBAR = "offsetTopBar";
-    private static final String OPT_IS_TESTING = "isTesting";
-    private static final String OPT_AD_EXTRAS = "adExtras";
-    private static final String OPT_AUTO_SHOW = "autoShow";
+    private static final String ACTION_NATIVE_ISLOADED              = "getNativeVideoIsLoaded";
+    private static final String ACTION_NATIVE_SET_PREDOWNLOAD       = "setPreDownLoadNativeVideo";
+    private static final String ACTION_NATIVE_LOAD                  = "loadNativeVideo";
+    private static final String ACTION_NATIVE_LOAD_FROM_FACTORY     = "loadNativeVideoFromAdFactory";
+    private static final String ACTION_NATIVE_CLEAN                 = "cleanNativeVideo";
+    private static final String ACTION_NATIVE_REQUEST_PAUSE         = "requestPauseNativeVideo";
+    private static final String ACTION_NATIVE_REQUEST_PLAY          = "requestPlayNativeVideo";
+    private static final String ACTION_NATIVE_VIEW_DID_APPEAR       = "viewControllerAppearedForNativeVideo";
+    private static final String ACTION_NATIVE_DID_DISAPPEAR         = "viewControllerDisappearedForNativeVideo";
+
     
     private static final String TAG = "TeadsPluginLog";
     
