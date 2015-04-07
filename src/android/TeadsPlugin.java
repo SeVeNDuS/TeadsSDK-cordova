@@ -359,7 +359,7 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
 
         try {
             final String pid = data.getString(0);
-            config.webViewSelector = data.getString(0);
+            config.webViewSelector = data.getString(1);
 
             cordova.getActivity().runOnUiThread(new Runnable() {
 
