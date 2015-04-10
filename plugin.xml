@@ -22,7 +22,7 @@
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
           <feature name="TeadsPlugin">
-            <param name="android-package" value="tv.teads.plugin.TeadsPlugin" />
+            <param name="android-package" value="tv.teads.sdk.TeadsPlugin" />
           </feature>
         </config-file>
 
