@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tv.teads.sdk.adContainer.layout.ListViewNativeVideoLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:id="@+id/teadsNativeVideoLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/teads_nativevideolayout_inside"
+        />
+</tv.teads.sdk.adContainer.layout.ListViewNativeVideoLayout><!-- From: file:/Users/hugogresse/Documents/Dev/teads/sdk-dev-android/sdk-teads/androidsdk/res/layout/teads_nativevideolayout_inside_list.xml -->

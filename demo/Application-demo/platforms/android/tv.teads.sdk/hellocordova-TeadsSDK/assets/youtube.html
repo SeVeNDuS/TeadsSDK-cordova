@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <body style='margin: 0;width: 100%; height: 100%'>
+    <div id='player' style='width:100%;margin:0 auto;'></div>
+
+    <script>
+      var tag = document.createElement('script');
+
+      tag.src = 'https://www.youtube.com/iframe_api';
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      var player;
+      var currentState;
+      var intervalReady;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '95%',
+          width: '100%',
+          playerVars: {'playsinline': 1, 'html5' : 1, 'autoplay': 1, 'controls':0, 'showInfo': 0, 'modestbranding': 1, 'enablejsapi': 1, 'rel':0},
+          videoId: '#VIDEO_ID#',
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange,
+            'onError': onPlayerError
+          }
+        });
+      }
+
+      function onPlayerReady(event) {
+        console.log('Player Ready');
+        event.target.playVideo();
+        intervalReady = setInterval(function(){
+           if (!currentState)
+               event.target.playVideo();
+        });
+      }
+
+      function onPlayerStateChange(event) {
+           console.log('State is: ', event.data);
+           clearInterval(intervalReady);
+           currentState = event.data;
+           if (event.data == YT.PlayerState.ENDED){
+               window.location = 'ebzend://';
+           } else if (event.data == YT.PlayerState.PLAYING || event.data == YT.PlayerState.BUFFERING){
+               window.location = 'ebzplay://';
+           } else if (event.data == YT.PlayerState.PAUSED){
+               window.location = 'ebzpause://';
+           }
+      }
+
+      function onPlayerError(event) {
+          console.log('Error is: ', event.data);
+      }
+    </script>
+  </body>
+</html>

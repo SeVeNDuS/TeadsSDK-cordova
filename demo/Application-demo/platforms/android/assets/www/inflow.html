@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1">
+
+    <title>inFlow</title>
+
+    <script type="text/javascript" charset="utf-8">
+    // Wait for device API libraries to load
+    function onbodyload() {
+      if ((/(ipad|iphone|ipod|android)/i.test(navigator.userAgent))) {
+        document.addEventListener("deviceready", onDeviceReady, false);
+      } else {
+        onDeviceReady();
+      }
+    }
+
+    // device APIs are available
+    function onDeviceReady() {
+        if (!Teads) {
+          alert('Teads plugin is not ready');
+        } else {
+          initTeadsAdEventListeners();
+
+          //Device is ready, page is loaded we can init Teads elements if we want to
+          initInFlow();
+        }
+    }
+
+    function initTeadsAdEventListeners() {
+      /**
+       * TeadsAdFactoryDelegate callbacks
+       */
+      document.addEventListener('teadsAdFactoryDidFailLoading', function(data){ 
+        alert('TeadsAdFactory failed to load ad : ' + data.adType +
+          '\nwith pid : ' + data.pid +
+          '\nError code : ' + data.teadsError.code +
+          '\nError name : ' + data.teadsError.name +
+          '\nError message : ' + data.teadsError.message) ;
+      });
+      document.addEventListener('teadsAdFactoryWillLoad', function(data){
+        var willLoadPid = data.pid;
+      });
+      document.addEventListener('teadsAdFactoryDidLoad', function(data){
+        var didLoadPid = data.pid;
+      });
+      document.addEventListener('teadsAdFactoryWasConsumed', function(data){ 
+        var consumedPid = data.pid;
+      });
+      document.addEventListener('teadsAdFactoryDidExpire', function(data){ 
+        var expiredPid = data.pid;
+      });
+
+      /**
+       * TeadsInterstitialDelegate callbacks
+       */
+      document.addEventListener('teadsInterstitialDidFailLoading', function(data){ 
+        alert('Teads teadsInterstial did fail to load ad' +
+          '\nError code : ' + data.teadsError.code +
+          '\nError name : ' + data.teadsError.name +
+          '\nError message : ' + data.teadsError.message);
+
+        document.getElementById("loadinflow").disabled = false;
+        document.getElementById("showinflow").disabled = true;
+        document.getElementById('loaderinterstitial').style.display='none';
+      });
+      document.addEventListener('teadsInterstitialWillLoad', function(){ });
+      document.addEventListener('teadsInterstitialDidLoad', function(){ 
+        document.getElementById("loadinflow").disabled = true;
+        document.getElementById("showinflow").disabled = false;
+        document.getElementById('loaderinterstitial').style.display='none';
+      });
+      document.addEventListener('teadsInterstitialWillTakeOverFullScreen', function(){ });
+      document.addEventListener('teadsInterstitialDidTakeOverFullScreen', function(){ });
+      document.addEventListener('teadsInterstitialWillDismissFullScreen', function(){ });
+      document.addEventListener('teadsInterstitialDidDismissFullScreen', function(){ 
+        document.getElementById("loadinflow").disabled = false;
+        document.getElementById("showinflow").disabled = true; 
+      });
+      document.addEventListener('teadsInterstitialIsRewardEnabled', function(){ });
+      document.addEventListener('teadsInterstitialRewardUnlocked', function(){ });
+      document.addEventListener('teadsInterstitialDidClean', function(){ });
+    }
+
+
+    //Custom methods : you can do as you want to call Teads plugin methods
+    function initInFlow() {
+      Teads.initInFlowWithPlacementId('27695');
+      //Teads.setPreDownloadInFlow(true);
+    }
+    function loadInFlow() {
+      document.getElementById('loaderinterstitial').style.display='inline';
+      Teads.loadInFlow();
+    }
+
+  </script>
+
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  </head>
+
+  <body onload="onbodyload()">
+    <br />
+    <a href="index.html"><button type="button" class="btn btn-default">< Home</button></a>
+
+    <div align="center">
+      <button class="btn btn-default btn-lg" id="loadinflow" onclick="loadInFlow();" >load inFlow</button><br /><br />
+      <img id="loaderinterstitial" style="display:none;" src="loader.gif" /><br /><br />
+      <button class="btn btn-default btn-lg" id="showinflow" onclick="Teads.showInFlow();" disabled>Show inFlow</button><br /><br />
+    </div>
+
+    <script type="text/javascript" src="cordova.js"></script>
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+  </body>
+</html>
