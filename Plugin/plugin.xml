@@ -41,7 +41,6 @@
 
            <activity
                android:name="tv.teads.sdk.adContainer.activity.BrowserActivity"
-               android:theme="@style/Theme.AppCompat"
                android:configChanges="orientation|keyboardHidden|screenSize" >
            </activity>
         </config-file>
