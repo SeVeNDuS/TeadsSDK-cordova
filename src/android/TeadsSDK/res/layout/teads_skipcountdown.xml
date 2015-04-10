@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@id/teadsButtonSkipContainer"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:visibility="invisible"
+    android:layout_gravity="end">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@id/teadsButtonSkipTextView"
+        android:paddingLeft="@dimen/teads_skiptextview_horizontal_innerpadding"
+        android:paddingRight="@dimen/teads_skiptextview_horizontal_innerpadding"
+        android:paddingTop="@dimen/teads_skiptextview_vertical_innerpadding"
+        android:paddingBottom="@dimen/teads_skiptextview_vertical_innerpadding"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/teads_skipcountdown_textsize"
+        android:layout_gravity="end"
+        />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@id/teadsButtonSkip"
+        android:visibility="invisible"
+        android:src="@drawable/ic_teads_sdk_skip_ad"
+        style="@style/TeadsButtonControl"
+        android:contentDescription="@string/teads_skipdescription" />
+
+</FrameLayout><!-- From: file:/Users/hugogresse/Documents/Dev/teads/sdk-dev-android/sdk-teads/androidsdk/res/layout/teads_skipcountdown.xml -->
