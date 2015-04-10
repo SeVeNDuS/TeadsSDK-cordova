@@ -34,14 +34,14 @@
 
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
           <activity
-               android:name="tv.teads.sdk.adContainer.activity.FullscreenActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:hardwareAccelerated="true">
+              android:name="tv.teads.sdk.adContainer.activity.FullscreenActivity"
+              android:configChanges="keyboardHidden|orientation|screenSize"
+              android:hardwareAccelerated="true">
            </activity>
 
            <activity
-               android:name="tv.teads.sdk.adContainer.activity.BrowserActivity"
-               android:configChanges="orientation|keyboardHidden|screenSize" >
+              android:name="tv.teads.sdk.adContainer.activity.BrowserActivity"
+              android:configChanges="orientation|keyboardHidden|screenSize" >
            </activity>
         </config-file>
 
