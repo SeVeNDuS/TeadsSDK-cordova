@@ -14,7 +14,7 @@
         <engine name="cordova-android" version=">=3.5.0" />
     </engines>
 
-    <js-module src="www/TeadsPlugin.js" name="TeadsPlugin">
+    <js-module src="Plugin/www/TeadsPlugin.js" name="TeadsPlugin">
         <clobbers target="Teads" />
     </js-module>
 
@@ -26,7 +26,7 @@
           </feature>
         </config-file>
 
-        <source-file src="src/android/TeadsPlugin.java" target-dir="src/tv/teads/plugin/" />
+        <source-file src="Plugin/src/android/TeadsPlugin.java" target-dir="src/tv/teads/plugin/" />
 
         <dependency id="com.google.playservices" />
         <dependency id="android.support.v4" />
@@ -51,7 +51,7 @@
           <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
         </config-file>
 
-        <framework src="src/android/TeadsSDK" custom="true" />
+        <framework src="Plugin/src/android/TeadsSDK" custom="true" />
     </platform>
 
     <!-- ios -->
@@ -62,12 +62,12 @@
              </feature>
          </config-file>
          
-         <header-file src="src/ios/TeadsPlugin.h"/>
-         <source-file src="src/ios/TeadsPlugin.m"/>
+         <header-file src="Plugin/src/ios/TeadsPlugin.h"/>
+         <source-file src="Plugin/src/ios/TeadsPlugin.m"/>
          
-         <framework src="src/ios/TeadsSDK.framework" custom="true"/>
+         <framework src="Plugin/src/ios/TeadsSDK.framework" custom="true"/>
          
-         <resource-file src="src/ios/TeadsSDKResources.bundle"/>
+         <resource-file src="Plugin/src/ios/TeadsSDKResources.bundle"/>
         
         <framework src="libxml2.dylib"/>
         <framework src="libsqlite3.0.dylib"/>
