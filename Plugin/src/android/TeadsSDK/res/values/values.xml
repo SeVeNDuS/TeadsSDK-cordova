@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:ns1="http://schemas.android.com/tools">
     <!-- From: file:/Users/hugogresse/Documents/Dev/teads/sdk-dev-android/sdk-teads/androidsdk/res/values/colors.xml -->
     <eat-comment/>
     <color name="teads_Mention">#FF787878</color>
     <color name="teads_ProgressBar">#BF749BF4</color>
+    <color name="teads_ab_background">#DDDDDD</color>
     <color name="teads_background_skip_countdown">#88000000</color>
     <color name="teads_black_overlay">#66000000</color>
     <color name="teads_button_overlay">#55FFFFFF</color>
@@ -11,36 +12,46 @@
     <declare-styleable name="ButtonBarContainerTheme"><attr format="reference" name="metaButtonBarStyle"/><attr format="reference" name="metaButtonBarButtonStyle"/></declare-styleable>
     <!-- From: file:/Users/hugogresse/Documents/Dev/teads/sdk-dev-android/sdk-teads/androidsdk/res/values/dimens.xml -->
     <eat-comment/>
+    <dimen name="teads_action_bar_button_padding">12dp</dimen>
+    <dimen name="teads_action_bar_buttonsize">48dp</dimen>
+    <dimen name="teads_action_bar_default_height_material">56dp</dimen>
+    <dimen name="teads_action_bar_default_padding_material">4dp</dimen>
+    <dimen name="teads_action_bar_icon_vertical_padding_material">16dp</dimen>
+    <dimen name="teads_action_bar_subtitle_bottom_margin_material">5dp</dimen>
+    <dimen name="teads_action_bar_subtitle_top_margin_material">-3dp</dimen>
     <dimen name="teads_button_horizontal_innerpadding">5dp</dimen>
     <dimen name="teads_button_vertical_innerpadding">5dp</dimen>
-    <!-- From: file:/Users/hugogresse/Documents/Dev/teads/sdk-dev-android/sdk-teads/androidsdk/res/values/dimensions.xml -->
-    <eat-comment/>
     <dimen name="teads_player_controls_padding">24dp</dimen>
-    <!-- From: file:/Users/hugogresse/Documents/Dev/teads/sdk-dev-android/sdk-teads/androidsdk/res/values/dimens.xml -->
-    <eat-comment/>
     <dimen name="teads_progressbar_height">4dp</dimen>
     <dimen name="teads_skipcountdown_textsize">12sp</dimen>
     <dimen name="teads_skiptextview_horizontal_innerpadding">6dp</dimen>
     <dimen name="teads_skiptextview_vertical_innerpadding">2dp</dimen>
     <!-- From: file:/Users/hugogresse/Documents/Dev/teads/sdk-dev-android/sdk-teads/androidsdk/res/values/ids.xml -->
     <eat-comment/>
-    <item name="teadsBrowserBackward" type="id"/>
-    <item name="teadsBrowserButton" type="id"/>
-    <item name="teadsBrowserForward" type="id"/>
-    <item name="teadsBrowserWebView" type="id"/>
-    <item name="teadsButtonMute" type="id"/>
-    <item name="teadsButtonSkip" type="id"/>
-    <item name="teadsButtonSkipContainer" type="id"/>
-    <item name="teadsButtonSkipTextView" type="id"/>
-    <item name="teadsFullScreenFrameLayout" type="id"/>
-    <item name="teadsMentionTextView" type="id"/>
-    <item name="teadsNativeVideoLayout" type="id"/>
-    <item name="teadsPlayerCountdownMessage" type="id"/>
-    <item name="teadsPlayerMuteButton" type="id"/>
-    <item name="teadsPlayerSkipButton" type="id"/>
-    <item name="teadsProgressBar" type="id"/>
-    <item name="teadsVideoContainerFrameLayout" type="id"/>
-    <item name="teadsVideoSurfaceLayout" type="id"/>
+    <item name="teads_ActionBar" type="id"/>
+    <item name="teads_ActionBarBack" type="id"/>
+    <item name="teads_ActionBarMore" type="id"/>
+    <item name="teads_ActionBarProgress" type="id"/>
+    <item name="teads_ActionBarRefresh" type="id"/>
+    <item name="teads_ActionBarSubtitle" type="id"/>
+    <item name="teads_ActionBarTitle" type="id"/>
+    <item name="teads_BrowserBackward" type="id"/>
+    <item name="teads_BrowserButton" type="id"/>
+    <item name="teads_BrowserForward" type="id"/>
+    <item name="teads_BrowserWebView" type="id"/>
+    <item name="teads_ButtonMute" type="id"/>
+    <item name="teads_ButtonSkip" type="id"/>
+    <item name="teads_ButtonSkipContainer" type="id"/>
+    <item name="teads_ButtonSkipTextView" type="id"/>
+    <item name="teads_FullScreenFrameLayout" type="id"/>
+    <item name="teads_MentionTextView" type="id"/>
+    <item name="teads_NativeVideoLayout" type="id"/>
+    <item name="teads_PlayerCountdownMessage" type="id"/>
+    <item name="teads_PlayerMuteButton" type="id"/>
+    <item name="teads_PlayerSkipButton" type="id"/>
+    <item name="teads_ProgressBar" type="id"/>
+    <item name="teads_VideoContainerFrameLayout" type="id"/>
+    <item name="teads_VideoSurfaceLayout" type="id"/>
     <!-- From: file:/Users/hugogresse/Documents/Dev/teads/sdk-dev-android/sdk-teads/androidsdk/res/values/integers.xml -->
     <eat-comment/>
     <integer name="teads_activity_transition_fast">  300 </integer>
@@ -65,15 +76,39 @@
     <string name="teads_videosurfacedescription">Video Ad</string>
     <!-- From: file:/Users/hugogresse/Documents/Dev/teads/sdk-dev-android/sdk-teads/androidsdk/res/values/styles.xml -->
     <eat-comment/>
-    <style name="ButtonBar">
+    <style name="teads_Ab.Text" parent="android:Widget.TextView">
+        <item name="android:ellipsize">end</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+    <style name="teads_Ab.TitleItem" parent="android:Widget">
+        <item name="android:layout_gravity">center_vertical|left</item>
+        <item name="android:paddingRight">8dp</item>
+    </style>
+    <style name="teads_AbButton" parent="android:Widget.ImageButton">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:background">@drawable/teads_button_selector</item>
+        <item name="android:padding">@dimen/teads_action_bar_button_padding</item>
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+    <style name="teads_AbButton.Icon" parent="teads_AbButton">
+        <item name="android:paddingTop">@dimen/teads_action_bar_button_padding</item>
+        <item name="android:paddingBottom">@dimen/teads_action_bar_button_padding</item>
+        <item name="android:paddingRight">0dp</item>
+        <item name="android:paddingLeft">@dimen/teads_action_bar_button_padding</item>
+    </style>
+    <style name="teads_AbButton.More" parent="teads_AbButton">
+        <item name="android:paddingLeft">0dp</item>
+    </style>
+    <style name="teads_ButtonBar">
         <item name="android:paddingLeft">2dp</item>
         <item name="android:paddingTop">5dp</item>
         <item name="android:paddingRight">2dp</item>
         <item name="android:paddingBottom">0dp</item>
         <item name="android:background">@android:drawable/bottom_bar</item>
     </style>
-    <style name="ButtonBarButton"/>
-    <style name="TeadsButtonControl">
+    <style name="teads_ButtonBarButton"/>
+    <style name="teads_ButtonControl">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:paddingLeft">@dimen/teads_button_horizontal_innerpadding</item>
@@ -82,7 +117,11 @@
         <item name="android:paddingBottom">@dimen/teads_button_vertical_innerpadding</item>
         <item name="android:background">@drawable/teads_button_selector</item>
     </style>
-    <style name="TeadsVideoProgressBar">
+    <style name="teads_NoActionBar" parent="@android:style/Theme.Holo.Light" ns1:ignore="NewApi">
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+    <style name="teads_VideoProgressBar">
         <item name="android:indeterminateOnly">false</item>
         <item name="android:progressDrawable">@drawable/teads_progressbar</item>
     </style>

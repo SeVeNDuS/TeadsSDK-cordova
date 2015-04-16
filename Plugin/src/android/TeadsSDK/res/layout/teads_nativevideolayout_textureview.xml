@@ -5,6 +5,6 @@
     android:layout_height="wrap_content"
     android:gravity="center_horizontal"
     android:contentDescription="@string/teads_videosurfacedescription"
-    android:id="@id/teadsVideoSurfaceLayout">
+    android:id="@id/teads_VideoSurfaceLayout">
 
 </tv.teads.sdk.adContainer.player.TeadsTextureView><!-- From: file:/Users/hugogresse/Documents/Dev/teads/sdk-dev-android/sdk-teads/androidsdk/res/layout/teads_nativevideolayout_textureview.xml -->

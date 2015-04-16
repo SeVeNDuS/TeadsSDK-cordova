@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@id/teadsButtonSkipContainer"
+    android:id="@id/teads_ButtonSkipContainer"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:visibility="invisible"
@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@id/teadsButtonSkipTextView"
+        android:id="@id/teads_ButtonSkipTextView"
         android:paddingLeft="@dimen/teads_skiptextview_horizontal_innerpadding"
         android:paddingRight="@dimen/teads_skiptextview_horizontal_innerpadding"
         android:paddingTop="@dimen/teads_skiptextview_vertical_innerpadding"
@@ -23,10 +23,10 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@id/teadsButtonSkip"
+        android:id="@id/teads_ButtonSkip"
         android:visibility="invisible"
         android:src="@drawable/ic_teads_sdk_skip_ad"
-        style="@style/TeadsButtonControl"
+        style="@style/teads_ButtonControl"
         android:contentDescription="@string/teads_skipdescription" />
 
 </FrameLayout><!-- From: file:/Users/hugogresse/Documents/Dev/teads/sdk-dev-android/sdk-teads/androidsdk/res/layout/teads_skipcountdown.xml -->
