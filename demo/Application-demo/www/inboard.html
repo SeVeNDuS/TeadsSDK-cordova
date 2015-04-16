@@ -19,7 +19,7 @@
 
     // device APIs are available
     function onDeviceReady() {
-        if (!Teads) {
+        if (!TeadsSDK) {
           alert('Teads plugin is not ready');
         } else {
           initTeadsAdEventListeners();
@@ -98,20 +98,20 @@
 
     //Custom methods : you can do as you want to call Teads plugin methods
     function initInBoard() {
-      Teads.initInBoardWithPlacementId('27695');
+      TeadsSDK.initInBoardWithPlacementId('27695');
     }
 
     function loadNativeVideo() {
       document.getElementById("loadnative").disabled = true;
       document.getElementById('loader').style.display='inline';
-      Teads.loadNativeVideo();
+      TeadsSDK.loadNativeVideo();
     }
 
      //If you want to know if NativeVideo is loaded
     function isLoaded() {
       var isItLoaded;
 
-      Teads.getNativeVideoIsLoaded(function(isLoadedResponse) { 
+      TeadsSDK.getNativeVideoIsLoaded(function(isLoadedResponse) { 
         isItLoaded = isLoadedResponse;
       });
       
