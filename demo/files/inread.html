@@ -97,6 +97,11 @@
       document.getElementById('loader').style.display='inline';
       TeadsSDK.loadNativeVideo();
     }
+
+    function backHome() {
+      TeadsSDK.cleanNativeVideo();
+      window.navigate("index.html");
+    }
   </script>
   <link rel="stylesheet" href="css/bootstrap.min.css" />
   </head>
@@ -104,7 +109,7 @@
   <body onload="onbodyload()">
     
     <br />
-    <a href="index.html"><button type="button" class="btn btn-default">< Home</button></a>
+    <button type="button" class="btn btn-default" onclick="backHome();">< Home</button>
     
     <div class="container">
       <div align="center">
