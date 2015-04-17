@@ -107,6 +107,11 @@
       TeadsSDK.loadNativeVideo();
     }
 
+    function backHome() {
+      TeadsSDK.cleanNativeVideo();
+      window.navigate("index.html");
+    }
+
      //If you want to know if NativeVideo is loaded
     function isLoaded() {
       var isItLoaded;
@@ -124,7 +129,7 @@
 
   <body onload="onbodyload()">
     <br />
-    <a href="index.html"><button type="button" class="btn btn-default">< Home</button></a>
+    <button type="button" class="btn btn-default" onclick="backHome();">< Home</button>
 
     <div align="center">
       <p><img id="loader" style="display:none;" src="loader.gif" /> </p>
