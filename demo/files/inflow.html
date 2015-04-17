@@ -95,6 +95,11 @@
       TeadsSDK.loadInFlow();
     }
 
+    function backHome() {
+      TeadsSDK.cleanInFlow();
+      window.location = "index.html";
+    }
+
   </script>
 
   <link rel="stylesheet" href="css/bootstrap.min.css" />
@@ -102,7 +107,7 @@
 
   <body onload="onbodyload()">
     <br />
-    <a href="index.html"><button type="button" class="btn btn-default">< Home</button></a>
+    <button type="button" class="btn btn-default" onclick="backHome();">< Home</button>
 
     <div align="center">
       <button class="btn btn-default btn-lg" id="loadinflow" onclick="loadInFlow();" >load inFlow</button><br /><br />
