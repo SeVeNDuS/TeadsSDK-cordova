@@ -395,7 +395,7 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
                     mTeadsNativeVideo = new TeadsNativeVideo(
                                                              cordova.getActivity(),
                                                              webView,
-                                                             "27695",
+                                                             pid,
                                                              TeadsNativeVideo.NativeVideoContainerType.inRead,
                                                              TeadsPlugin.this,
                                                              config,
