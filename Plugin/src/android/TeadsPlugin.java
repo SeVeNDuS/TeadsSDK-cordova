@@ -331,7 +331,12 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
             return new PluginResult(PluginResult.Status.ERROR, "Teads Interstitial is null, call initInFlowWithPlacementId first.");
         }
         
-        mTeadsInterstitial.clean();
+        cordova.getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    mTeadsInterstitial.clean();
+                }
+        });
         return null;
     }
     
@@ -455,7 +460,13 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
             return new PluginResult(PluginResult.Status.ERROR, "Teads Native Video is null, call initInBoardWithPlacementId or initinReadWithPlacementId first.");
         }
         
-        mTeadsNativeVideo.clean();
+        cordova.getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    mTeadsNativeVideo.clean();
+                }
+        });
+        
         return null;
     }
     
@@ -730,8 +741,6 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
             return null;
         }
 
-        Log.d(TAG, "sdkOnTeadsJsLibReady");
-
         cordova.getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -745,16 +754,12 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
         if(mTeadsNativeVideo == null && mTeadsNativeVideo.getTeadsJavascriptInterface() == null ) {
             return null;
         }
-
-        Log.d(TAG, "sdkOnInitialContainerPosition");
         try {
             final int top = (int) data.getInt(0);
             final int left = (int) data.getInt(1);
             final int bottom = (int) data.getInt(2);
             final int right = (int) data.getInt(3);
             final float pixelRatio = Float.valueOf(data.getString(4));
-
-            Log.d(TAG, "value : t" + top + " l" + left+  " b" + bottom + " r" + right + " p" + pixelRatio);
             
             cordova.getActivity().runOnUiThread(new Runnable() {
                 @Override
@@ -775,7 +780,6 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
             return null;
         }
 
-        Log.d(TAG, "sdkOnPlaceholderOffsetComputed");
         try {
             final int position = Integer.valueOf(data.getString(0));
             
@@ -798,7 +802,6 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
             return null;
         }
 
-        Log.d(TAG, "sdkOnPlaceholderStartShow");
         cordova.getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -813,7 +816,6 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
             return null;
         }
 
-        Log.d(TAG, "sdkOnPlaceholderStartHide");
         cordova.getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -828,7 +830,6 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
             return null;
         }
 
-        Log.d(TAG, "sdkHandleNoSlotAvailable");
         cordova.getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
