@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/Users/hugogresse/Documents/Dev/teads/sdk-dev-android/sdk-teads/androidsdk/res/values-v17/styles.xml -->
+    <eat-comment/>
+    <style name="teads_RtlOverlay.Widget.ActionBar.TitleItem" parent="android:Widget">
+        <item name="android:layout_gravity">center_vertical|left</item>
+        <item name="android:paddingRight">8dp</item>
+    </style>
+</resources>

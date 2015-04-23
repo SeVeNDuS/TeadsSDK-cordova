@@ -1,10 +1,4 @@
 {
-    "tv.teads.sdk": {
-        "source": {
-            "type": "local",
-            "path": "/Users/nikolai/Documents/Development/0_Cordova/TeadsSDKDev-cordova/Plugin"
-        }
-    },
     "com.google.playservices": {
         "source": {
             "type": "registry",
@@ -22,5 +16,13 @@
             "type": "registry",
             "id": "android.support.v7-appcompat"
         }
+    },
+    "tv.teads.sdk": {
+        "source": {
+            "type": "local",
+            "path": "/Users/nikolai/Documents/Development/0_Cordova/TeadsSDKDev-cordova/Plugin_old"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }

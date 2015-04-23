@@ -4,7 +4,7 @@ module.exports = [
         "file": "plugins/tv.teads.sdk/www/TeadsPlugin.js",
         "id": "tv.teads.sdk.TeadsPlugin",
         "clobbers": [
-            "Teads"
+            "TeadsSDK"
         ]
     }
 ];

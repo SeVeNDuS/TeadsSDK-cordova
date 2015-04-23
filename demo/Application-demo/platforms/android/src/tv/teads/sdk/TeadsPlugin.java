@@ -23,12 +23,18 @@ import tv.teads.sdk.publisher.TeadsInterstitial;
 import tv.teads.sdk.publisher.TeadsInterstitialEventListener;
 import tv.teads.sdk.publisher.TeadsNativeVideo;
 import tv.teads.sdk.publisher.TeadsNativeVideoEventListener;
+import tv.teads.sdk.publisher.TeadsLog;
+import tv.teads.sdk.publisher.TeadsLog.LogLevel;
 
 
+import android.content.pm.PackageManager;
 import android.app.Activity;
 import android.util.Log;
 import android.view.ViewTreeObserver;
 import android.webkit.WebView;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEventListener, TeadsNativeVideoEventListener, ViewTreeObserver.OnScrollChangedListener {
     
@@ -64,6 +70,15 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
     private static final String ACTION_NATIVE_REQUEST_PLAY          = "requestPlayNativeVideo";
     private static final String ACTION_NATIVE_VIEW_DID_APPEAR       = "viewControllerAppearedForNativeVideo";
     private static final String ACTION_NATIVE_DID_DISAPPEAR         = "viewControllerDisappearedForNativeVideo";
+
+
+    // Android SDK Delegate
+    private static final String ACTION_NATIVE_SDK_JS_READY          = "onTeadsJsLibReady";
+    private static final String ACTION_NATIVE_SDK_JS_INITIAL        = "onInitialContainerPosition";
+    private static final String ACTION_NATIVE_SDK_JS_PLACEHOLDER    = "onPlaceholderOffsetComputed";
+    private static final String ACTION_NATIVE_SDK_JS_STARTSHOW      = "onPlaceholderStartShow";
+    private static final String ACTION_NATIVE_SDK_JS_STARTHIDE      = "onPlaceholderStartHide";
+    private static final String ACTION_NATIVE_SDK_JS_NOSLOT         = "handleNoSlotAvailable";
     
     
     private static final String TAG = "TeadsPluginLog";
@@ -71,11 +86,46 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
     TeadsInterstitial mTeadsInterstitial;
     
     TeadsNativeVideo mTeadsNativeVideo;
+
+    WebView cdvWebView;
     
     @Override
     public boolean execute(String action, JSONArray data, CallbackContext callbackContext) throws JSONException {
-        webView.getViewTreeObserver().addOnScrollChangedListener(this);
         
+        Class[] paramTypes = { };
+        Object[] objectParam = { };
+        Method method = null;
+        try {
+            //Handle cordova-android < 4.0.0
+            method = webView.getClass().getMethod("getViewTreeObserver", paramTypes);
+            ViewTreeObserver observer = (ViewTreeObserver) method.invoke(webView, objectParam);
+            observer.addOnScrollChangedListener(this);
+
+            cdvWebView = (WebView) webView;
+        } catch (NoSuchMethodException e){
+            // handle cordova-android >= 4.0.0
+                try {
+                    method = webView.getClass().getMethod("getView", paramTypes);
+
+                    cdvWebView = (WebView) method.invoke(webView, objectParam);
+
+                    cdvWebView.getViewTreeObserver().addOnScrollChangedListener(this);
+                } catch (NoSuchMethodException e1) {
+                    e1.printStackTrace();
+                } catch (InvocationTargetException e1) {
+                    e1.printStackTrace();
+                } catch (IllegalAccessException e1) {
+                    e1.printStackTrace();
+                }
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        
+        // TeadsLog.setLogLevel(TeadsLog.LogLevel.DEBUG);
+
         PluginResult result = null;
         
         //TeadsAdFactory
@@ -110,6 +160,21 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
             
         } else if (ACTION_INFLOW_ONLAYOUTCHANGE.equals(action)) {
             result = onLayoutChangeInFlow(data, callbackContext);
+        }
+
+        // Android SDK Delegate
+        else if (ACTION_NATIVE_SDK_JS_READY.equals(action)) {
+            result = sdkOnTeadsJsLibReady(data, callbackContext);
+        } else if (ACTION_NATIVE_SDK_JS_INITIAL.equals(action)) {
+            result = sdkOnInitialContainerPosition(data, callbackContext);
+        } else if (ACTION_NATIVE_SDK_JS_PLACEHOLDER.equals(action)) {
+            result = sdkOnPlaceholderOffsetComputed(data, callbackContext);
+        } else if (ACTION_NATIVE_SDK_JS_STARTSHOW.equals(action)) {
+            result = sdkOnPlaceholderStartShow(data, callbackContext);
+        } else if (ACTION_NATIVE_SDK_JS_STARTHIDE.equals(action)) {
+            result = sdkOnPlaceholderStartHide(data, callbackContext);
+        } else if (ACTION_NATIVE_SDK_JS_NOSLOT.equals(action)) {
+            result = sdkHandleNoSlotAvailable(data, callbackContext);
         }
         
         //Teads native video (inRead & inBoard)
@@ -165,7 +230,7 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
     public Object onMessage(String id, Object data) {
         if (mTeadsNativeVideo != null) {
             if (id.equalsIgnoreCase("onPageFinished")) {
-                mTeadsNativeVideo.getWebViewClientListener().onPageFinished(webView, (String)data);
+                mTeadsNativeVideo.getWebViewClientListener().onPageFinished(cdvWebView, (String)data);
             }
             else if (id.equalsIgnoreCase("onScaleChanged")) {
                 
@@ -178,7 +243,7 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
     @Override
     public boolean onOverrideUrlLoading(String url) {
         if (mTeadsNativeVideo != null) {
-            mTeadsNativeVideo.getWebViewClientListener().shouldOverrideUrlLoading(webView, url);
+            mTeadsNativeVideo.getWebViewClientListener().shouldOverrideUrlLoading(cdvWebView, url);
         }
         
         return super.onOverrideUrlLoading(url);
@@ -303,7 +368,12 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
             return new PluginResult(PluginResult.Status.ERROR, "Teads Interstitial is null, call initInFlowWithPlacementId first.");
         }
         
-        mTeadsInterstitial.clean();
+        cordova.getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    mTeadsInterstitial.clean();
+                }
+        });
         return null;
     }
     
@@ -325,7 +395,7 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
                 public void run() {
                     mTeadsNativeVideo = new TeadsNativeVideo(
                                                  cordova.getActivity(),
-                                                 webView,
+                            cdvWebView,
                                                  pid,
                                                  TeadsNativeVideo.NativeVideoContainerType.inBoard,
                                                  TeadsPlugin.this,
@@ -361,8 +431,8 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
                 public void run() {
                     mTeadsNativeVideo = new TeadsNativeVideo(
                                                              cordova.getActivity(),
-                                                             webView,
-                                                             "27695",
+                            cdvWebView,
+                                                             pid,
                                                              TeadsNativeVideo.NativeVideoContainerType.inRead,
                                                              TeadsPlugin.this,
                                                              config,
@@ -405,7 +475,7 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
         cordova.getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                mTeadsNativeVideo.getWebViewClientListener().onPageFinished(webView, null);
+                mTeadsNativeVideo.getWebViewClientListener().onPageFinished(cdvWebView, null);
 
                 if (mTeadsNativeVideo != null) {
                     mTeadsNativeVideo.load();
@@ -427,7 +497,13 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
             return new PluginResult(PluginResult.Status.ERROR, "Teads Native Video is null, call initInBoardWithPlacementId or initinReadWithPlacementId first.");
         }
         
-        mTeadsNativeVideo.clean();
+        cordova.getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    mTeadsNativeVideo.clean();
+                }
+        });
+        
         return null;
     }
     
@@ -682,11 +758,123 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
     public void nativeVideoDidCollapse() {
         webView.loadUrl("javascript:cordova.fireDocumentEvent('teadsNativeVideoDidCollapse');");
     }
-    
+
     @Override
     public void onScrollChanged() {
-        if (mTeadsNativeVideo != null && mTeadsNativeVideo.isLoaded()) {
-            mTeadsNativeVideo.getWebViewScrollListener().onScroll(webView.getScrollX(), webView.getScrollY());
+        if (mTeadsNativeVideo != null && mTeadsNativeVideo.getWebViewScrollListener() != null) {
+            mTeadsNativeVideo.getWebViewScrollListener().onScroll(cdvWebView.getScrollX(), cdvWebView.getScrollY());
         }
     }
+
+
+    /**
+    * Delegate method to Teads Androdi SDK
+    * 
+    **/
+
+
+    private PluginResult sdkOnTeadsJsLibReady(JSONArray data, final CallbackContext callbackContext) {
+        if(mTeadsNativeVideo == null && mTeadsNativeVideo.getTeadsJavascriptInterface() == null ) {
+            return null;
+        }
+
+        cordova.getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                mTeadsNativeVideo.getTeadsJavascriptInterface().onTeadsJsLibReady();
+            }
+        });
+        return null;
+    }
+
+    private PluginResult sdkOnInitialContainerPosition(JSONArray data, final CallbackContext callbackContext) {
+        if(mTeadsNativeVideo == null && mTeadsNativeVideo.getTeadsJavascriptInterface() == null ) {
+            return null;
+        }
+        try {
+            final int top = (int) data.getInt(0);
+            final int left = (int) data.getInt(1);
+            final int bottom = (int) data.getInt(2);
+            final int right = (int) data.getInt(3);
+            final float pixelRatio = Float.valueOf(data.getString(4));
+            
+            cordova.getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    mTeadsNativeVideo.getTeadsJavascriptInterface().onInitialContainerPosition(top, left, bottom, right, pixelRatio);
+                }
+            });
+            
+        } catch (JSONException ex) {
+            Log.d(TAG, "error sdkOnInitialContainerPosition = " + ex.getMessage());
+        }
+
+        return null;
+    }
+
+    private PluginResult sdkOnPlaceholderOffsetComputed(JSONArray data, final CallbackContext callbackContext) {
+        if(mTeadsNativeVideo == null && mTeadsNativeVideo.getTeadsJavascriptInterface() == null ) {
+            return null;
+        }
+
+        try {
+            final int position = Integer.valueOf(data.getString(0));
+            
+            cordova.getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    mTeadsNativeVideo.getTeadsJavascriptInterface().onPlaceholderOffsetComputed(position);
+                }
+            });
+            
+        } catch (JSONException ex) {
+            Log.d(TAG, "error sdkOnPlaceholderOffsetComputed = " + ex.getMessage());
+        }
+
+        return null;
+    }
+
+    private PluginResult sdkOnPlaceholderStartShow(JSONArray data, final CallbackContext callbackContext) {
+        if(mTeadsNativeVideo == null && mTeadsNativeVideo.getTeadsJavascriptInterface() == null ) {
+            return null;
+        }
+
+        cordova.getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                mTeadsNativeVideo.getTeadsJavascriptInterface().onPlaceholderStartShow();
+            }
+        });
+        return null;
+    }
+
+    private PluginResult sdkOnPlaceholderStartHide(JSONArray data, final CallbackContext callbackContext) {
+        if(mTeadsNativeVideo == null && mTeadsNativeVideo.getTeadsJavascriptInterface() == null ) {
+            return null;
+        }
+
+        cordova.getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                mTeadsNativeVideo.getTeadsJavascriptInterface().onPlaceholderStartHide();
+            }
+        });
+        return null;
+    }
+
+    private PluginResult sdkHandleNoSlotAvailable(JSONArray data, final CallbackContext callbackContext) {
+        if(mTeadsNativeVideo == null && mTeadsNativeVideo.getTeadsJavascriptInterface() == null ) {
+            return null;
+        }
+
+        cordova.getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                mTeadsNativeVideo.getTeadsJavascriptInterface().handleNoSlotAvailable();
+            }
+        });
+        return null;
+    }
+
+
 }

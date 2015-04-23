@@ -39,11 +39,11 @@
 		7E7966E61810823500FA85AD /* icon-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966DC1810823500FA85AD /* icon-small.png */; };
 		7E7966E71810823500FA85AD /* icon-small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966DD1810823500FA85AD /* icon-small@2x.png */; };
 		D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */; };
-		69067ECF5856462595F8AE23 /* TeadsPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E7B5DFD2AAE49FF80ABEFDA /* TeadsPlugin.m */; };
-		658EAFE65906409198C24C68 /* TeadsSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A7B008EC509B4F189F4B4EE6 /* TeadsSDKResources.bundle */; };
-		A80664BBB7BB4AFCBBA6108C /* TeadsSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B31A4789DCE4D89A5EF292A /* TeadsSDK.framework */; };
-		7BF464F8E3344052994FC4AA /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DFD7F009D22842D1B8F8B6DB /* libxml2.dylib */; };
-		8BBF0663FBE54A988017299F /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CC2560E3BEA4E0794C1001B /* libsqlite3.0.dylib */; };
+		27A78B48F8BC4ED787144487 /* TeadsPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 0851181DC4F74F9FB1BFE362 /* TeadsPlugin.m */; };
+		447D4C58380C49AE9CBBCA05 /* TeadsSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4B162CD46B0043AC85158866 /* TeadsSDKResources.bundle */; };
+		C09A52B250264C708D7A6E47 /* TeadsSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F74AAEB068A4112994C0876 /* TeadsSDK.framework */; };
+		F0142B796BDA4555AD2F76BE /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 30F69409788C4910BDE9C437 /* libxml2.dylib */; };
+		D6F3C65E7BAF43649596D0F9 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 513BE56013BE45CE94AA2CC5 /* libsqlite3.0.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,12 +109,12 @@
 		EB87FDF31871DA8E0020F90C /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; name = www; path = ../../www; sourceTree = "<group>"; };
 		EB87FDF41871DAF40020F90C /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = ../../config.xml; sourceTree = "<group>"; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = "HelloCordova/config.xml"; sourceTree = "<group>"; };
-		9E7B5DFD2AAE49FF80ABEFDA /* TeadsPlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "TeadsPlugin.m"; path = "tv.teads.sdk/TeadsPlugin.m"; sourceTree = "<group>"; fileEncoding = 4; };
-		D99D161E3786420596B7E393 /* TeadsPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "TeadsPlugin.h"; path = "tv.teads.sdk/TeadsPlugin.h"; sourceTree = "<group>"; fileEncoding = 4; };
-		A7B008EC509B4F189F4B4EE6 /* TeadsSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = "TeadsSDKResources.bundle"; path = "TeadsSDKResources.bundle"; sourceTree = "<group>"; };
-		1B31A4789DCE4D89A5EF292A /* TeadsSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "TeadsSDK.framework"; path = "HelloCordova/Plugins/tv.teads.sdk/TeadsSDK.framework"; sourceTree = "<group>"; };
-		DFD7F009D22842D1B8F8B6DB /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libxml2.dylib"; path = "usr/lib/libxml2.dylib"; sourceTree = SDKROOT; fileEncoding = 4; };
-		9CC2560E3BEA4E0794C1001B /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsqlite3.0.dylib"; path = "usr/lib/libsqlite3.0.dylib"; sourceTree = SDKROOT; fileEncoding = 4; };
+		0851181DC4F74F9FB1BFE362 /* TeadsPlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "TeadsPlugin.m"; path = "tv.teads.sdk/TeadsPlugin.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		A074F347B5CE4816B5385B53 /* TeadsPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "TeadsPlugin.h"; path = "tv.teads.sdk/TeadsPlugin.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		4B162CD46B0043AC85158866 /* TeadsSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = "TeadsSDKResources.bundle"; path = "TeadsSDKResources.bundle"; sourceTree = "<group>"; };
+		5F74AAEB068A4112994C0876 /* TeadsSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "TeadsSDK.framework"; path = "HelloCordova/Plugins/tv.teads.sdk/TeadsSDK.framework"; sourceTree = "<group>"; };
+		30F69409788C4910BDE9C437 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libxml2.dylib"; path = "usr/lib/libxml2.dylib"; sourceTree = SDKROOT; fileEncoding = 4; };
+		513BE56013BE45CE94AA2CC5 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsqlite3.0.dylib"; path = "usr/lib/libsqlite3.0.dylib"; sourceTree = SDKROOT; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,9 +126,9 @@
 				301BF552109A68D80062928A /* libCordova.a in Frameworks */,
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
 				305D5FD1115AB8F900A74A75 /* MobileCoreServices.framework in Frameworks */,
-				A80664BBB7BB4AFCBBA6108C /* TeadsSDK.framework in Frameworks */,
-				7BF464F8E3344052994FC4AA /* libxml2.dylib in Frameworks */,
-				8BBF0663FBE54A988017299F /* libsqlite3.0.dylib in Frameworks */,
+				C09A52B250264C708D7A6E47 /* TeadsSDK.framework in Frameworks */,
+				F0142B796BDA4555AD2F76BE /* libxml2.dylib in Frameworks */,
+				D6F3C65E7BAF43649596D0F9 /* libsqlite3.0.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,7 +190,7 @@
 				308D052D1370CCF300D202BF /* icons */,
 				308D05311370CCF300D202BF /* splash */,
 				8D1107310486CEB800E47090 /* HelloCordova-Info.plist */,
-				A7B008EC509B4F189F4B4EE6 /* TeadsSDKResources.bundle */,
+				4B162CD46B0043AC85158866 /* TeadsSDKResources.bundle */,
 			);
 			name = Resources;
 			path = "HelloCordova/Resources";
@@ -202,9 +202,9 @@
 				5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */,
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
 				305D5FD0115AB8F900A74A75 /* MobileCoreServices.framework */,
-				1B31A4789DCE4D89A5EF292A /* TeadsSDK.framework */,
-				DFD7F009D22842D1B8F8B6DB /* libxml2.dylib */,
-				9CC2560E3BEA4E0794C1001B /* libsqlite3.0.dylib */,
+				5F74AAEB068A4112994C0876 /* TeadsSDK.framework */,
+				30F69409788C4910BDE9C437 /* libxml2.dylib */,
+				513BE56013BE45CE94AA2CC5 /* libsqlite3.0.dylib */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -220,8 +220,8 @@
 		307C750510C5A3420062BCA9 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
-				9E7B5DFD2AAE49FF80ABEFDA /* TeadsPlugin.m */,
-				D99D161E3786420596B7E393 /* TeadsPlugin.h */,
+				0851181DC4F74F9FB1BFE362 /* TeadsPlugin.m */,
+				A074F347B5CE4816B5385B53 /* TeadsPlugin.h */,
 			);
 			name = Plugins;
 			path = "HelloCordova/Plugins";
@@ -375,7 +375,7 @@
 				7E7966E11810823500FA85AD /* icon-50@2x.png in Resources */,
 				7E7966E51810823500FA85AD /* icon-76@2x.png in Resources */,
 				30FC414916E50CA1004E6F35 /* icon-72@2x.png in Resources */,
-				658EAFE65906409198C24C68 /* TeadsSDKResources.bundle in Resources */,
+				447D4C58380C49AE9CBBCA05 /* TeadsSDKResources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,7 +407,7 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
 				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,
-				69067ECF5856462595F8AE23 /* TeadsPlugin.m in Sources */,
+				27A78B48F8BC4ED787144487 /* TeadsPlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,6 +453,10 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"HelloCordova/Plugins/tv.teads.sdk\"",
+					"\"HelloCordova/Plugins/tv.teads.sdk\"",
+					"\"HelloCordova/Plugins/tv.teads.sdk\"",
+					"\"HelloCordova/Plugins/tv.teads.sdk\"",
+					"\"HelloCordova/Plugins/tv.teads.sdk\"",
 				);
 			};
 			name = Debug;
@@ -485,6 +489,10 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"HelloCordova/Plugins/tv.teads.sdk\"",
+					"\"HelloCordova/Plugins/tv.teads.sdk\"",
+					"\"HelloCordova/Plugins/tv.teads.sdk\"",
+					"\"HelloCordova/Plugins/tv.teads.sdk\"",
 					"\"HelloCordova/Plugins/tv.teads.sdk\"",
 				);
 			};

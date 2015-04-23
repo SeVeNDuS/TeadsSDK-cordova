@@ -82,6 +82,13 @@
       document.addEventListener('teadsInterstitialIsRewardEnabled', function(){ });
       document.addEventListener('teadsInterstitialRewardUnlocked', function(){ });
       document.addEventListener('teadsInterstitialDidClean', function(){ });
+      /**
+       * End of TeadsInterstitialDelegate callbacks
+       */
+
+
+      //For Android devices, you should listen to backbutton touch action
+      document.addEventListener("backbutton", backButtonPressed, false);
     }
 
 
@@ -95,6 +102,17 @@
       TeadsSDK.loadInFlow();
     }
 
+    function backHome() {
+      //A navigation button has been pressed here we decide to clean our Native Video and go back to index page
+      TeadsSDK.cleanNativeVideo();
+      window.location = "index.html";
+    }
+
+    function backButtonPressed() {
+      //Device back button has been pressed and view will change : do what you want regarding the native video (clean, pause, etc..)
+      TeadsSDK.cleanNativeVideo();
+    }
+
   </script>
 
   <link rel="stylesheet" href="css/bootstrap.min.css" />
@@ -102,7 +120,7 @@
 
   <body onload="onbodyload()">
     <br />
-    <a href="index.html"><button type="button" class="btn btn-default">< Home</button></a>
+    <button type="button" class="btn btn-default" onclick="backHome();">< Home</button>
 
     <div align="center">
       <button class="btn btn-default btn-lg" id="loadinflow" onclick="loadInFlow();" >load inFlow</button><br /><br />

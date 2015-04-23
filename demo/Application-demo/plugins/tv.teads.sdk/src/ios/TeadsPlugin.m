@@ -47,14 +47,19 @@
 - (void)initInFlowWithPlacementId:(CDVInvokedUrlCommand*)command {
     NSString *pid = [command.arguments objectAtIndex:0];
     
-    CDVPluginResult* pluginResult = nil;
-    if (pid != nil) {
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
-        self.teadsInterstitial = [[TeadsInterstitial alloc] initInFlowWithPlacementId:pid rootViewController:self.viewController delegate:self];
-    } else {
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"No pid provided"];
-    }
-    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    
+
+    [self.commandDelegate runInBackground:^{
+        CDVPluginResult* pluginResult = nil;
+        if (pid != nil) {
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+            self.teadsInterstitial = [[TeadsInterstitial alloc] initInFlowWithPlacementId:pid rootViewController:self.viewController delegate:self];
+        } else {
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"No pid provided"];
+        }
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    }];
+    
 }
 
 - (void)getInFlowIsLoaded:(CDVInvokedUrlCommand*)command {
@@ -73,7 +78,9 @@
 }
 
 - (void)loadInFlow:(CDVInvokedUrlCommand*)command {
-    [self.teadsInterstitial load];
+    [self.commandDelegate runInBackground:^{
+        [self.teadsInterstitial load];
+    }];
 }
 
 - (void)showInFlow:(CDVInvokedUrlCommand*)command {
@@ -87,7 +94,9 @@
 }
 
 - (void)cleanInFlow:(CDVInvokedUrlCommand*)command {
-    [self.teadsInterstitial clean];
+    [self.commandDelegate runInBackground:^{
+        [self.teadsInterstitial clean];
+    }];
 }
 
 

@@ -93,8 +93,14 @@
       document.addEventListener('teadsNativeVideoSkipButtonTapped', function(){ });
       document.addEventListener('teadsNativeVideoSkipButtonDidShow', function(){ });
       document.addEventListener('teadsNativeVideoDidClean', function(){ });
-    }
+      /**
+       * End of TeadsNativeVideoDelegate callbacks
+       */
 
+
+      //For Android devices, you should listen to backbutton touch action
+      document.addEventListener("backbutton", backButtonPressed, false);
+    }
 
     //Custom methods : you can do as you want to call Teads plugin methods
     function initInBoard() {
@@ -107,6 +113,17 @@
       TeadsSDK.loadNativeVideo();
     }
 
+    function backHome() {
+      //A navigation button has been pressed here we decide to clean our Native Video and go back to index page
+      TeadsSDK.cleanNativeVideo();
+      window.location = "index.html";
+    }
+
+    function backButtonPressed() {
+      //Device back button has been pressed and view will change : do what you want regarding the native video (clean, pause, etc..)
+      TeadsSDK.cleanNativeVideo();
+    }
+
      //If you want to know if NativeVideo is loaded
     function isLoaded() {
       var isItLoaded;
@@ -114,7 +131,6 @@
       TeadsSDK.getNativeVideoIsLoaded(function(isLoadedResponse) { 
         isItLoaded = isLoadedResponse;
       });
-      
     }
   </script>
 
@@ -124,7 +140,7 @@
 
   <body onload="onbodyload()">
     <br />
-    <a href="index.html"><button type="button" class="btn btn-default">< Home</button></a>
+    <button type="button" class="btn btn-default" onclick="backHome();">< Home</button>
 
     <div align="center">
       <p><img id="loader" style="display:none;" src="loader.gif" /> </p>

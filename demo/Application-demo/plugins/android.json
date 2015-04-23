@@ -17,7 +17,7 @@
                             "count": 1
                         },
                         {
-                            "xml": "<activity android:configChanges=\"orientation|keyboardHidden|screenSize\" android:name=\"tv.teads.sdk.adContainer.activity.BrowserActivity\"></activity>",
+                            "xml": "<activity android:configChanges=\"orientation|keyboardHidden|screenSize\" android:name=\"tv.teads.sdk.adContainer.activity.BrowserActivity\" android:theme=\"@style/teads_NoActionBar\"></activity>",
                             "count": 1
                         }
                     ],

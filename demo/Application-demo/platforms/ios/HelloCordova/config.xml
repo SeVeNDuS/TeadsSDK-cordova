@@ -14,9 +14,6 @@
     <feature name="LocalStorage">
         <param name="ios-package" value="CDVLocalStorage" />
     </feature>
-    <feature name="TeadsPlugin">
-        <param name="ios-package" value="TeadsPlugin" />
-    </feature>
     <name>HelloCordova</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
@@ -26,4 +23,7 @@
     </author>
     <content src="index.html" />
     <access origin="*" />
+    <feature name="TeadsPlugin">
+        <param name="ios-package" value="TeadsPlugin" />
+    </feature>
 </widget>

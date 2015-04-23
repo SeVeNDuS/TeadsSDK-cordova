@@ -16,19 +16,16 @@
         onDeviceReady();
       }
     }
-
     // device APIs are available
     function onDeviceReady() {
-        if (!Teads) {
+        if (!TeadsSDK) {
           alert('Teads plugin is not ready');
         } else {
           initTeadsAdEventListeners();
-
           //Device is ready, page is loaded we can init Teads elements if we want to
           initInRead();
         }
     }
-
     function initTeadsAdEventListeners() {
       /**
        * TeadsAdFactoryDelegate callbacks
@@ -52,7 +49,6 @@
       document.addEventListener('teadsAdFactoryDidExpire', function(data){ 
         var expiredPid = data.pid;
       });
-
       /**
        * TeadsNativeVideoDelegate callbacks
        */
@@ -61,7 +57,6 @@
           '\nError code : ' + e.code +
           '\nError name : ' + e.name +
           '\nError message : ' + e.message);
-
         document.getElementById("loadnative").disabled = false;
         document.getElementById('loader').style.display = 'none';
       });
@@ -92,18 +87,35 @@
       document.addEventListener('teadsNativeVideoSkipButtonTapped', function(){ });
       document.addEventListener('teadsNativeVideoSkipButtonDidShow', function(){ });
       document.addEventListener('teadsNativeVideoDidClean', function(){ });
-    }
+      /**
+       * End of TeadsNativeVideoDelegate callbacks
+       */
 
+
+      //For Android devices, you should listen to backbutton touch action
+      document.addEventListener("backbutton", backButtonPressed, false);
+    }
     //Custom methods : you can do as you want to call Teads plugin methods
     function initInRead() {
-      Teads.initInReadWithPlacementIdAndPlaceholder('27695', 'p');
+      TeadsSDK.initInReadWithPlacementIdAndPlaceholder('27695', '');
     }
-
     function loadNativeVideo() {
       document.getElementById("loadnative").disabled = true;
       document.getElementById('loader').style.display='inline';
-      Teads.loadNativeVideo();
+      TeadsSDK.loadNativeVideo();
     }
+
+    function backHome() {
+      //A navigation button has been pressed here we decide to clean our Native Video and go back to index page
+      TeadsSDK.cleanNativeVideo();
+      window.location = "index.html";
+    }
+
+    function backButtonPressed() {
+      //Device back button has been pressed and view will change : do what you want regarding the native video (clean, pause, etc..)
+      TeadsSDK.cleanNativeVideo();
+    }
+
   </script>
   <link rel="stylesheet" href="css/bootstrap.min.css" />
   </head>
@@ -111,7 +123,7 @@
   <body onload="onbodyload()">
     
     <br />
-    <a href="index.html"><button type="button" class="btn btn-default">< Home</button></a>
+    <button type="button" class="btn btn-default" onclick="backHome();">< Home</button>
     
     <div class="container">
       <div align="center">

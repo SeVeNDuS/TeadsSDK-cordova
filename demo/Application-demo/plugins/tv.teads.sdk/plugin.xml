@@ -11,11 +11,12 @@
     <issue>https://github.com/teads/TeadsSDKDev-cordova/issues</issue>
 
     <engines>
+        <engine name="cordova" version=">=3.0" />
         <engine name="cordova-android" version=">=3.5.0" />
     </engines>
 
     <js-module src="www/TeadsPlugin.js" name="TeadsPlugin">
-        <clobbers target="Teads" />
+        <clobbers target="TeadsSDK" />
     </js-module>
 
     <!-- android -->
@@ -26,7 +27,7 @@
           </feature>
         </config-file>
 
-        <source-file src="src/android/TeadsPlugin.java" target-dir="src/tv/teads/plugin/" />
+        <source-file src="src/android/TeadsPlugin.java" target-dir="src/tv/teads/sdk/" />
 
         <dependency id="com.google.playservices" />
         <dependency id="android.support.v4" />
@@ -41,6 +42,7 @@
 
            <activity
               android:name="tv.teads.sdk.adContainer.activity.BrowserActivity"
+              android:theme="@style/teads_NoActionBar"
               android:configChanges="orientation|keyboardHidden|screenSize" >
            </activity>
         </config-file>

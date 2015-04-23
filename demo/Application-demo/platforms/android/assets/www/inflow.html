@@ -19,7 +19,7 @@
 
     // device APIs are available
     function onDeviceReady() {
-        if (!Teads) {
+        if (!TeadsSDK) {
           alert('Teads plugin is not ready');
         } else {
           initTeadsAdEventListeners();
@@ -82,17 +82,35 @@
       document.addEventListener('teadsInterstitialIsRewardEnabled', function(){ });
       document.addEventListener('teadsInterstitialRewardUnlocked', function(){ });
       document.addEventListener('teadsInterstitialDidClean', function(){ });
+      /**
+       * End of TeadsInterstitialDelegate callbacks
+       */
+
+
+      //For Android devices, you should listen to backbutton touch action
+      document.addEventListener("backbutton", backButtonPressed, false);
     }
 
 
     //Custom methods : you can do as you want to call Teads plugin methods
     function initInFlow() {
-      Teads.initInFlowWithPlacementId('27695');
-      //Teads.setPreDownloadInFlow(true);
+      TeadsSDK.initInFlowWithPlacementId('27695');
+      //TeadsSDK.setPreDownloadInFlow(true);
     }
     function loadInFlow() {
       document.getElementById('loaderinterstitial').style.display='inline';
-      Teads.loadInFlow();
+      TeadsSDK.loadInFlow();
+    }
+
+    function backHome() {
+      //A navigation button has been pressed here we decide to clean our Native Video and go back to index page
+      TeadsSDK.cleanNativeVideo();
+      window.location = "index.html";
+    }
+
+    function backButtonPressed() {
+      //Device back button has been pressed and view will change : do what you want regarding the native video (clean, pause, etc..)
+      TeadsSDK.cleanNativeVideo();
     }
 
   </script>
@@ -102,12 +120,12 @@
 
   <body onload="onbodyload()">
     <br />
-    <a href="index.html"><button type="button" class="btn btn-default">< Home</button></a>
+    <button type="button" class="btn btn-default" onclick="backHome();">< Home</button>
 
     <div align="center">
       <button class="btn btn-default btn-lg" id="loadinflow" onclick="loadInFlow();" >load inFlow</button><br /><br />
       <img id="loaderinterstitial" style="display:none;" src="loader.gif" /><br /><br />
-      <button class="btn btn-default btn-lg" id="showinflow" onclick="Teads.showInFlow();" disabled>Show inFlow</button><br /><br />
+      <button class="btn btn-default btn-lg" id="showinflow" onclick="TeadsSDK.showInFlow();" disabled>Show inFlow</button><br /><br />
     </div>
 
     <script type="text/javascript" src="cordova.js"></script>

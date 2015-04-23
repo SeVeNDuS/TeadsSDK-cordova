@@ -1,13 +1,5 @@
-cordova.define("tv.teads.sdk.TeadsPlugin", function(require, exports, module) { cordova.define("tv.teads.plugin", function(require, exports, module) { var argscheck = require('cordova/argscheck'),
+cordova.define("tv.teads.sdk.TeadsPlugin", function(require, exports, module) { cordova.define("tv.teads.sdk", function(require, exports, module) { var argscheck = require('cordova/argscheck'),
     exec = require('cordova/exec');});
-    
-
-//$(document).ready(function () {
-//  $(window).scroll(function () {
-
-//  });
-//});
-
 
 var teadsExport = {};
 
@@ -174,6 +166,29 @@ TeadsPlugin.prototype.viewControllerAppearedForNativeVideo = function(successCal
 TeadsPlugin.prototype.viewControllerDisappearedForNativeVideo = function( successCallback, failureCallback) {
 	cordova.exec( successCallback, failureCallback, 'TeadsPlugin', 'viewControllerDisappearedForNativeVideo', [] );
 };
+
+
+// For TeadsJavascriptInterface (related to android SDK)
+TeadsPlugin.prototype.onTeadsJsLibReady = function(successCallback, failureCallback) {
+	cordova.exec( successCallback, failureCallback, 'TeadsPlugin', 'onTeadsJsLibReady', [] );
+};
+TeadsPlugin.prototype.onInitialContainerPosition = function(placeholderTop, placeholderLeft, placeholderBottom, placeholderRight, pixelRatio, successCallback, failureCallback) {
+	cordova.exec( successCallback, failureCallback, 'TeadsPlugin', 'onInitialContainerPosition', [placeholderTop, placeholderLeft, placeholderBottom, placeholderRight, pixelRatio] );
+};
+TeadsPlugin.prototype.onPlaceholderOffsetComputed = function(successCallback, failureCallback) {
+	cordova.exec( successCallback, failureCallback, 'TeadsPlugin', 'onPlaceholderOffsetComputed', [position] );
+};
+TeadsPlugin.prototype.onPlaceholderStartShow = function(successCallback, failureCallback) {
+	cordova.exec( successCallback, failureCallback, 'TeadsPlugin', 'onPlaceholderStartShow', [] );
+};
+TeadsPlugin.prototype.onPlaceholderStartHide = function(successCallback, failureCallback) {
+	cordova.exec( successCallback, failureCallback, 'TeadsPlugin', 'onPlaceholderStartHide', [] );
+};
+TeadsPlugin.prototype.handleNoSlotAvailable = function(successCallback, failureCallback) {
+	cordova.exec( successCallback, failureCallback, 'TeadsPlugin', 'handleNoSlotAvailable', [] );
+};
+
+
 
 
 var teads = new TeadsPlugin(); 
