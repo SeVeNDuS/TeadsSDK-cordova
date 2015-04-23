@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/action_browser_open"
+        android:title="@string/teads_action_browser_open"
+        android:orderInCategory="100"/>
+
+    <item android:id="@+id/action_copy"
+        android:title="@string/teads_action_copy"
+        android:orderInCategory="100" />
+
+</menu><!-- From: file:/Users/hugogresse/Documents/Dev/teads/sdk-dev-android/sdk-teads/androidsdk/res/menu/teads_browser.xml -->

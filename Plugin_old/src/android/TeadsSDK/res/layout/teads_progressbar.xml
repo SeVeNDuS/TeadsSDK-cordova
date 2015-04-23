@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tv.teads.sdk.util.TeadsProgressBar
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="@dimen/teads_progressbar_height"
+    android:layout_width="match_parent"
+    android:id="@id/teads_ProgressBar"
+    android:layout_gravity="bottom"
+    android:max="1000"
+    android:visibility="gone"
+    style="@style/teads_VideoProgressBar"
+    />
+<!-- From: file:/Users/hugogresse/Documents/Dev/teads/sdk-dev-android/sdk-teads/androidsdk/res/layout/teads_progressbar.xml -->

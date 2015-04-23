@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tv.teads.sdk.util.MuteButton
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@id/teads_ButtonMute"
+    android:src="@drawable/ic_teads_sdk_unmute"
+    android:visibility="invisible"
+    android:layout_gravity="bottom"
+    android:contentDescription="@string/teads_muteunmute"
+    style="@style/teads_ButtonControl"
+    >
+
+</tv.teads.sdk.util.MuteButton><!-- From: file:/Users/hugogresse/Documents/Dev/teads/sdk-dev-android/sdk-teads/androidsdk/res/layout/teads_mutebutton.xml -->
