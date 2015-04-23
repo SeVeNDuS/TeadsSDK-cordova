@@ -11,7 +11,8 @@
     <issue>https://github.com/teads/TeadsSDKDev-cordova/issues</issue>
 
     <engines>
-        <engine name="cordova-android" version=">=3.5.0" />
+        <engine name="cordova" version=">=4.3.0" />
+        <engine name="cordova-android" version=">=4.0.0" />
     </engines>
 
     <js-module src="www/TeadsPlugin.js" name="TeadsPlugin">
@@ -21,30 +22,18 @@
     <!-- android -->
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
-          <feature name="TeadsPlugin">
-            <param name="android-package" value="tv.teads.sdk.TeadsPlugin" />
-          </feature>
+            <feature name="TeadsPlugin">
+                <param name="android-package" value="tv.teads.sdk.TeadsPlugin" />
+            </feature>
+            <access origin="*" />
+
+            <!-- Enable all requests, inline styles, and eval() -->
+            <meta http-equiv="Content-Security-Policy" content="default-src *;" />
+
         </config-file>
 
         <source-file src="src/android/TeadsPlugin.java" target-dir="src/tv/teads/sdk/" />
-
-        <dependency id="com.google.playservices" />
-        <dependency id="android.support.v4" />
-        <dependency id="android.support.v7-appcompat" />
-
-        <config-file target="AndroidManifest.xml" parent="/manifest/application">
-          <activity
-              android:name="tv.teads.sdk.adContainer.activity.FullscreenActivity"
-              android:configChanges="keyboardHidden|orientation|screenSize"
-              android:hardwareAccelerated="true">
-           </activity>
-
-           <activity
-              android:name="tv.teads.sdk.adContainer.activity.BrowserActivity"
-              android:theme="@style/teads_NoActionBar"
-              android:configChanges="orientation|keyboardHidden|screenSize" >
-           </activity>
-        </config-file>
+        <framework src="src/android/teads.gradle" custom="true" type="gradleReference" />
 
         <config-file target="AndroidManifest.xml" parent="/*">
           <uses-permission android:name="android.permission.INTERNET" />
@@ -52,7 +41,6 @@
           <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
         </config-file>
 
-        <framework src="src/android/TeadsSDK" custom="true" />
     </platform>
 
     <!-- ios -->

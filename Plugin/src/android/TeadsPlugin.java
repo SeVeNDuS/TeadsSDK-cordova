@@ -27,10 +27,14 @@ import tv.teads.sdk.publisher.TeadsLog;
 import tv.teads.sdk.publisher.TeadsLog.LogLevel;
 
 
+import android.content.pm.PackageManager;
 import android.app.Activity;
 import android.util.Log;
 import android.view.ViewTreeObserver;
 import android.webkit.WebView;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEventListener, TeadsNativeVideoEventListener, ViewTreeObserver.OnScrollChangedListener {
     
@@ -82,13 +86,13 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
     TeadsInterstitial mTeadsInterstitial;
     
     TeadsNativeVideo mTeadsNativeVideo;
-    
+
     @Override
     public boolean execute(String action, JSONArray data, CallbackContext callbackContext) throws JSONException {
-        webView.getViewTreeObserver().addOnScrollChangedListener(this);
+
+        webView.getView().getViewTreeObserver().addOnScrollChangedListener(this);
         
         // TeadsLog.setLogLevel(TeadsLog.LogLevel.DEBUG);
-
         PluginResult result = null;
         
         //TeadsAdFactory
@@ -193,7 +197,7 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
     public Object onMessage(String id, Object data) {
         if (mTeadsNativeVideo != null) {
             if (id.equalsIgnoreCase("onPageFinished")) {
-                mTeadsNativeVideo.getWebViewClientListener().onPageFinished(webView, (String)data);
+                mTeadsNativeVideo.getWebViewClientListener().onPageFinished((WebView) webView.getView(), (String)data);
             }
             else if (id.equalsIgnoreCase("onScaleChanged")) {
                 
@@ -206,7 +210,7 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
     @Override
     public boolean onOverrideUrlLoading(String url) {
         if (mTeadsNativeVideo != null) {
-            mTeadsNativeVideo.getWebViewClientListener().shouldOverrideUrlLoading(webView, url);
+            mTeadsNativeVideo.getWebViewClientListener().shouldOverrideUrlLoading((WebView) webView.getView(), url);
         }
         
         return super.onOverrideUrlLoading(url);
@@ -357,14 +361,14 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
                 @Override
                 public void run() {
                     mTeadsNativeVideo = new TeadsNativeVideo(
-                                                 cordova.getActivity(),
-                                                 webView,
-                                                 pid,
-                                                 TeadsNativeVideo.NativeVideoContainerType.inBoard,
-                                                 TeadsPlugin.this,
-                                                 null,
-                                                 null
-                                            );
+                            cordova.getActivity(),
+                            (WebView) webView.getView(),
+                            pid,
+                            TeadsNativeVideo.NativeVideoContainerType.inBoard,
+                            TeadsPlugin.this,
+                            null,
+                            null
+                    );
                 }
             });
             
@@ -393,14 +397,14 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
                 @Override
                 public void run() {
                     mTeadsNativeVideo = new TeadsNativeVideo(
-                                                             cordova.getActivity(),
-                                                             webView,
-                                                             pid,
-                                                             TeadsNativeVideo.NativeVideoContainerType.inRead,
-                                                             TeadsPlugin.this,
-                                                             config,
-                                                             null
-                                                             );
+                            cordova.getActivity(),
+                            (WebView) webView.getView(),
+                            pid,
+                            TeadsNativeVideo.NativeVideoContainerType.inRead,
+                            TeadsPlugin.this,
+                            config,
+                            null
+                    );
                 }
             });
             
@@ -438,7 +442,7 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
         cordova.getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                mTeadsNativeVideo.getWebViewClientListener().onPageFinished(webView, null);
+                mTeadsNativeVideo.getWebViewClientListener().onPageFinished((WebView) webView.getView(), null);
 
                 if (mTeadsNativeVideo != null) {
                     mTeadsNativeVideo.load();
@@ -725,7 +729,7 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
     @Override
     public void onScrollChanged() {
         if (mTeadsNativeVideo != null && mTeadsNativeVideo.getWebViewScrollListener() != null) {
-            mTeadsNativeVideo.getWebViewScrollListener().onScroll(webView.getScrollX(), webView.getScrollY());
+            mTeadsNativeVideo.getWebViewScrollListener().onScroll(((WebView) webView.getView()).getScrollX(), ((WebView) webView.getView()).getScrollY());
         }
     }
 
