@@ -120,7 +120,7 @@
     if (pid != nil) {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
         self.teadsNativeVideo = nil;
-        self.teadsNativeVideo = [[TeadsNativeVideo alloc] initInBoardWithPlacementId:pid webView:self.webView rootViewController:self.viewController delegate:self];
+        self.teadsNativeVideo = [[TeadsNativeVideo alloc] initInBoardWithPlacementId:pid uiWebView:self.webView rootViewController:self.viewController delegate:self];
     } else {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"No pid provided"];
     }
@@ -141,7 +141,7 @@
     if (pid != nil) {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
         self.teadsNativeVideo = nil;
-        self.teadsNativeVideo = [[TeadsNativeVideo alloc] initInReadWithPlacementId:pid placeholderText:placeHolder webView:self.webView rootViewController:self.viewController delegate:self];
+        self.teadsNativeVideo = [[TeadsNativeVideo alloc] initInReadWithPlacementId:pid placeholderText:placeHolder uiWebView:self.webView rootViewController:self.viewController delegate:self];
     } else {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"No pid provided"];
     }
