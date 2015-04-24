@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<set xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shareInterpolator="false" >
-    <translate
-        android:duration="@integer/teads_activity_transition_normal"
-        android:zAdjustment="bottom" />
-</set><!-- From: file:/Users/hugogresse/Documents/Dev/teads/sdk-dev-android/sdk-teads/androidsdk/res/anim/hold.xml -->

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <!-- From: file:/Users/hugogresse/Documents/Dev/teads/sdk-dev-android/sdk-teads/androidsdk/res/values-sw600dp-v13/dimens.xml -->
-    <eat-comment/>
-    <dimen name="teads_action_bar_default_height_material">64dp</dimen>
-    <dimen name="teads_action_bar_default_padding_material">4dp</dimen>
-</resources>

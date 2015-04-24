@@ -1,0 +1,18 @@
+repositories{
+   maven {
+       url  'http://dl.bintray.com/teads/TeadsSDK-android'
+   }
+}
+
+dependencies {
+   compile ('tv.teads.sdk:androidsdk:1.1.2@aar'){
+   		transitive = true
+   }
+}
+
+android {
+  packagingOptions {
+  	exclude 'META-INF/NOTICE'
+    exclude 'META-INF/LICENSE'
+  }
+}

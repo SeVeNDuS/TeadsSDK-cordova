@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="tv.teads.sdk"
+    version="1.0">
+    <name>TeadsPlugin</name>
+    <description>Cordova plugin for Teads ads</description>
+    <license>Apache 2.0</license>
+    <keywords>teads</keywords>
+    <repo>https://github.com/teads/TeadsSDKDev-cordova</repo>
+    <issue>https://github.com/teads/TeadsSDKDev-cordova/issues</issue>
+
+    <engines>
+        <engine name="cordova-android" version=">=4.0.0" />
+    </engines>
+
+    <js-module src="www/TeadsPlugin.js" name="TeadsPlugin">
+        <clobbers target="TeadsSDK" />
+    </js-module>
+
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="TeadsPlugin">
+                <param name="android-package" value="tv.teads.sdk.TeadsPlugin" />
+            </feature>
+            <access origin="*" />
+
+            <!-- Enable all requests, inline styles, and eval() -->
+            <meta http-equiv="Content-Security-Policy" content="default-src *;" />
+
+        </config-file>
+
+        <source-file src="src/android/TeadsPlugin.java" target-dir="src/tv/teads/sdk/" />
+        <framework src="src/android/teads.gradle" custom="true" type="gradleReference" />
+
+        <config-file target="AndroidManifest.xml" parent="/*">
+          <uses-permission android:name="android.permission.INTERNET" />
+          <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+          <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+        </config-file>
+
+    </platform>
+
+    <!-- ios -->
+    <platform name="ios">
+         <config-file target="config.xml" parent="/*">
+             <feature name="TeadsPlugin">
+                 <param name="ios-package" value="TeadsPlugin" />
+             </feature>
+         </config-file>
+         
+         <header-file src="src/ios/TeadsPlugin.h"/>
+         <source-file src="src/ios/TeadsPlugin.m"/>
+         
+         <framework src="src/ios/TeadsSDK.framework" custom="true"/>
+         
+         <resource-file src="src/ios/TeadsSDKResources.bundle"/>
+        
+        <framework src="libxml2.dylib"/>
+        <framework src="libsqlite3.0.dylib"/>
+    </platform>
+
+</plugin>
