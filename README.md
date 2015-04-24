@@ -13,7 +13,7 @@ To add Teads Cordova plugin to your Cordova application, use the following comma
 
 ## Important Note for projects with Android platform :
 
-If you are using a Cordova-android platform < 4.0.0 you can use the following command :
+If you are using a Cordova-android platform < 4.0.0 you use the following command :
 
   ``` cordova plugin add https://github.com/teads/TeadsSDK-cordova/tree/master/Plugin_old ```
 
