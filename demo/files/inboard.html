@@ -57,7 +57,7 @@
        * TeadsNativeVideoDelegate callbacks
        */
       document.addEventListener('teadsNativeVideoDidFailLoading', function(e){ 
-        alert('Teads Native Video did fail to load ad' +
+        console.log('Teads Native Video did fail to load ad' +
           '\nError code : ' + e.code +
           '\nError name : ' + e.name +
           '\nError message : ' + e.message);
@@ -122,6 +122,7 @@
     function backButtonPressed() {
       //Device back button has been pressed and view will change : do what you want regarding the native video (clean, pause, etc..)
       TeadsSDK.cleanNativeVideo();
+      window.history.back();
     }
 
      //If you want to know if NativeVideo is loaded
