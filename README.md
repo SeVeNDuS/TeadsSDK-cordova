@@ -5,7 +5,7 @@ Teads SDK plugin for Cordova comes with support for Android and iOS.
 More information and guidelines <a href="https://github.com/teads/TeadsSDK-cordova/wiki">available in the wiki</a>.
 
 
-## Note :
+## Note for projects with Android platform :
 
 If you are using a Cordova-android platform >= 4.0.0, we recommand you to use the <a href="https://github.com/teads/TeadsSDKDev-cordova/tree/master/Plugin">version with cordova-android >= 4 support</a>.
 
