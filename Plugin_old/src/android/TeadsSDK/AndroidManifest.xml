@@ -1,5 +1,5 @@
 <manifest 
 xmlns:android="http://schemas.android.com/apk/res/android"
-package="tv.teads.sdk" android:versionName="1.0.8" android:versionCode="1">
+package="tv.teads.sdk" android:versionName="1.1.1" android:versionCode="1">
 <uses-sdk android:minSdkVersion="10" />
 </manifest>
