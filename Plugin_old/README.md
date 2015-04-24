@@ -2,7 +2,7 @@
 
 If you are using a Cordova-android platform >= 4.0.0, we recommand you to use the <a href="https://github.com/teads/TeadsSDKDev-cordova/tree/master/Plugin">version with cordova-android >= 4 support</a>.
 
-To know what version of Cordova-android platform use command :
+To know what version of Cordova-android platform you have on your Cordova project, use command :
 
   ``` cordova platforms ``` 
 
