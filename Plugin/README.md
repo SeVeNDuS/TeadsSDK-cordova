@@ -6,7 +6,7 @@ To add Teads Cordova plugin to your Cordova application, use the following comma
 
 If you need this plugin for Cordova-android platform, your version of Cordova-android has to be >= 4.0.0
 
-To know what version of Cordova-android platform use command :
+To know what version of Cordova-android platform you have on your Cordova project, use command :
 
   ``` cordova platforms ``` 
 
