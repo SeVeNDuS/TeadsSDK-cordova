@@ -577,6 +577,11 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
     public void teadsInterstitialRewardUnlocked() {
         webView.loadUrl("javascript:cordova.fireDocumentEvent('teadsInterstitialRewardUnlocked');");
     }
+
+    @Override
+    public void nativeVideoDidClean() {
+        webView.loadUrl("javascript:cordova.fireDocumentEvent('teadsNativeVideoDidClean');");
+    }
     
     /**
      * Teads Native Video Listener

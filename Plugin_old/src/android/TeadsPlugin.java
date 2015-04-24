@@ -760,6 +760,11 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
     }
 
     @Override
+    public void nativeVideoDidClean() {
+        webView.loadUrl("javascript:cordova.fireDocumentEvent('teadsNativeVideoDidClean');");
+    }
+
+    @Override
     public void onScrollChanged() {
         if (mTeadsNativeVideo != null && mTeadsNativeVideo.getWebViewScrollListener() != null) {
             mTeadsNativeVideo.getWebViewScrollListener().onScroll(cdvWebView.getScrollX(), cdvWebView.getScrollY());
