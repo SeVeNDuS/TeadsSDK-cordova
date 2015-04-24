@@ -1,5 +1,12 @@
 cordova.define("tv.teads.sdk.TeadsPlugin", function(require, exports, module) { cordova.define("tv.teads.sdk", function(require, exports, module) { var argscheck = require('cordova/argscheck'),
     exec = require('cordova/exec');});
+    
+
+//$(document).ready(function () {
+//  $(window).scroll(function () {
+
+//  });
+//});
 
 var teadsExport = {};
 

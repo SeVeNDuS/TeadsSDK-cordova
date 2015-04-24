@@ -1,26 +1,16 @@
 {
-    "com.google.playservices": {
+    "cordova-plugin-whitelist": {
         "source": {
             "type": "registry",
-            "id": "com.google.playservices"
-        }
-    },
-    "android.support.v4": {
-        "source": {
-            "type": "registry",
-            "id": "android.support.v4"
-        }
-    },
-    "android.support.v7-appcompat": {
-        "source": {
-            "type": "registry",
-            "id": "android.support.v7-appcompat"
-        }
+            "id": "cordova-plugin-whitelist@1"
+        },
+        "is_top_level": true,
+        "variables": {}
     },
     "tv.teads.sdk": {
         "source": {
             "type": "local",
-            "path": "/Users/nikolai/Documents/Development/0_Cordova/TeadsSDKDev-cordova/Plugin_old"
+            "path": "/Users/nikolai/Documents/Development/0_Cordova/TeadsSDK-cordova/plugin"
         },
         "is_top_level": true,
         "variables": {}

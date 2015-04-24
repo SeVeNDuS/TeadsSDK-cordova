@@ -34,6 +34,9 @@
         }
     },
     "installed_plugins": {
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "io.cordova.hellocordova"
+        },
         "tv.teads.sdk": {
             "PACKAGE_NAME": "io.cordova.hellocordova"
         }
