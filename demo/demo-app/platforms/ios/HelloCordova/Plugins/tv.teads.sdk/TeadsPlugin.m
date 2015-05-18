@@ -336,7 +336,6 @@
 
 -(void)teadsInterstitialDidDismissFullScreen:(TeadsInterstitial *)interstitial {
     [self fireDocumentEvent:@"teadsInterstitialDidDismissFullScreen" withData:@""];
-    [self.teadsInterstitial clean];
 }
 
 - (void)teadsInterstitialDidLoad:(TeadsInterstitial *)interstitial{
