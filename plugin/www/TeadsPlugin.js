@@ -26,11 +26,11 @@ function TeadsPlugin() {};
  * 
  * @param  {function()} failureCallback
  */
-TeadsPlugin.prototype.loadNativeVideoAdWithPidFromAdFactory = function(pid, successCallback, failureCallback) {
+TeadsPlugin.prototype.loadNativeVideoAdWithPidToAdFactory = function(pid, successCallback, failureCallback) {
 	if(typeof pid === 'string') {
-		cordova.exec( successCallback, failureCallback, 'TeadsPlugin', 'loadNativeVideoAdWithPidFromAdFactory', [pid]);
+		cordova.exec( successCallback, failureCallback, 'TeadsPlugin', 'loadNativeVideoAdWithPidToAdFactory', [pid]);
 	} else {
-		console.log('Error : placement id provided for loadNativeVideoAdWithPidFromAdFactory is not a string');
+		console.log('Error : placement id provided for loadNativeVideoAdWithPidToAdFactory is not a string');
 	}
 };
 
@@ -43,11 +43,11 @@ TeadsPlugin.prototype.loadNativeVideoAdWithPidFromAdFactory = function(pid, succ
  * 
  * @param  {function()} failureCallback
  */
-TeadsPlugin.prototype.loadFullscreenAdWithPidFromAdFactory = function(pid, successCallback, failureCallback) {
+TeadsPlugin.prototype.loadInterstitialAdWithPidToAdFactory = function(pid, successCallback, failureCallback) {
 	if(typeof pid === 'string') {
-		ccordova.exec( successCallback, failureCallback, 'TeadsPlugin', 'loadFullscreenAdWithPidFromAdFactory', [pid]);
+		ccordova.exec( successCallback, failureCallback, 'TeadsPlugin', 'loadInterstitialAdWithPidToAdFactory', [pid]);
 	} else {
-		console.log('Error : placement id provided for loadNativeVideoAdWithPidFromAdFactory is not a string');
+		console.log('Error : placement id provided for loadInterstitialAdWithPidToAdFactory is not a string');
 	}
 };
 
@@ -59,7 +59,7 @@ TeadsPlugin.prototype.initInFlowWithPlacementId = function(pid, successCallback,
 	if(typeof pid === 'string') {
 		cordova.exec(successCallback, failureCallback, 'TeadsPlugin', 'initInFlowWithPlacementId', [pid] );
 	} else {
-		console.log('Error : placement id provided for loadNativeVideoAdWithPidFromAdFactory is not a string');
+		console.log('Error : placement id provided for initInFlowWithPlacementId is not a string');
 	}
 };
 
