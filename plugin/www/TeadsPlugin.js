@@ -1,12 +1,6 @@
 cordova.define("tv.teads.sdk", function(require, exports, module) { var argscheck = require('cordova/argscheck'),
     exec = require('cordova/exec');});
-    
 
-//$(document).ready(function () {
-//  $(window).scroll(function () {
-
-//  });
-//});
 
 var teadsExport = {};
 
@@ -45,7 +39,7 @@ TeadsPlugin.prototype.loadNativeVideoAdWithPidToAdFactory = function(pid, succes
  */
 TeadsPlugin.prototype.loadInterstitialAdWithPidToAdFactory = function(pid, successCallback, failureCallback) {
 	if(typeof pid === 'string') {
-		ccordova.exec( successCallback, failureCallback, 'TeadsPlugin', 'loadInterstitialAdWithPidToAdFactory', [pid]);
+		cordova.exec( successCallback, failureCallback, 'TeadsPlugin', 'loadInterstitialAdWithPidToAdFactory', [pid]);
 	} else {
 		console.log('Error : placement id provided for loadInterstitialAdWithPidToAdFactory is not a string');
 	}
@@ -196,9 +190,6 @@ TeadsPlugin.prototype.handleNoSlotAvailable = function(successCallback, failureC
 };
 
 
-
-
 var teads = new TeadsPlugin(); 
 module.exports = teads;
 
-//});
