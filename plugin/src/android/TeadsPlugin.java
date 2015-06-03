@@ -96,17 +96,16 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
     public void pluginInitialize() {
         super.pluginInitialize();
 
-        TeadsLog.setLogLevel(LogLevel.verbose);
+        //Set a log level if you want to
+        //TeadsLog.setLogLevel(LogLevel.verbose);
+
+        webView.getView().getViewTreeObserver().addOnScrollChangedListener(this);
 
         TeadsAdFactory.getInstance(cordova.getActivity()).setListener(this);
     }
 
     @Override
     public boolean execute(String action, JSONArray data, CallbackContext callbackContext) throws JSONException {
-
-        webView.getView().getViewTreeObserver().addOnScrollChangedListener(this);
-        
-        // TeadsLog.setLogLevel(TeadsLog.LogLevel.DEBUG);
         PluginResult result = null;
         
         //TeadsAdFactory
@@ -115,7 +114,6 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
             
         } else if (ACTION_ADFACTORY_LOAD_INTERSTITIAL.equals(action)) {
             result = loadInterstitialAdWithPidToAdFactory(data, callbackContext);
-
         }
         
         //Teads fullscreen video
