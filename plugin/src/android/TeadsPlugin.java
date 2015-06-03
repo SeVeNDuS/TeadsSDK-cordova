@@ -8,16 +8,12 @@
 
 package tv.teads.sdk;
 
-
 import org.apache.cordova.CallbackContext;
-import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
-import org.apache.cordova.CordovaWebView;
 import org.apache.cordova.PluginResult;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-
 
 import tv.teads.sdk.adContent.AdContent;
 import tv.teads.sdk.publisher.TeadsAdFactory;
@@ -30,15 +26,9 @@ import tv.teads.sdk.publisher.TeadsNativeVideoEventListener;
 import tv.teads.sdk.publisher.TeadsLog;
 import tv.teads.sdk.publisher.TeadsLog.LogLevel;
 
-
-import android.content.pm.PackageManager;
-import android.app.Activity;
 import android.util.Log;
 import android.view.ViewTreeObserver;
 import android.webkit.WebView;
-
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEventListener, TeadsNativeVideoEventListener, TeadsAdFactory.Listener, ViewTreeObserver.OnScrollChangedListener {
     
@@ -106,6 +96,7 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
 
     @Override
     public boolean execute(String action, JSONArray data, CallbackContext callbackContext) throws JSONException {
+
         PluginResult result = null;
         
         //TeadsAdFactory
@@ -114,6 +105,7 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
             
         } else if (ACTION_ADFACTORY_LOAD_INTERSTITIAL.equals(action)) {
             result = loadInterstitialAdWithPidToAdFactory(data, callbackContext);
+
         }
         
         //Teads fullscreen video
@@ -203,8 +195,7 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
         
         return true;
     }
-    
-    
+
     
     @Override
     public Object onMessage(String id, Object data) {
@@ -610,27 +601,27 @@ public class TeadsPlugin extends CordovaPlugin implements TeadsInterstitialEvent
      */
     @Override
     public void adFactoryDidFailLoading(String s, TeadsError teadsError) {
-        webView.loadUrl("javascript:cordova.fireDocumentEvent('adFactoryDidFailLoading');");
+        webView.loadUrl("javascript:cordova.fireDocumentEvent('teadsAdFactoryDidFailLoading', {'pid' : '"+s+"'});");
     }
 
     @Override
     public void adFactoryWillLoad(String s, AdContent.PlacementAdType placementAdType) {
-        webView.loadUrl("javascript:cordova.fireDocumentEvent('adFactoryWillLoad');");
+        webView.loadUrl("javascript:cordova.fireDocumentEvent('teadsAdFactoryWillLoad', {'pid' : '"+s+"'});");
     }
 
     @Override
     public void adFactoryDidLoad(String s, AdContent.PlacementAdType placementAdType) {
-        webView.loadUrl("javascript:cordova.fireDocumentEvent('adFactoryDidLoad');");
+        webView.loadUrl("javascript:cordova.fireDocumentEvent('teadsAdFactoryDidLoad', {'pid' : '"+s+"'});");
     }
 
     @Override
     public void adFactoryHasConsumed(String s, AdContent.PlacementAdType placementAdType) {
-        webView.loadUrl("javascript:cordova.fireDocumentEvent('adFactoryHasConsumed');");
+        webView.loadUrl("javascript:cordova.fireDocumentEvent('teadsAdFactoryWasConsumed', {'pid' : '"+s+"'});");
     }
 
     @Override
     public void adFactoryDidExpire(String s, AdContent.PlacementAdType placementAdType) {
-        webView.loadUrl("javascript:cordova.fireDocumentEvent('adFactoryDidExpire');");
+        webView.loadUrl("javascript:cordova.fireDocumentEvent('teadsAdFactoryDidExpire', {'pid' : '"+s+"'});");
     }
     
     /**
