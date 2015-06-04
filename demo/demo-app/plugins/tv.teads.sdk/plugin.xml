@@ -2,13 +2,13 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
     id="tv.teads.sdk"
-    version="1.0.1">
+    version="1.1.0">
     <name>TeadsPlugin</name>
     <description>Cordova plugin for Teads ads</description>
     <license>Apache 2.0</license>
     <keywords>teads</keywords>
-    <repo>https://github.com/teads/TeadsSDKDev-cordova</repo>
-    <issue>https://github.com/teads/TeadsSDKDev-cordova/issues</issue>
+    <repo>https://github.com/teads/TeadsSDK-cordova</repo>
+    <issue>https://github.com/teads/TeadsSDK-cordova/issues</issue>
 
     <engines>
         <engine name="cordova-android" version=">=4.0.0" />
@@ -38,6 +38,7 @@
           <uses-permission android:name="android.permission.INTERNET" />
           <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
           <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+          <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
         </config-file>
 
     </platform>

@@ -2,10 +2,12 @@ repositories{
    maven {
        url  'http://dl.bintray.com/teads/TeadsSDK-android'
    }
+
+  jcenter()
 }
 
 dependencies {
-   compile ('tv.teads.sdk:androidsdk:1.2.2@aar'){
+   compile ('tv.teads.sdk:androidsdk:1.2.4@aar'){
    		transitive = true
    }
 }
@@ -16,3 +18,4 @@ android {
     exclude 'META-INF/LICENSE'
   }
 }
+

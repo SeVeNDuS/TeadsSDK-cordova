@@ -90,6 +90,38 @@
       /**
        * End of TeadsNativeVideoDelegate callbacks
        */
+      
+
+      /**
+       * TeadsAdFactory callbacks
+       * These are optionnal, only used with TeadsAdFactory
+       */
+        document.addEventListener('teadsAdFactoryDidFailLoading', function(data){
+         alert('Teads teadsInterstial did fail to load ad' +
+          '\nError code : ' + data.teadsError.code +
+          '\nError name : ' + data.teadsError.name +
+          '\nError message : ' + data.teadsError.message);
+
+        document.getElementById("loadnative").disabled = false;
+        document.getElementById('loader').style.display = 'none';
+      });
+      document.addEventListener('teadsAdFactoryWillLoad', function(data){
+        var pid = data.pid;
+      });
+      document.addEventListener('teadsAdFactoryDidLoad', function(data){
+        var pid = data.pid;
+      });
+      document.addEventListener('teadsAdFactoryWasConsumed', function(data){
+        var pid = data.pid;
+
+        document.getElementById('loader').style.display = 'none';
+      });
+      document.addEventListener('teadsAdFactoryDidExpire', function(data){
+        var pid = data.pid;
+      });
+      /**
+       * End of TeadsAdFactory callbacks
+       */
 
 
       //For Android devices, you should listen to backbutton touch action
