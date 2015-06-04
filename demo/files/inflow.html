@@ -85,8 +85,7 @@
       /**
        * End of TeadsInterstitialDelegate callbacks
        */
-
-
+      
       //For Android devices, you should listen to backbutton touch action
       document.addEventListener("backbutton", backButtonPressed, false);
     }
@@ -95,10 +94,13 @@
     //Custom methods : you can do as you want to call Teads plugin methods
     function initInFlow() {
       TeadsSDK.initInFlowWithPlacementId('27695');
+      
+      //Predownload for iOS SDK
       //TeadsSDK.setPreDownloadInFlow(true);
     }
     function loadInFlow() {
       document.getElementById('loaderinterstitial').style.display='inline';
+      
       TeadsSDK.loadInFlow();
     }
 
