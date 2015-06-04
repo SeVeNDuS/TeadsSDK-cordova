@@ -77,3 +77,52 @@ To disable web storage backup to iCloud, set the BackupWebStorage preference to 
 
 2015-05-18 15:36:00.716 HelloCordova[5076:93475] Resetting plugins due to page load.
 2015-05-18 15:36:00.775 HelloCordova[5076:93475] Finished load of: file:///Users/nikolai/Library/Developer/CoreSimulator/Devices/1182F1D2-4303-4765-9679-AEC18AF8737F/data/Containers/Bundle/Application/12460C5D-BF7B-4BA3-820D-A5474DA2ABAA/HelloCordova.app/www/index.html
+2015-06-04 11:21:33.262 HelloCordova[18284:550905] Apache Cordova native platform version 3.8.0 is starting.
+2015-06-04 11:21:33.265 HelloCordova[18284:550905] Multi-tasking -> Device: YES, App: YES
+2015-06-04 11:21:33.274 HelloCordova[18284:550905] Unlimited access to network resources
+2015-06-04 11:21:33.281 HelloCordova[18284:550905] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2015-06-04 11:21:33.709 HelloCordova[18284:550905] Resetting plugins due to page load.
+2015-06-04 11:21:33.813 HelloCordova[18284:550905] Finished load of: file:///Users/nikolai/Library/Developer/CoreSimulator/Devices/1182F1D2-4303-4765-9679-AEC18AF8737F/data/Containers/Bundle/Application/833354F4-C613-4E6F-84E6-D7333CAF8257/HelloCordova.app/www/index.html
+2015-06-04 11:21:35.119 HelloCordova[18284:550905] Resetting plugins due to page load.
+2015-06-04 11:21:35.162 HelloCordova[18284:550905] Finished load of: file:///Users/nikolai/Library/Developer/CoreSimulator/Devices/1182F1D2-4303-4765-9679-AEC18AF8737F/data/Containers/Bundle/Application/833354F4-C613-4E6F-84E6-D7333CAF8257/HelloCordova.app/www/inboard.html
+Jun  4 11:21:36 MacBook-Pro-de-Nikolai.local rtcreporting[18284] <Info>: logging starts...
+Jun  4 11:21:36 MacBook-Pro-de-Nikolai.local rtcreporting[18284] <Debug>: setMessageLoggingBlock: called
+2015-06-04 11:21:40.662 HelloCordova[18284:550905] Resetting plugins due to page load.
+2015-06-04 11:21:40.680 HelloCordova[18284:550905] Finished load of: file:///Users/nikolai/Library/Developer/CoreSimulator/Devices/1182F1D2-4303-4765-9679-AEC18AF8737F/data/Containers/Bundle/Application/833354F4-C613-4E6F-84E6-D7333CAF8257/HelloCordova.app/www/index.html
+2015-06-04 11:21:41.744 HelloCordova[18284:550905] Resetting plugins due to page load.
+2015-06-04 11:21:41.767 HelloCordova[18284:550905] Finished load of: file:///Users/nikolai/Library/Developer/CoreSimulator/Devices/1182F1D2-4303-4765-9679-AEC18AF8737F/data/Containers/Bundle/Application/833354F4-C613-4E6F-84E6-D7333CAF8257/HelloCordova.app/www/inread.html
+Jun  4 11:21:43 MacBook-Pro-de-Nikolai.local rtcreporting[18284] <Debug>: setMessageLoggingBlock: called
+2015-06-04 11:21:51.982 HelloCordova[18284:550905] Resetting plugins due to page load.
+2015-06-04 11:21:51.998 HelloCordova[18284:550905] Finished load of: file:///Users/nikolai/Library/Developer/CoreSimulator/Devices/1182F1D2-4303-4765-9679-AEC18AF8737F/data/Containers/Bundle/Application/833354F4-C613-4E6F-84E6-D7333CAF8257/HelloCordova.app/www/index.html
+2015-06-04 11:21:53.215 HelloCordova[18284:550905] Resetting plugins due to page load.
+2015-06-04 11:21:53.231 HelloCordova[18284:550905] Finished load of: file:///Users/nikolai/Library/Developer/CoreSimulator/Devices/1182F1D2-4303-4765-9679-AEC18AF8737F/data/Containers/Bundle/Application/833354F4-C613-4E6F-84E6-D7333CAF8257/HelloCordova.app/www/inflow.html
+2015-06-04 11:21:55.561 HelloCordova[18284:550905] THREAD WARNING: ['TeadsPlugin'] took '67.332031' ms. Plugin should use a background thread.
+Jun  4 11:21:55 MacBook-Pro-de-Nikolai.local rtcreporting[18284] <Debug>: setMessageLoggingBlock: called
+2015-06-04 11:21:58.812 HelloCordova[18284:550905] Resetting plugins due to page load.
+2015-06-04 11:21:58.828 HelloCordova[18284:550905] Finished load of: file:///Users/nikolai/Library/Developer/CoreSimulator/Devices/1182F1D2-4303-4765-9679-AEC18AF8737F/data/Containers/Bundle/Application/833354F4-C613-4E6F-84E6-D7333CAF8257/HelloCordova.app/www/index.html
+2015-06-04 11:22:02.008 HelloCordova[18284:550905] Resetting plugins due to page load.
+2015-06-04 11:22:02.024 HelloCordova[18284:550905] Finished load of: file:///Users/nikolai/Library/Developer/CoreSimulator/Devices/1182F1D2-4303-4765-9679-AEC18AF8737F/data/Containers/Bundle/Application/833354F4-C613-4E6F-84E6-D7333CAF8257/HelloCordova.app/www/inflow.html
+2015-06-04 11:22:07.539 HelloCordova[18284:550905] THREAD WARNING: ['TeadsPlugin'] took '55.196045' ms. Plugin should use a background thread.
+Jun  4 11:22:07 MacBook-Pro-de-Nikolai.local rtcreporting[18284] <Debug>: setMessageLoggingBlock: called
+2015-06-04 11:22:16.596 HelloCordova[18284:550905] THREAD WARNING: ['TeadsPlugin'] took '54.290039' ms. Plugin should use a background thread.
+Jun  4 11:22:16 MacBook-Pro-de-Nikolai.local rtcreporting[18284] <Debug>: setMessageLoggingBlock: called
+2015-06-04 11:22:22.692 HelloCordova[18284:550905] THREAD WARNING: ['TeadsPlugin'] took '54.368896' ms. Plugin should use a background thread.
+Jun  4 11:22:22 MacBook-Pro-de-Nikolai.local rtcreporting[18284] <Debug>: setMessageLoggingBlock: called
+2015-06-04 11:22:25.750 HelloCordova[18284:550905] Resetting plugins due to page load.
+2015-06-04 11:22:25.765 HelloCordova[18284:550905] Finished load of: file:///Users/nikolai/Library/Developer/CoreSimulator/Devices/1182F1D2-4303-4765-9679-AEC18AF8737F/data/Containers/Bundle/Application/833354F4-C613-4E6F-84E6-D7333CAF8257/HelloCordova.app/www/index.html
+Jun  4 11:22:26 MacBook-Pro-de-Nikolai.local rtcreporting[18284] <Debug>: initWithSessionInfo: XPC connection interrupted
+Jun  4 11:22:26 MacBook-Pro-de-Nikolai.local rtcreporting[18284] <Debug>: initWithSessionInfo: XPC connection interrupted
+Jun  4 11:22:26 MacBook-Pro-de-Nikolai.local rtcreporting[18284] <Debug>: initWithSessionInfo: XPC connection interrupted
+Jun  4 11:22:26 MacBook-Pro-de-Nikolai.local rtcreporting[18284] <Debug>: initWithSessionInfo: XPC connection interrupted
+Jun  4 11:22:26 MacBook-Pro-de-Nikolai.local rtcreporting[18284] <Debug>: initWithSessionInfo: XPC connection interrupted
+Jun  4 11:22:26 MacBook-Pro-de-Nikolai.local rtcreporting[18284] <Debug>: initWithSessionInfo: XPC connection interrupted
+Jun  4 11:22:26 MacBook-Pro-de-Nikolai.local rtcreporting[18284] <Error>: sendMessageWithCategory: Failed to get remote object proxy: Error Domain=NSCocoaErrorDomain Code=4097 "The operation couldn’t be completed. (Cocoa error 4097.)" (connection to service named com.apple.rtcreportingd) UserInfo=0x7ca6d4a0 {NSDebugDescription=connection to service named com.apple.rtcreportingd}
+Jun  4 11:22:26 MacBook-Pro-de-Nikolai.local rtcreporting[18284] <Error>: sendMessageWithCategory: Failed to get remote object proxy: Error Domain=NSCocoaErrorDomain Code=4097 "The operation couldn’t be completed. (Cocoa error 4097.)" (connection to service named com.apple.rtcreportingd) UserInfo=0x7cf6a250 {NSDebugDescription=connection to service named com.apple.rtcreportingd}
+Jun  4 11:22:26 MacBook-Pro-de-Nikolai.local rtcreporting[18284] <Error>: sendMessageWithCategory: Failed to get remote object proxy: Error Domain=NSCocoaErrorDomain Code=4097 "The operation couldn’t be completed. (Cocoa error 4097.)" (connection to service named com.apple.rtcreportingd) UserInfo=0x7ee817f0 {NSDebugDescription=connection to service named com.apple.rtcreportingd}
