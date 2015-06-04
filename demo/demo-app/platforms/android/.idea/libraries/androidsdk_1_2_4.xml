@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="androidsdk-1.2.4">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/build/intermediates/exploded-aar/tv.teads.sdk/androidsdk/1.2.4/libs/renderscript-v8.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/intermediates/exploded-aar/tv.teads.sdk/androidsdk/1.2.4/libs/commons-io-2.4.jar!/" />
+      <root url="file://$PROJECT_DIR$/build/intermediates/exploded-aar/tv.teads.sdk/androidsdk/1.2.4/res" />
+      <root url="jar://$PROJECT_DIR$/build/intermediates/exploded-aar/tv.teads.sdk/androidsdk/1.2.4/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
