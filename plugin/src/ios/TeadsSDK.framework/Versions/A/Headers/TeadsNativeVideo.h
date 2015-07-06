@@ -20,6 +20,7 @@
 /////////////////////////////////////////////////////////////
 
 @property (nonatomic) BOOL isLoaded;
+@property (nonatomic) BOOL isPlaying;
 
 @property (nonatomic, weak) id rootViewController;
 
@@ -79,6 +80,8 @@
 
 - (void)setPreDownLoad:(BOOL)preDownload;
 
+- (void)setAltScrollView:(UIScrollView *)scrollView;
+
 - (void)load;
 - (void)loadFromFactory;
 
@@ -96,6 +99,10 @@
 
 - (void)viewControllerAppeared:(UIViewController *)viewController;
 - (void)viewControllerDisappeared:(UIViewController *)viewController;
+
+- (CGRect)getExpandedFrame;
+- (float)getExpandAnimationDuration;
+- (float)getCollapseAnimationDuration;
 
 @end
 
@@ -135,6 +142,13 @@
  * @param interstitial  : the TeadsNativeVideo object
  */
 - (void)teadsNativeVideoDidLoad:(TeadsNativeVideo *)nativeVideo;
+
+/**
+ * NativeVideo failed to find a slot in web view
+ *
+ * @param interstitial  : the TeadsNativeVideo object
+ */
+- (void)teadsNativeVideoFailedToFindAvailableSlot:(TeadsNativeVideo *)nativeVideo;
 
 /**
  * NativeVideo Will Start Playing (loading)

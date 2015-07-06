@@ -18,6 +18,8 @@
         <clobbers target="TeadsSDK" />
     </js-module>
 
+    <dependency id="cordova-plugin-whitelist" />
+
     <!-- android -->
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">

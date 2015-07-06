@@ -19,6 +19,13 @@
 @implementation TeadsPlugin
 
 
+- (void)pluginInitialize
+{
+    [super pluginInitialize];
+    
+    [TeadsLog setLevelType:TeadsDebugLevelError];
+}
+
 #pragma mark - Teads Ad Factory
 
 - (void)loadNativeVideoAdWithPidToAdFactory:(CDVInvokedUrlCommand*)command {
