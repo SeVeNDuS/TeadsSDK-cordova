@@ -12,7 +12,7 @@ module.exports.metadata =
 // TOP OF METADATA
 {
     "cordova-plugin-whitelist": "1.0.0",
-    "tv.teads.sdk": "1.1.0"
+    "tv.teads.sdk": "1.2.0"
 }
 // BOTTOM OF METADATA
 });

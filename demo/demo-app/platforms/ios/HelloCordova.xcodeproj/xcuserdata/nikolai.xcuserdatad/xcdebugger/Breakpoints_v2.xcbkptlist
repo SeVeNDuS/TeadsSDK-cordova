@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HelloCordova/Plugins/tv.teads.sdk/TeadsPlugin.m"
-            timestampString = "457879795.265974"
+            timestampString = "464531951.56452"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "147"
-            endingLineNumber = "147"
-            landmarkName = "-initinReadWithPlacementId:"
+            startingLineNumber = "396"
+            endingLineNumber = "396"
+            landmarkName = "-teadsNativeVideoFailedToFindAvailableSlot:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

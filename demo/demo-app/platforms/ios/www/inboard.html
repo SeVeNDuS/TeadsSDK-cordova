@@ -7,7 +7,7 @@
 
     <title>inBoard</title>
 
-    <script type="text/javascript" charset="utf-8">
+    <script type="text/javascript">
     // Wait for device API libraries to load
     function onbodyload() {
       if ((/(ipad|iphone|ipod|android)/i.test(navigator.userAgent))) {
@@ -141,10 +141,10 @@
 
   <body onload="onbodyload()">
     <br />
-    <button type="button" class="btn btn-default" onclick="backHome();">< Home</button>
+    <button type="button" class="btn btn-default" onclick="backHome();">&lt; Home</button>
 
-    <div align="center">
-      <p><img id="loader" style="display:none;" src="loader.gif" /> </p>
+    <div style="text-align:center;">
+      <p><img id="loader" alt="loading..." style="display:none;" src="loader.gif" /> </p>
       <p><button class="btn btn-default btn-lg btn-info" id="loadnative" onclick="loadNativeVideo();">load inBoard</button></p>
     </div>
     
@@ -156,7 +156,7 @@
 
           <div class="blog-post">
             <h2 class="blog-post-title">Another blog post</h2>
-            <p> <img src="img/visu1.jpg" width="100%"> </p>
+            <p> <img src="img/visu1.jpg" alt="" style="width:100%;"> </p>
 
             <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
             <blockquote>
@@ -169,7 +169,7 @@
           <div class="blog-post">
             <h2 class="blog-post-title">New feature</h2>
             
-            <p> <img src="img/visu2.jpg" width="100%"> </p>
+            <p> <img src="img/visu2.jpg" alt="" style="width:100%;"> </p>
 
             <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
             <ul>
@@ -184,7 +184,7 @@
           <div class="blog-post">
             <h2 class="blog-post-title">Daily News</h2>
 
-            <p> <img src="img/visu3.jpg" width="100%"> </p>
+            <p> <img src="img/visu3.jpg" alt="" style="width:100%;"> </p>
 
             <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
             <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>

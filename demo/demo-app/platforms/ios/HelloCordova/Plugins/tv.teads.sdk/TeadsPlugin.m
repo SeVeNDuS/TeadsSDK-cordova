@@ -19,13 +19,6 @@
 @implementation TeadsPlugin
 
 
-- (void)pluginInitialize
-{
-    [super pluginInitialize];
-    
-    [TeadsLog setLevelType:TeadsDebugLevelError];
-}
-
 #pragma mark - Teads Ad Factory
 
 - (void)loadNativeVideoAdWithPidToAdFactory:(CDVInvokedUrlCommand*)command {
@@ -392,6 +385,15 @@
     
     NSString *data = [NSString stringWithFormat:@"{'code' : '%@', 'name' : '%@', 'message' : '%@'}", teadsErrorType, error.name, error.message];
     [self fireDocumentEvent:@"teadsNativeVideoDidFailLoading" withData:data];
+}
+
+/**
+ * NativeVideo failed to find a slot in web view
+ *
+ * @param interstitial  : the TeadsNativeVideo object
+ */
+- (void)teadsNativeVideoFailedToFindAvailableSlot:(TeadsNativeVideo *)nativeVideo {
+    [self fireDocumentEvent:@"nativeVideoWebViewNoSlotAvailable" withData:@""];
 }
 
 /**

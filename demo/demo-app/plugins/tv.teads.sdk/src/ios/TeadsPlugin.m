@@ -388,6 +388,15 @@
 }
 
 /**
+ * NativeVideo failed to find a slot in web view
+ *
+ * @param interstitial  : the TeadsNativeVideo object
+ */
+- (void)teadsNativeVideoFailedToFindAvailableSlot:(TeadsNativeVideo *)nativeVideo {
+    [self fireDocumentEvent:@"nativeVideoWebViewNoSlotAvailable" withData:@""];
+}
+
+/**
  * NativeVideo Will Load (loading)
  *
  * @param interstitial  : the TeadsNativeVideo object

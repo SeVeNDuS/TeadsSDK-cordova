@@ -7,7 +7,7 @@
 
     <title>inFlow</title>
 
-    <script type="text/javascript" charset="utf-8">
+    <script type="text/javascript">
     // Wait for device API libraries to load
     function onbodyload() {
       if ((/(ipad|iphone|ipod|android)/i.test(navigator.userAgent))) {
@@ -85,8 +85,7 @@
       /**
        * End of TeadsInterstitialDelegate callbacks
        */
-
-
+      
       //For Android devices, you should listen to backbutton touch action
       document.addEventListener("backbutton", backButtonPressed, false);
     }
@@ -95,10 +94,13 @@
     //Custom methods : you can do as you want to call Teads plugin methods
     function initInFlow() {
       TeadsSDK.initInFlowWithPlacementId('27695');
+      
+      //Predownload for iOS SDK
       //TeadsSDK.setPreDownloadInFlow(true);
     }
     function loadInFlow() {
       document.getElementById('loaderinterstitial').style.display='inline';
+      
       TeadsSDK.loadInFlow();
     }
 
@@ -121,11 +123,11 @@
 
   <body onload="onbodyload()">
     <br />
-    <button type="button" class="btn btn-default" onclick="backHome();">< Home</button>
+    <button type="button" class="btn btn-default" onclick="backHome();">&lt; Home</button>
 
-    <div align="center">
+    <div style="text-align:center;">
       <button class="btn btn-default btn-lg" id="loadinflow" onclick="loadInFlow();" >load inFlow</button><br /><br />
-      <img id="loaderinterstitial" style="display:none;" src="loader.gif" /><br /><br />
+      <img id="loaderinterstitial" style="display:none;" src="loader.gif" alt="" /><br /><br />
       <button class="btn btn-default btn-lg" id="showinflow" onclick="TeadsSDK.showInFlow();" disabled>Show inFlow</button><br /><br />
     </div>
 
