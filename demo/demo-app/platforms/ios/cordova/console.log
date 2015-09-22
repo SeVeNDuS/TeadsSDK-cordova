@@ -126,3 +126,30 @@ Jun  4 11:22:26 MacBook-Pro-de-Nikolai.local rtcreporting[18284] <Debug>: initWi
 Jun  4 11:22:26 MacBook-Pro-de-Nikolai.local rtcreporting[18284] <Error>: sendMessageWithCategory: Failed to get remote object proxy: Error Domain=NSCocoaErrorDomain Code=4097 "The operation couldn’t be completed. (Cocoa error 4097.)" (connection to service named com.apple.rtcreportingd) UserInfo=0x7ca6d4a0 {NSDebugDescription=connection to service named com.apple.rtcreportingd}
 Jun  4 11:22:26 MacBook-Pro-de-Nikolai.local rtcreporting[18284] <Error>: sendMessageWithCategory: Failed to get remote object proxy: Error Domain=NSCocoaErrorDomain Code=4097 "The operation couldn’t be completed. (Cocoa error 4097.)" (connection to service named com.apple.rtcreportingd) UserInfo=0x7cf6a250 {NSDebugDescription=connection to service named com.apple.rtcreportingd}
 Jun  4 11:22:26 MacBook-Pro-de-Nikolai.local rtcreporting[18284] <Error>: sendMessageWithCategory: Failed to get remote object proxy: Error Domain=NSCocoaErrorDomain Code=4097 "The operation couldn’t be completed. (Cocoa error 4097.)" (connection to service named com.apple.rtcreportingd) UserInfo=0x7ee817f0 {NSDebugDescription=connection to service named com.apple.rtcreportingd}
+2015-09-22 12:04:26.742 HelloCordova[14243:300862] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/nikolai/Library/Developer/CoreSimulator/Devices/1182F1D2-4303-4765-9679-AEC18AF8737F/data/Containers/Data/Application/F7721C24-ABAD-4A44-B067-F1129982208B/Library/Cookies/Cookies.binarycookies
+2015-09-22 12:04:26.815 HelloCordova[14243:300862] Apache Cordova native platform version 3.8.0 is starting.
+2015-09-22 12:04:26.815 HelloCordova[14243:300862] Multi-tasking -> Device: YES, App: YES
+2015-09-22 12:04:26.816 HelloCordova[14243:300862] Unlimited access to network resources
+2015-09-22 12:04:26.818 HelloCordova[14243:300862] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2015-09-22 12:04:27.016 HelloCordova[14243:300862] Resetting plugins due to page load.
+2015-09-22 12:04:27.082 HelloCordova[14243:300862] Finished load of: file:///Users/nikolai/Library/Developer/CoreSimulator/Devices/1182F1D2-4303-4765-9679-AEC18AF8737F/data/Containers/Bundle/Application/8D646D7B-05BD-4932-9C48-0F495C3A4483/HelloCordova.app/www/index.html
+2015-09-22 12:04:29.230 HelloCordova[14243:300862] Resetting plugins due to page load.
+2015-09-22 12:04:29.255 HelloCordova[14243:300862] Finished load of: file:///Users/nikolai/Library/Developer/CoreSimulator/Devices/1182F1D2-4303-4765-9679-AEC18AF8737F/data/Containers/Bundle/Application/8D646D7B-05BD-4932-9C48-0F495C3A4483/HelloCordova.app/www/inboard.html
+Sep 22 12:04:31 MacBook-Pro-de-Nikolai.local rtcreporting[14243] <Info>: logging starts...
+Sep 22 12:04:31 MacBook-Pro-de-Nikolai.local rtcreporting[14243] <Debug>: setMessageLoggingBlock: called
+2015-09-22 12:04:34.346 HelloCordova[14243:300862] Resetting plugins due to page load.
+2015-09-22 12:04:34.362 HelloCordova[14243:300862] Finished load of: file:///Users/nikolai/Library/Developer/CoreSimulator/Devices/1182F1D2-4303-4765-9679-AEC18AF8737F/data/Containers/Bundle/Application/8D646D7B-05BD-4932-9C48-0F495C3A4483/HelloCordova.app/www/index.html
+2015-09-22 12:04:35.285 HelloCordova[14243:300862] Resetting plugins due to page load.
+2015-09-22 12:04:35.305 HelloCordova[14243:300862] Finished load of: file:///Users/nikolai/Library/Developer/CoreSimulator/Devices/1182F1D2-4303-4765-9679-AEC18AF8737F/data/Containers/Bundle/Application/8D646D7B-05BD-4932-9C48-0F495C3A4483/HelloCordova.app/www/inread.html
+Sep 22 12:04:42 MacBook-Pro-de-Nikolai.local rtcreporting[14243] <Debug>: initWithSessionInfo: XPC connection interrupted
+Sep 22 12:04:42 MacBook-Pro-de-Nikolai.local rtcreporting[14243] <Error>: sendMessageWithCategory: Failed to get remote object proxy: Error Domain=NSCocoaErrorDomain Code=4097 "The operation couldn’t be completed. (Cocoa error 4097.)" (connection to service named com.apple.rtcreportingd) UserInfo=0x7a099fa0 {NSDebugDescription=connection to service named com.apple.rtcreportingd}
+Sep 22 12:04:42 MacBook-Pro-de-Nikolai.local rtcreporting[14243] <Error>: sendMessageWithCategory: Failed to get remote object proxy: Error Domain=NSCocoaErrorDomain Code=4097 "The operation couldn’t be completed. (Cocoa error 4097.)" (connection to service named com.apple.rtcreportingd) UserInfo=0x7a099fa0 {NSDebugDescription=connection to service named com.apple.rtcreportingd}
+Sep 22 12:04:42 MacBook-Pro-de-Nikolai.local rtcreporting[14243] <Error>: initWithSessionInfo: Failed to get remote object proxy: Error Domain=NSCocoaErrorDomain Code=4097 "The operation couldn’t be completed. (Cocoa error 4097.)" (connection to service named com.apple.rtcreportingd) UserInfo=0x7a099fa0 {NSDebugDescription=connection to service named com.apple.rtcreportingd}
+Sep 22 12:04:42 MacBook-Pro-de-Nikolai.local rtcreporting[14243] <Error>: startConfigurationWithCompletionHandler: Failed to get remote object proxy: Error Domain=NSCocoaErrorDomain Code=4097 "The operation couldn’t be completed. (Cocoa error 4097.)" (connection to service named com.apple.rtcreportingd) UserInfo=0x7a099fa0 {NSDebugDescription=connection to service named com.apple.rtcreportingd}

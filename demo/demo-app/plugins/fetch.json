@@ -7,6 +7,14 @@
         "is_top_level": true,
         "variables": {}
     },
+    "com.google.playservices": {
+        "source": {
+            "type": "registry",
+            "id": "com.google.playservices"
+        },
+        "is_top_level": false,
+        "variables": {}
+    },
     "tv.teads.sdk": {
         "source": {
             "type": "local",
