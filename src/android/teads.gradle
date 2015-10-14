@@ -8,8 +8,8 @@ repositories{
 
 dependencies {
   compile fileTree(dir: 'libs', include: ['*.jar'])
-  compile 'com.google.android.gms:play-services-base:7.8.0'
-  compile 'com.google.android.gms:play-services-ads:7.8.0'
+  compile 'com.google.android.gms:play-services-base:8.1.0'
+  compile 'com.google.android.gms:play-services-ads:8.1.0'
 
   // Teads SDK
   compile ('tv.teads.sdk:androidsdk:1.5.11@aar') {
